@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "191250730960",
+    "firebase_url": "https://myapp-360b6.firebaseio.com",
+    "project_id": "myapp-360b6",
+    "storage_bucket": "myapp-360b6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:191250730960:android:7d79564e012741ca",
+        "android_client_info": {
+          "package_name": "com.example.pawel.myapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "191250730960-c7jop1rbudq5a2p2uimqo2b1hh8gn37s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCavEJ2gQfiQvq15db-skcegEhqqSp1JrQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "191250730960-c7jop1rbudq5a2p2uimqo2b1hh8gn37s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
