@@ -19,7 +19,7 @@
             android:title="Zamówienia" />
     </group>
 
-    <item android:title="-----------------------------------------------">
+    <item>
         <menu>
             <item
                 android:id="@+id/nav_setting"

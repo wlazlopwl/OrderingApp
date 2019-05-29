@@ -99,9 +99,16 @@ public class LogInActivity extends AppCompatActivity {
 
 
                             }
-
-
                             }
+                            if (success.equals("2")){
+                                for(int i=0;i<jsonArray.length();i++) {
+                                    JSONObject object = jsonArray.getJSONObject(i);
+                                    Toast.makeText(LogInActivity.this, "Zalogowany ADMIN", Toast.LENGTH_SHORT).show();
+                                    Intent intent=new Intent(LogInActivity.this,AdminActivity.class);
+                                    startActivity(intent);
+
+                                }}
+
 
                         } catch (JSONException e){
                             e.printStackTrace();
