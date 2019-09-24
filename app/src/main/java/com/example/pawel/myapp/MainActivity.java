@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,10 +15,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    private ArrayList<String> nNames=new ArrayList<>();
 
     private TextView menuName;
     private TextView menuEmail;
@@ -61,11 +67,29 @@ public class MainActivity extends AppCompatActivity
         menuName.setText(extraName);
         menuEmail.setText(extraEmail);
 
+        getImages();
 
 
 
     }
+private void getImages(){
+        nNames.add("adasdda");
+    nNames.add("adasdda");
+    nNames.add("adasdda");
+    nNames.add("adasdda");
+    nNames.add("adasdda");
+    nNames.add("adasdda");
+    nNames.add("adasdda");
+    initRecyclerView();
+}
 
+private void initRecyclerView(){
+    LinearLayoutManager layoutManager= new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
+    RecyclerView recyclerView=findViewById(R.id.recyclerVievCategory);
+    recyclerView.setLayoutManager(layoutManager);
+    RecycleVievAdapter adapter = new RecycleVievAdapter(this, nNames);
+    recyclerView.setAdapter(adapter);
+}
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
