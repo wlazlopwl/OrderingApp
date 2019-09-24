@@ -11,4 +11,40 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="title_activity_support">SupportActivity</string>
+
+    <string-array name="support_questions">
+        <item>jedens</item>
+        <item>dwa</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>jededn</item>
+        <item>dwa</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+    </string-array>
+
+    <string-array name="support_answer">
+        <item>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce euismod lectus eget ex lobortis, eu convallis tortor pulvinar.</item>
+        <item>Suspendisse quis velit pharetra, lobortis turpis a, dictum eros. </item>
+        <item>Cras a pretium nulla. Ut risus purus, vehicula et mauris id, vestibulum finibus elit.</item>
+        <item>Nullam ac augue et ante ornare venenatis et feugiat mauris. Etiam consectetur neque in posuere aliquet</item>
+        <item>Nullam ac augue et ante ornare venenatis et feugiat mauris. Etiam consectetur neque in posuere aliquet.</item>
+        <item>6Nullam ac augue et ante ornare venenatis et feugiat mauris. Etiam consectetur neque in posuere aliquet.</item>
+        <item>7Nullam ac augue et ante ornare venenatis et feugiat mauris. Etiam consectetur neque in posuere aliquet.</item>
+        <item>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce euismod lectus eget ex lobortis, eu convallis tortor pulvinar.</item>
+        <item>Suspendisse quis velit pharetra, lobortis turpis a, dictum eros. </item>
+        <item>Cras a pretium nulla. Ut risus purus, vehicula et mauris id, vestibulum finibus elit.</item>
+        <item>Nullam ac augue et ante ornare venenatis et feugiat mauris. Etiam consectetur neque in posuere aliquet</item>
+        <item>Nullam ac augue et ante ornare venenatis et feugiat mauris. Etiam consectetur neque in posuere aliquet.</item>
+        <item>6Nullam ac augue et ante ornare venenatis et feugiat mauris. Etiam consectetur neque in posuere aliquet.</item>
+        <item>7Nullam ac augue et ante ornare venenatis et feugiat mauris. Etiam consectetur neque in posuere aliquet.</item>
+    </string-array>
+
 </resources>

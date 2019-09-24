@@ -1,6 +1,7 @@
 package com.example.pawel.myapp;
 
 
+
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -112,7 +114,7 @@ public class LogInActivity extends AppCompatActivity {
 
                         } catch (JSONException e){
                             e.printStackTrace();
-                            Toast.makeText(LogInActivity.this, "Błąd logowania", Toast.LENGTH_SHORT).show();
+                            Toast.makeText( LogInActivity.this, "Błąd logowania", Toast.LENGTH_SHORT).show();
 
 
                         }
@@ -127,6 +129,8 @@ public class LogInActivity extends AppCompatActivity {
 
                     }
                 })
+
+
         {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError{
@@ -136,6 +140,7 @@ public class LogInActivity extends AppCompatActivity {
                 return params;
             }
         };
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(20 * 1000, 1, 1.0f));
 
         RequestQueue requestQueue=Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);

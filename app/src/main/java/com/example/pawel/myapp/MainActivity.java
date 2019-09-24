@@ -113,6 +113,9 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_setting) {
 
         } else if (id == R.id.nav_help) {
+            Intent i = new Intent(MainActivity.this,  SupportActivity.class);
+            startActivity(i);
+
 
         }
         else if (id==R.id.nav_logout){
