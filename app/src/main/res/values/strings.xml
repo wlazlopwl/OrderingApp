@@ -13,6 +13,8 @@
     <string name="title_notifications">Notifications</string>
     <string name="title_activity_support">SupportActivity</string>
 
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
     <string-array name="support_questions">
         <item>jedens</item>
         <item>dwa</item>
@@ -30,6 +32,7 @@
         <item>7</item>
     </string-array>
 
+    <!-- TODO: Remove or change this placeholder text -->
     <string-array name="support_answer">
         <item>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce euismod lectus eget ex lobortis, eu convallis tortor pulvinar.</item>
         <item>Suspendisse quis velit pharetra, lobortis turpis a, dictum eros. </item>

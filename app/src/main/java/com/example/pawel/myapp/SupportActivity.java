@@ -1,5 +1,6 @@
 package com.example.pawel.myapp;
 
+import android.support.design.widget.BottomSheetDialogFragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -29,17 +30,26 @@ public class SupportActivity extends AppCompatActivity {
     ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, support_questions);
         supportListView.setAdapter(adapter);
 
-        supportListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+       supportListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 Bundle args = new Bundle();
                 args.putString("answer", support_answer[position]);
 
-                    supportAnswerDialogFragment dialogFragment = new supportAnswerDialogFragment();
+                BottomSheetDialogFragment bottomSheetDialogFragment = new BottomSheetFragment();
+
+                   // supportAnswerDialogFragment dialogFragment = new supportAnswerDialogFragment();
                     FragmentManager fm = getSupportFragmentManager();
-                    dialogFragment.setArguments(args);
-                    dialogFragment.show(fm,"support");
+                   // dialogFragment.setArguments(args);
+                    //dialogFragment.show(fm,"support");
+
+
+
+
+                bottomSheetDialogFragment.setArguments(args);
+                bottomSheetDialogFragment.show(fm,"support");
+
 
 
 

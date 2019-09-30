@@ -1,11 +1,14 @@
 package com.example.pawel.myapp;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -17,12 +20,32 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
-    private ArrayList<String> nNames=new ArrayList<>();
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, RecyclerViewClickListener{
+
+    private static String URL_GET_CATEGORY="http://192.168.0.165/app2/getCategory.php";
+    ArrayList<DataModel> dataModelArrayList;
+    private Adapter Adapter;
+    private RecyclerView recyclerView;
+    Context ctx;
+
+
 
     private TextView menuName;
     private TextView menuEmail;
@@ -31,9 +54,9 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
 
 
 
@@ -67,29 +90,91 @@ public class MainActivity extends AppCompatActivity
         menuName.setText(extraName);
         menuEmail.setText(extraEmail);
 
-        getImages();
+
+        recyclerView = findViewById(R.id.recyclerVievCategory);
+
+        getCategory();
+
+
+    }
+
+
+private void getCategory(){
+    StringRequest stringRequest = new StringRequest(Request.Method.GET, URL_GET_CATEGORY, new Response.Listener<String>() {
+        @Override
+        public void onResponse(String response) {
+            Log.d("strrrrr", ">>" + response);
+            try {
+
+
+
+
+                    dataModelArrayList = new ArrayList<>();
+                    JSONArray dataArray  = new JSONArray(response);
+
+                    for (int i = 0; i < dataArray.length(); i++) {
+
+                        DataModel playerModel = new DataModel();
+                        JSONObject dataobj = dataArray.getJSONObject(i);
+
+                        playerModel.setName(dataobj.getString("name"));
+                        playerModel.setImgUrl(dataobj.getString("img"));
+
+
+
+                        dataModelArrayList.add(playerModel);
+
+                    }
+
+                    setupRecycler();
+
+
+
+            } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        },
+                new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //displaying the error in toast if occurrs
+                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // request queue
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+
+        requestQueue.add(stringRequest);
+
+
+    }
+
+    private void setupRecycler(){
+
+
+        LinearLayoutManager layoutManager= new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
+        RecyclerView recyclerView=findViewById(R.id.recyclerVievCategory);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setVisibility(View.VISIBLE);
+        recyclerView.setClickable(true);
+        Adapter  = new Adapter(this, dataModelArrayList);
+        recyclerView.setAdapter(Adapter);
+
+       // Adapter = new Adapter(this,dataModelArrayList);
+
 
 
 
     }
-private void getImages(){
-        nNames.add("adasdda");
-    nNames.add("adasdda");
-    nNames.add("adasdda");
-    nNames.add("adasdda");
-    nNames.add("adasdda");
-    nNames.add("adasdda");
-    nNames.add("adasdda");
-    initRecyclerView();
-}
 
-private void initRecyclerView(){
-    LinearLayoutManager layoutManager= new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
-    RecyclerView recyclerView=findViewById(R.id.recyclerVievCategory);
-    recyclerView.setLayoutManager(layoutManager);
-    RecycleVievAdapter adapter = new RecycleVievAdapter(this, nNames);
-    recyclerView.setAdapter(adapter);
-}
+
+
+
+
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -122,6 +207,9 @@ private void initRecyclerView(){
         return super.onOptionsItemSelected(item);
     }
 
+
+
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -150,4 +238,12 @@ private void initRecyclerView(){
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    @Override
+    public void onClick(int position) {
+        Toast.makeText(this, "This is my Toast message!"+ position
+                ,
+                Toast.LENGTH_LONG).show();
+    }
 }
+
