@@ -27,7 +27,7 @@ public class SupportActivity extends AppCompatActivity {
         supportListView= (ListView) findViewById(R.id.supportListView);
     support_questions=getResources().getStringArray(R.array.support_questions);
         support_answer=getResources().getStringArray(R.array.support_answer);
-    ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, support_questions);
+    ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_checked, support_questions);
         supportListView.setAdapter(adapter);
 
        supportListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

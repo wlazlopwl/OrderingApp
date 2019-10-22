@@ -39,11 +39,10 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, RecyclerViewClickListener{
 
-    private static String URL_GET_CATEGORY="http://192.168.0.165/app2/getCategory.php";
+    private static String URL_GET_CATEGORY="http://s34787.s.pwste.edu.pl/app/getCategory.php";
     ArrayList<DataModel> dataModelArrayList;
     private Adapter Adapter;
     private RecyclerView recyclerView;
-    Context ctx;
 
 
 
@@ -62,14 +61,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -116,7 +108,7 @@ private void getCategory(){
 
                         DataModel playerModel = new DataModel();
                         JSONObject dataobj = dataArray.getJSONObject(i);
-
+                        playerModel.setId(dataobj.getString("id"));
                         playerModel.setName(dataobj.getString("name"));
                         playerModel.setImgUrl(dataobj.getString("img"));
 
@@ -151,19 +143,18 @@ private void getCategory(){
 
     }
 
-    private void setupRecycler(){
+    public void setupRecycler(){
 
 
         LinearLayoutManager layoutManager= new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
         RecyclerView recyclerView=findViewById(R.id.recyclerVievCategory);
-        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setLayoutManager( layoutManager);
         recyclerView.setHasFixedSize(true);
         recyclerView.setVisibility(View.VISIBLE);
         recyclerView.setClickable(true);
         Adapter  = new Adapter(this, dataModelArrayList);
         recyclerView.setAdapter(Adapter);
 
-       // Adapter = new Adapter(this,dataModelArrayList);
 
 
 
@@ -220,7 +211,9 @@ private void getCategory(){
             // Handle the camera action
         }  else if (id == R.id.nav_slideshow) {
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_cart) {
+            Intent i = new Intent(MainActivity.this,  CartActivity.class);
+            startActivity(i);
 
         } else if (id == R.id.nav_setting) {
 
@@ -241,9 +234,10 @@ private void getCategory(){
 
     @Override
     public void onClick(int position) {
-        Toast.makeText(this, "This is my Toast message!"+ position
-                ,
-                Toast.LENGTH_LONG).show();
+        Intent i = new Intent(MainActivity.this,  ProductListActivity.class);
+        String id= dataModelArrayList.get(position).getId();
+        i.putExtra("position", id);
+        startActivity(i);
     }
 }
 

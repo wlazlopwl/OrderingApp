@@ -39,7 +39,7 @@ public class LogInActivity extends AppCompatActivity {
     private EditText email;
     private EditText password;
     private Button btn_login;
-    private static String URL_LOGIN="http://192.168.0.165/app2/login.php";
+    private static String URL_LOGIN="http://s34787.s.pwste.edu.pl/app/login.php";
 
 
 
@@ -75,46 +75,46 @@ public class LogInActivity extends AppCompatActivity {
     private void Login(final String email, final String password) {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_LOGIN, new Response.Listener<String>() {
                     @Override
-                    public void onResponse(String response) {
-                        try {
-                            JSONObject jsonObject=new JSONObject(response);
-                            String success=jsonObject.getString("success");
-                            JSONArray jsonArray=jsonObject.getJSONArray("login");
+                        public void onResponse(String response) {
+                            try {
+                                JSONObject jsonObject=new JSONObject(response);
+                                String success=jsonObject.getString("success");
+                                JSONArray jsonArray=jsonObject.getJSONArray("login");
 
 
-                            if (success.equals("1")){
-                            for(int i=0;i<jsonArray.length();i++){
-                                JSONObject object=jsonArray.getJSONObject(i);
-                                String name = object.getString("name").trim();
-                                String email = object.getString("email").trim();
+                                if (success.equals("1")){
+                                for(int i=0;i<jsonArray.length();i++){
+                                    JSONObject object=jsonArray.getJSONObject(i);
+                                    String name = object.getString("name").trim();
+                                    String email = object.getString("email").trim();
 
 
-                                Intent intent=new Intent(LogInActivity.this,MainActivity.class);
-                                intent.putExtra("name",name);
-                                intent.putExtra("email",email);
-                                startActivity(intent);
-
-
-                            }
-                            }
-                            if (success.equals("2")){
-                                for(int i=0;i<jsonArray.length();i++) {
-                                    JSONObject object = jsonArray.getJSONObject(i);
-                                    Toast.makeText(LogInActivity.this, "Zalogowany ADMIN", Toast.LENGTH_SHORT).show();
-                                    Intent intent=new Intent(LogInActivity.this,AdminActivity.class);
+                                    Intent intent=new Intent(LogInActivity.this,MainActivity.class);
+                                    intent.putExtra("name",name);
+                                    intent.putExtra("email",email);
                                     startActivity(intent);
 
-                                }}
+
+                                }
+                                }
+                                if (success.equals("2")){
+                                    for(int i=0;i<jsonArray.length();i++) {
+                                        JSONObject object = jsonArray.getJSONObject(i);
+                                        Toast.makeText(LogInActivity.this, "Zalogowany ADMIN", Toast.LENGTH_SHORT).show();
+                                        Intent intent=new Intent(LogInActivity.this,AdminActivity.class);
+                                        startActivity(intent);
+
+                                    }}
 
 
-                        } catch (JSONException e){
-                            e.printStackTrace();
-                            Toast.makeText( LogInActivity.this, "Błąd logowania", Toast.LENGTH_SHORT).show();
+                            } catch (JSONException e){
+                                e.printStackTrace();
+                                Toast.makeText( LogInActivity.this, "Błąd logowania", Toast.LENGTH_SHORT).show();
 
+
+                            }
 
                         }
-
-                    }
                 },
                 new Response.ErrorListener() {
                     @Override
