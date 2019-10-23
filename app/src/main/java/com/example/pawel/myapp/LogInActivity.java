@@ -40,6 +40,7 @@ public class LogInActivity extends AppCompatActivity {
     private EditText password;
     private Button btn_login;
     private static String URL_LOGIN="http://s34787.s.pwste.edu.pl/app/login.php";
+    SessionManager sessionManager;
 
 
 
@@ -47,6 +48,7 @@ public class LogInActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
+        sessionManager= new SessionManager(this);
 
 
         email=findViewById(R.id.email_login);
@@ -88,6 +90,7 @@ public class LogInActivity extends AppCompatActivity {
                                     String name = object.getString("name").trim();
                                     String email = object.getString("email").trim();
 
+                                    sessionManager.createSession(name, email, success);
 
                                     Intent intent=new Intent(LogInActivity.this,MainActivity.class);
                                     intent.putExtra("name",name);
