@@ -4,38 +4,34 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.sql.Time;
+import java.util.ArrayList;
 
 public class AdminActivity extends AppCompatActivity {
-
-    private TextView mTextMessage;
-
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+    private static String URL_GET_ADMIN="http://s34787.s.pwste.edu.pl/app/getAdminData.php";
+    private TextView mTextMessage, mCountUser;
+    public String dane;
 
 
-        Fragment selectedFragment = new AdminHomeFragment();
-
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            switch (item.getItemId()) {
-               case R.id.navigation_home:
-                   selectedFragment = new AdminHomeFragment();
-                    break;
-                case R.id.navigation_order:
-                     selectedFragment = new AdminEditFragment();
-                    break;
-                case R.id.navigation_setting:
-                    selectedFragment = new AdminSettingsFragment();
-
-            }
-
-            getSupportFragmentManager().beginTransaction().replace(R.id.admin_fragment_container, selectedFragment).commit();
-           return true;
-        }
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,11 +39,56 @@ public class AdminActivity extends AppCompatActivity {
         setContentView(R.layout.activity_admin);
 
 
+        Log.d("create","s");
+       // mTextMessage = (TextView) findViewById(R.id.message);
 
-        mTextMessage = (TextView) findViewById(R.id.message);
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        BottomNavigationView navigation =  findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         navigation.setSelectedItemId(R.id.navigation_home);
+
+
+
+
+
+    }
+
+
+
+
+
+
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+
+        Fragment selectedFragment = null;
+
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.navigation_home:
+
+                    selectedFragment = new AdminHomeFragment();
+
+                    break;
+                case R.id.navigation_order:
+                    selectedFragment = new AdminEditFragment();
+                    break;
+                case R.id.navigation_setting:
+                    selectedFragment = new AdminSettingsFragment();
+
+            }
+
+            getSupportFragmentManager().beginTransaction().replace(R.id.admin_fragment_container, selectedFragment).commit();
+            return true;
+        }
+    };
+
+
+    public String getCount(){
+
+        Log.d("genCount", "as");
+        return dane;
     }
 
 }

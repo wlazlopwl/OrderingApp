@@ -1,11 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/admin_fragment_edit"
-    android:background="@color/colorPrimary"
+    android:background="@color/colorPrimary">
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/admin_edit_tab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        app:tabSelectedTextColor="@android:color/background_light"
+        app:tabTextColor="@android:color/darker_gray"
 
 
-    >
+        >
+
+        <android.support.design.widget.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dodaj użytk"
+            />
+
+        <android.support.design.widget.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kategorie"
+            />
+        <android.support.design.widget.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Produkt"
+            />
+    </android.support.design.widget.TabLayout>
+<android.support.v4.view.ViewPager
+    android:id="@+id/admin_edit_viewPager"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/admin_edit_tab"
+    />
+
+
+
+
+
 
 </RelativeLayout>
