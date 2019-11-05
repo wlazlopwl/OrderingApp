@@ -50,4 +50,12 @@
         <item>7Nullam ac augue et ante ornare venenatis et feugiat mauris. Etiam consectetur neque in posuere aliquet.</item>
     </string-array>
 
+    <string name="person_status_top">Wybierz status</string>
+    <string-array name="person_status">
+        <item>Użytkownik</item>
+        <item>Pracownik</item>
+        <item>Admin</item>
+
+    </string-array>
+
 </resources>

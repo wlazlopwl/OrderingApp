@@ -23,7 +23,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class AdminHomeFragment extends Fragment {
-    private TextView mUserCount;
+    private TextView mUserCount, mCountWorker;
     private static String URL_GET_ADMIN="http://s34787.s.pwste.edu.pl/app/getAdminData.php";
     View view;
     @Nullable
@@ -41,6 +41,7 @@ public class AdminHomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         mUserCount = view.findViewById(R.id.count_user);
+        mCountWorker= view.findViewById(R.id.count_worker);
 
 
 
@@ -71,6 +72,7 @@ public class AdminHomeFragment extends Fragment {
                         String count = object.getString("COUNT(id)").trim();
                         Log.d("ilosc", count);
                         mUserCount.setText(count);
+                        mCountWorker.setText(count);
 
 
 

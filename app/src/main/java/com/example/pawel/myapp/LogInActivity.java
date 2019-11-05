@@ -74,11 +74,13 @@ public class LogInActivity extends AppCompatActivity {
         });
     }
 
-    private void Login(final String email, final String password) {
+    private void Login(final String email, final String password){
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_LOGIN, new Response.Listener<String>() {
                     @Override
                         public void onResponse(String response) {
-                            try {
+
+
+                        try {
                                 JSONObject jsonObject=new JSONObject(response);
                                 String success=jsonObject.getString("success");
                                 JSONArray jsonArray=jsonObject.getJSONArray("login");

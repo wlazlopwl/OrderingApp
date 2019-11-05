@@ -3,6 +3,7 @@
     package="com.example.pawel.myapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -12,7 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".CartActivity"></activity>
+        <activity android:name=".WelcomeActivity"></activity>
+        <activity android:name=".AdminSettingChangeTime" />
+        <activity android:name=".CartActivity" />
         <activity android:name=".ProductListActivity" />
         <activity android:name=".SupportActivity" />
         <activity android:name=".LogInActivity">

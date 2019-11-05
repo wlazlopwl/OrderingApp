@@ -1,21 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/admin_fragment_settings"
-    android:background="@color/cardview_dark_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cardview_light_background">
+
+    <ScrollView
+        android:id="@+id/scrolView_account"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/photo_add_product"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/add" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/photo_add_product"
+                android:layout_marginTop="30dp"
+                android:orientation="vertical">
 
 
-    >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+                    android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:textColor="@android:color/background_light"
-        android:textSize="@android:dimen/app_icon_size"
-        android:text="TAB 3"
-        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Uzupełnij dane nowego produktu:"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColorHint="@color/cardview_shadow_start_color">
+
+                        <EditText
+                            android:id="@+id/admin_edit_tab3_product_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Nazwa produktu"
+                            android:imeOptions="actionNext"
+                            android:maxLines="1"
+                            android:textColorHint="@color/colorPrimary" />
+
+
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColorHint="@color/cardview_shadow_start_color">
+
+                        <EditText
+                            android:id="@+id/admin_edit_tab3_product_desc"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Opis produktu"
+                            android:imeOptions="actionNext"
+                            android:maxLines="1"
+                            android:textColorHint="@color/colorPrimary" />
+
+
+                    </android.support.design.widget.TextInputLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="Wybierz kategorię "
+                            android:textSize="16dp"
+
+
+                            />
+
+                        <Spinner
+                            android:id="@+id/category_spinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:entries="@array/person_status"
+                            android:prompt="@string/person_status_top" />
+
+                    </LinearLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                    >
+                        <RadioGroup
+                            android:id="@+id/radio_group"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            >
+
+                            <RadioButton
+                                android:id="@+id/radio_btn_szt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="sztuka"
+                                 />
+                            <RadioButton
+                                android:id="@+id/radio_btn_g"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="gram"
+                                 />
+
+
+                        </RadioGroup>
+
+                        <Button
+                            android:id="@+id/admin_edit_tab3_add_btn"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center_horizontal"
+                            android:background="@color/design_default_color_primary"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:text="Dodaj do bazy"
+                            android:textColor="@color/cardview_light_background" />
+
+
+                    </android.support.design.widget.TextInputLayout>
+
+
+                </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
 
 </RelativeLayout>

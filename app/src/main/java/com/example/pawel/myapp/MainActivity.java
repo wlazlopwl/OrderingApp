@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
-private void getCategory(){
+public void getCategory(){
     StringRequest stringRequest = new StringRequest(Request.Method.GET, URL_GET_CATEGORY, new Response.Listener<String>() {
         @Override
         public void onResponse(String response) {
