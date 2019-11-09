@@ -37,6 +37,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
 
     @Override
     public int getItemCount() {
+
+
         return dataCartArrayList.size();
     }
 

@@ -44,7 +44,7 @@ public class AdminSettingChangeTime extends AppCompatActivity {
         mUpdateTimeBtn = findViewById(R.id.update_time);
         progressDialog = new ProgressDialog(this);
 
-
+getActualTime();
 
 
 

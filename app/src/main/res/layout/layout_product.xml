@@ -31,41 +31,50 @@
 
 
 
-            <Button
-                android:id="@+id/btn_plus_product"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="10dp"
-                android:text="+"
-                android:layout_marginTop="200dp"
-
-                />
 
 
-            <TextView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginTop="210dp"
-                android:layout_alignRight="@id/product_name"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="50dp"
-                android:text="0"
-                android:gravity="center"
 
-                />
 
-            <Button
+
+
+
+
+            <ImageView
                 android:id="@+id/btn_minus_product"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="200dp"
                 android:layout_marginRight="70dp"
-                android:text="-"
 
+                android:src="@drawable/ic_minus">
+
+            </ImageView>
+
+
+            <EditText
+                android:id="@+id/actual_number_product"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="0"
+                android:gravity="center"
+                android:layout_marginTop="200dp"
+                android:layout_alignRight="@id/product_name"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="57dp"
+                android:text="0"
                 />
+                <ImageView
+                    android:id="@+id/btn_plus_product"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginRight="10dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="200dp"
+                    android:src="@drawable/ic_plus">
 
+                </ImageView>
             <android.support.v7.widget.AppCompatImageView
 
                 android:id="@+id/product_image"

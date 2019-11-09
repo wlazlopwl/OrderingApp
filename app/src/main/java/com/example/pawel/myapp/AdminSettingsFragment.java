@@ -5,15 +5,15 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
 public class AdminSettingsFragment extends Fragment {
-    Button mChangeTime;
+    Button mChangeTime, mLogout, mChangeMyData, mChangePassBtn;
+    SessionManager sessionManager;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -23,10 +23,12 @@ public class AdminSettingsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mChangeTime= view.findViewById(R.id.admin_setting_change_time);
+        mChangeTime = view.findViewById(R.id.admin_setting_change_time);
+        mLogout = view.findViewById(R.id.admin_logout_btn);
+        mChangeMyData = view.findViewById(R.id.admin_change_mydata_btn);
+        mChangePassBtn =  view.findViewById(R.id.admin_setting_change_mypassword_btn);
 
-
-
+        sessionManager = new SessionManager(getActivity());
 
 
         mChangeTime.setOnClickListener(new View.OnClickListener() {
@@ -44,10 +46,32 @@ public class AdminSettingsFragment extends Fragment {
             }
         });
 
+        mChangeMyData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), AdminSettingChangeMyData.class);
+                startActivity(intent);
+            }
+        });
+
+        mChangePassBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), SettingsChangeMyPassword.class);
+                startActivity(intent);
+            }
+        });
+
+        mLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sessionManager.logout();
+                getActivity().finish();
+
+            }
+        });
+
     }
-
-
-
 
 
 }

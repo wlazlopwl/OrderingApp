@@ -13,18 +13,20 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".WelcomeActivity"></activity>
-        <activity android:name=".AdminSettingChangeTime" />
-        <activity android:name=".CartActivity" />
-        <activity android:name=".ProductListActivity" />
-        <activity android:name=".SupportActivity" />
-        <activity android:name=".LogInActivity">
+        <activity android:name=".SettingsChangeMyPassword"></activity>
+        <activity android:name=".AdminSettingChangeMyData" />
+        <activity android:name=".WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".AdminSettingChangeTime" />
+        <activity android:name=".CartActivity" />
+        <activity android:name=".ProductListActivity" />
+        <activity android:name=".SupportActivity" />
+        <activity android:name=".LogInActivity" />
         <activity android:name=".secActivity" />
         <activity
             android:name=".MainActivity"

@@ -91,8 +91,17 @@ public class LogInActivity extends AppCompatActivity {
                                     JSONObject object=jsonArray.getJSONObject(i);
                                     String name = object.getString("name").trim();
                                     String email = object.getString("email").trim();
+                                    String surname= object.getString("surname").trim();
+                                    String street= object.getString("street").trim();
+                                    String city= object.getString("city").trim();
+                                    String postcode= object.getString("postcode").trim();
+                                    String phone= object.getString("phone").trim();
+                                    String id= object.getString("id").trim();
 
-                                    sessionManager.createSession(name, email, success);
+
+
+
+                                    sessionManager.createSession(name, email, success, surname, street,city, postcode, phone, id);
 
                                     Intent intent=new Intent(LogInActivity.this,MainActivity.class);
                                     intent.putExtra("name",name);
@@ -106,11 +115,22 @@ public class LogInActivity extends AppCompatActivity {
                                     for(int i=0;i<jsonArray.length();i++) {
                                         JSONObject object = jsonArray.getJSONObject(i);
                                         Toast.makeText(LogInActivity.this, "Zalogowany ADMIN", Toast.LENGTH_SHORT).show();
+                                        String name = object.getString("name").trim();
+                                        String email = object.getString("email").trim();
+                                        String surname= object.getString("surname").trim();
+                                        String street= object.getString("street").trim();
+                                        String city= object.getString("city").trim();
+                                        String postcode= object.getString("postcode").trim();
+                                        String phone= object.getString("phone").trim();
+                                        String id= object.getString("id").trim();
+
+
+                                        sessionManager.createSession(name, email, success, surname, street,city, postcode, phone, id);
                                         Intent intent=new Intent(LogInActivity.this,AdminActivity.class);
                                         startActivity(intent);
 
                                     }}
-
+                                    LogInActivity.this.finish();
 
                             } catch (JSONException e){
                                 e.printStackTrace();

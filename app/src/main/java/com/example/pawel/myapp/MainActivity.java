@@ -1,5 +1,6 @@
 package com.example.pawel.myapp;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -43,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     ArrayList<DataModel> dataModelArrayList;
     private Adapter Adapter;
     private RecyclerView recyclerView;
+    SessionManager sessionManager;
 
 
 
@@ -56,6 +58,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        sessionManager = new SessionManager(getApplicationContext());
 
 
 
@@ -224,6 +227,8 @@ public void getCategory(){
 
         }
         else if (id==R.id.nav_logout){
+        sessionManager.logout();
+            this.finish();
 
         }
 
