@@ -7,9 +7,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.MenuInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -20,6 +22,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,17 +43,16 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, RecyclerViewClickListener{
 
-    private static String URL_GET_CATEGORY="http://s34787.s.pwste.edu.pl/app/getCategory.php";
     ArrayList<DataModel> dataModelArrayList;
     private Adapter Adapter;
     private RecyclerView recyclerView;
     SessionManager sessionManager;
-
+    TextView textCartItemCount;
+    int mCartItemCount = 1;
 
 
     private TextView menuName;
     private TextView menuEmail;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,15 +77,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        Intent intent= getIntent();
-        String extraName=intent.getStringExtra("name");
-        String extraEmail=intent.getStringExtra("email");
+
 
         View headerView = navigationView.getHeaderView(0);
         TextView menuName = (TextView) headerView.findViewById(R.id.menu_name);
         TextView menuEmail = (TextView) headerView.findViewById(R.id.menu_email);
-        menuName.setText(extraName);
-        menuEmail.setText(extraEmail);
+
+        menuName.setText(sessionManager.getUserInfo().get("login") +" "+ sessionManager.getUserInfo().get("surname"));
+
+
 
 
         recyclerView = findViewById(R.id.recyclerVievCategory);
@@ -95,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
 public void getCategory(){
-    StringRequest stringRequest = new StringRequest(Request.Method.GET, URL_GET_CATEGORY, new Response.Listener<String>() {
+    StringRequest stringRequest = new StringRequest(Request.Method.GET, Const.URL_GET_CATEGORY, new Response.Listener<String>() {
         @Override
         public void onResponse(String response) {
             Log.d("strrrrr", ">>" + response);
@@ -127,7 +129,14 @@ public void getCategory(){
 
             } catch (JSONException e) {
                     e.printStackTrace();
-                }
+                DataModel playerModell = new DataModel();
+                playerModell.setId("1");
+                playerModell.setImgUrl("https://acegif.com/wp-content/gifs/apple-81-gap.jpg");
+                playerModell.setName("Test");
+                dataModelArrayList.add(playerModell);
+                setupRecycler();
+
+            }
             }
         },
                 new Response.ErrorListener() {
@@ -139,6 +148,7 @@ public void getCategory(){
         });
 
         // request queue
+
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
         requestQueue.add(stringRequest);
@@ -181,8 +191,24 @@ public void getCategory(){
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+
+        final MenuItem menuItem = menu.findItem(R.id.action_cart);
+
+        View actionView = MenuItemCompat.getActionView(menuItem);
+        textCartItemCount = (TextView) actionView.findViewById(R.id.cart_badge);
+
+        setupBadge();
+
+        actionView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                onOptionsItemSelected(menuItem);
+                Intent intent = new Intent(MainActivity.this, CartActivity.class);
+                startActivity(intent);
+            }
+        });
+
         return true;
     }
 
@@ -194,9 +220,9 @@ public void getCategory(){
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -219,9 +245,17 @@ public void getCategory(){
             startActivity(i);
 
         } else if (id == R.id.nav_setting) {
+            Intent i = new Intent(MainActivity.this,  UserSettingsActivity.class);
+            startActivity(i);
 
         } else if (id == R.id.nav_help) {
             Intent i = new Intent(MainActivity.this,  SupportActivity.class);
+            startActivity(i);
+
+
+        }
+        else if (id == R.id.nav_order) {
+            Intent i = new Intent(MainActivity.this,  UserOrderActivity.class);
             startActivity(i);
 
 
@@ -243,6 +277,21 @@ public void getCategory(){
         String id= dataModelArrayList.get(position).getId();
         i.putExtra("position", id);
         startActivity(i);
+    }
+    private void setupBadge() {
+
+        if (textCartItemCount != null) {
+            if (mCartItemCount == 0) {
+                if (textCartItemCount.getVisibility() != View.GONE) {
+                    textCartItemCount.setVisibility(View.GONE);
+                }
+            } else {
+                textCartItemCount.setText(String.valueOf(Math.min(mCartItemCount, 99)));
+                if (textCartItemCount.getVisibility() != View.VISIBLE) {
+                    textCartItemCount.setVisibility(View.VISIBLE);
+                }
+            }
+        }
     }
 }
 

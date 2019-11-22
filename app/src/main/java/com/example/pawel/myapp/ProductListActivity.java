@@ -1,5 +1,6 @@
 package com.example.pawel.myapp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -30,17 +32,23 @@ import java.util.Map;
 
 public class ProductListActivity extends AppCompatActivity {
 
-    private static String URL_GET_PRODUCT="http://s34787.s.pwste.edu.pl/app/getProduct.php";
 
     private ProductAdapter ProductAdapter;
     ArrayList<DataProduct> dataProductArrayList;
     private RecyclerView recyclerView;
+    public static Context ctx;
+    SessionManager sessionManager;
+    static String userId;
+    public EditText actualQuantity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_list);
+        sessionManager = new SessionManager(this);
+        userId=sessionManager.getUserInfo().get("id");
 
+        ctx= getApplicationContext();
         Intent i = getIntent();
         String position = i.getStringExtra("position");
 
@@ -48,10 +56,10 @@ public class ProductListActivity extends AppCompatActivity {
                 ,
                 Toast.LENGTH_LONG).show();
         recyclerView = findViewById(R.id.recyclerViewProduct);
-      //  String position = Integer.toString(pposition);
 
     getProduct(position);
 
+        Toast.makeText(ctx, ""+userId, Toast.LENGTH_SHORT).show();
 
 
 
@@ -61,11 +69,9 @@ public class ProductListActivity extends AppCompatActivity {
 
 
     private void getProduct(final String position){
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_GET_PRODUCT, new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Const.URL_GET_PRODUCT, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-
-                Log.d(position, "sas");
 
                 try {
 
@@ -85,7 +91,7 @@ public class ProductListActivity extends AppCompatActivity {
 
                         playerModel.setName(dataobj.getString("name"));
                         playerModel.setId(dataobj.getString("id"));
-                      //  playerModel.setImgUrl(dataobj.getString("img"));
+                       playerModel.setImgUrl(dataobj.getString("img"));
 
 
 
@@ -99,6 +105,11 @@ public class ProductListActivity extends AppCompatActivity {
 
                 } catch (JSONException e) {
                     e.printStackTrace();
+//                    DataProduct playerModell = new DataProduct();
+//                    playerModell.setId("2");
+//                    playerModell.setName("Test");
+//                    dataProductArrayList.add(playerModell);
+//                    setupProductRecycler();
                 }
             }
         },
@@ -121,7 +132,7 @@ public class ProductListActivity extends AppCompatActivity {
                 ;
 
 
-// request queue
+
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
         requestQueue.add(stringRequest);
@@ -147,6 +158,48 @@ public class ProductListActivity extends AppCompatActivity {
         ProductAdapter  = new ProductAdapter( dataProductArrayList);
         recyclerView.setAdapter(ProductAdapter);
     }
+
+
+    public static void updateCart(final String p, final String check){
+
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Const.URL_UPDATE_CART, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+           Toast.makeText(ctx, response, Toast.LENGTH_LONG).show();
+            }
+        },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                        Toast.makeText(ctx, error.toString(), Toast.LENGTH_LONG).show();
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+
+                params.put("user_id", userId);
+                params.put("check", check);
+                params.put("product_id", p);
+                params.put("quantity", "3");
+
+
+
+                return params;
+            }
+        };
+        Log.d("liczba q ", "" +check);
+        RequestQueue requestQueue;
+        requestQueue = Volley.newRequestQueue(ctx);
+
+        requestQueue.add(stringRequest);
+
+
+    }
+
 
 
 }

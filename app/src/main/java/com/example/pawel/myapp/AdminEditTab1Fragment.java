@@ -39,8 +39,7 @@ import java.util.Map;
 
 public class AdminEditTab1Fragment extends Fragment {
 
-    private static String URL_ADD_USER="http://s34787.s.pwste.edu.pl/app/addUser.php";
-    private static String URL_GET_WORKER="http://s34787.s.pwste.edu.pl/app/getWorkerName.php";
+
 
 
     Spinner spinner, workerSpinner;
@@ -145,7 +144,7 @@ public class AdminEditTab1Fragment extends Fragment {
 
     private void setWorkerSpinner(){
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL_GET_WORKER, new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Const.URL_GET_WORKER, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
@@ -293,7 +292,7 @@ public class AdminEditTab1Fragment extends Fragment {
 
 
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_ADD_USER, new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Const.URL_ADD_USER, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 

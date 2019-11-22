@@ -39,7 +39,7 @@ public class LogInActivity extends AppCompatActivity {
     private EditText email;
     private EditText password;
     private Button btn_login;
-    private static String URL_LOGIN="http://s34787.s.pwste.edu.pl/app/login.php";
+
     SessionManager sessionManager;
 
 
@@ -75,7 +75,7 @@ public class LogInActivity extends AppCompatActivity {
     }
 
     private void Login(final String email, final String password){
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_LOGIN, new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Const.URL_LOGIN, new Response.Listener<String>() {
                     @Override
                         public void onResponse(String response) {
 
@@ -104,8 +104,7 @@ public class LogInActivity extends AppCompatActivity {
                                     sessionManager.createSession(name, email, success, surname, street,city, postcode, phone, id);
 
                                     Intent intent=new Intent(LogInActivity.this,MainActivity.class);
-                                    intent.putExtra("name",name);
-                                    intent.putExtra("email",email);
+
                                     startActivity(intent);
 
 
@@ -130,6 +129,25 @@ public class LogInActivity extends AppCompatActivity {
                                         startActivity(intent);
 
                                     }}
+                            if (success.equals("3")){
+                                for(int i=0;i<jsonArray.length();i++) {
+                                    JSONObject object = jsonArray.getJSONObject(i);
+                                    Toast.makeText(LogInActivity.this, "Zalogowany WORKER", Toast.LENGTH_SHORT).show();
+                                    String name = object.getString("name").trim();
+                                    String email = object.getString("email").trim();
+                                    String surname= object.getString("surname").trim();
+                                    String street= object.getString("street").trim();
+                                    String city= object.getString("city").trim();
+                                    String postcode= object.getString("postcode").trim();
+                                    String phone= object.getString("phone").trim();
+                                    String id= object.getString("id").trim();
+
+
+                                    sessionManager.createSession(name, email, success, surname, street,city, postcode, phone, id);
+                                    Intent intent=new Intent(LogInActivity.this,WorkerActivity.class);
+                                    startActivity(intent);
+
+                                }}
                                     LogInActivity.this.finish();
 
                             } catch (JSONException e){

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,9 +26,10 @@ public class SupportActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_support);
         supportListView= (ListView) findViewById(R.id.supportListView);
+        Button contactBtn= (Button) findViewById(R.id.support_contact_btn);
     support_questions=getResources().getStringArray(R.array.support_questions);
         support_answer=getResources().getStringArray(R.array.support_answer);
-    ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_checked, support_questions);
+    ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1,support_questions);
         supportListView.setAdapter(adapter);
 
        supportListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -55,6 +57,20 @@ public class SupportActivity extends AppCompatActivity {
 
             }
         });
+       contactBtn.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               Bundle args = new Bundle();
+               BottomSheetDialogFragment bottomSheetDialogFragment = new BottomSheetDialogFragment();
+               FragmentManager fm = getSupportFragmentManager();
+
+               bottomSheetDialogFragment.setArguments(args);
+               bottomSheetDialogFragment.show(fm,"support");
+
+
+           }
+       });
+
     }
 
 

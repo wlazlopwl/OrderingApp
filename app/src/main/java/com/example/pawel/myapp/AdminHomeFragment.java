@@ -24,7 +24,7 @@ import org.json.JSONObject;
 
 public class AdminHomeFragment extends Fragment {
     private TextView mUserCount, mCountWorker;
-    private static String URL_GET_ADMIN="http://s34787.s.pwste.edu.pl/app/getAdminData.php";
+
     View view;
     @Nullable
     @Override
@@ -55,7 +55,7 @@ public class AdminHomeFragment extends Fragment {
 
 
     private void getAdminData(){
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL_GET_ADMIN, new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Const.URL_GET_ADMIN, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 

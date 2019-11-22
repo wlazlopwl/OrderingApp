@@ -1,7 +1,10 @@
 package com.example.pawel.myapp;
 
+import java.util.ArrayList;
+
 class DataProduct {
-    private String id, name, description, imgUrl, categoryId,quantityTypeId;
+    private String id, name, description, imgUrl, categoryId,quantityTypeId, quantity;
+    private ArrayList<DataProduct> dataProductList;
 
     public String getId() {
         return id;
@@ -49,5 +52,20 @@ class DataProduct {
 
     public void setQuantityTypeId(String quantityTypeId) {
         this.quantityTypeId = quantityTypeId;
+    }
+
+    public String getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(String quantity) {
+        this.quantity = quantity;
+    }
+    public ArrayList<DataProduct> getDataProductList() {
+        return dataProductList;
+    }
+
+    public void setDataProductList(ArrayList<DataProduct> dataProductList) {
+        this.dataProductList = dataProductList;
     }
 }

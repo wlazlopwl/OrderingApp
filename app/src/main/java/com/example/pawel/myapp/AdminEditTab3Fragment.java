@@ -44,8 +44,7 @@ import java.util.List;
 import java.util.Map;
 
 public class AdminEditTab3Fragment extends Fragment {
-    private static String URL_ADD_PRODUCT = "http://s34787.s.pwste.edu.pl/app/addProduct.php";
-    private static String URL_GET_WORKER = "http://s34787.s.pwste.edu.pl/app/getCategory.php";
+
 
     List<String> id = new ArrayList<String>();
     EditText mProductName, mProductDesc;
@@ -183,7 +182,7 @@ public class AdminEditTab3Fragment extends Fragment {
 
     private void setCategorySpinner() {
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL_GET_WORKER, new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Const.URL_GET_CATEGORY, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
@@ -259,7 +258,7 @@ public class AdminEditTab3Fragment extends Fragment {
 
 
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_ADD_PRODUCT, new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Const.URL_ADD_PRODUCT, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 

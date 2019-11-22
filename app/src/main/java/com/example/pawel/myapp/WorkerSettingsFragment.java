@@ -10,41 +10,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-public class AdminSettingsFragment extends Fragment {
-    Button mChangeTime, mLogout, mChangeMyData, mChangePassBtn, mChangeEmailBtn;
+public class WorkerSettingsFragment extends Fragment {
     SessionManager sessionManager;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_admin_settings, container, false);
+        return inflater.inflate(R.layout.fragment_worker_settings, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mChangeTime = view.findViewById(R.id.admin_setting_change_time);
-        mLogout = view.findViewById(R.id.admin_logout_btn);
-        mChangeMyData = view.findViewById(R.id.admin_change_mydata_btn);
-        mChangePassBtn =  view.findViewById(R.id.admin_setting_change_mypassword_btn);
-        mChangeEmailBtn = view.findViewById(R.id.admin_setting_change_myEmail_btn);
+
+        Button mLogout = (Button) view.findViewById(R.id.worker_logout_btn);
+        Button mChangeMyData = (Button) view.findViewById(R.id.worker_change_mydata_btn);
+        Button mChangePassBtn = (Button) view.findViewById(R.id.worker_setting_change_mypassword_btn);
+        Button mChangeEmailBtn = (Button) view.findViewById(R.id.worker_setting_change_myEmail_btn);
         sessionManager = new SessionManager(getActivity());
-
-
-        mChangeTime.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-//                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//                fragmentTransaction.replace(R.id.container, new AdminSettingsChangeTimeFragment());
-//                fragmentTransaction.addToBackStack(null);
-//                fragmentTransaction.commit();
-
-                Intent intent = new Intent(getActivity(), AdminSettingChangeTime.class);
-                startActivity(intent);
-
-            }
-        });
 
         mChangeMyData.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,6 +44,7 @@ public class AdminSettingsFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
         mChangeEmailBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,11 +58,9 @@ public class AdminSettingsFragment extends Fragment {
             public void onClick(View v) {
                 sessionManager.logout();
                 getActivity().finish();
-
             }
         });
 
+
     }
-
-
 }

@@ -24,7 +24,7 @@ public class WelcomeActivity extends AppCompatActivity {
 
         new Thread(new Runnable() {
             public void run() {
-                while (progressBarStatus < 100) {
+                while (progressBarStatus < 50) {
                     progressBarStatus += 5;
                     Log.d("s",""+progressBarStatus);
                     // Update the progress bar and display the+pr
@@ -36,8 +36,8 @@ public class WelcomeActivity extends AppCompatActivity {
 
 
 
-                            if (progressBarStatus>=100) {
-                                Toast.makeText(WelcomeActivity.this, "działa", Toast.LENGTH_SHORT).show();
+                            if (progressBarStatus>=50) {
+
                                 progressBar.setVisibility(View.INVISIBLE);
                                 sessionManager= new SessionManager(WelcomeActivity.this);
                                 sessionManager.checkLogin();

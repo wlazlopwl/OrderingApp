@@ -32,7 +32,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class AdminEditTab2Fragment extends Fragment {
-    private static String URL_ADD_CATEGORY="http://s34787.s.pwste.edu.pl/app/addCategory.php";
+
     EditText mCategoryName;
     Button mAddCategoryBtn, mCheckCategory;
     Boolean isData;
@@ -128,7 +128,7 @@ public class AdminEditTab2Fragment extends Fragment {
 
 
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_ADD_CATEGORY, new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Const.URL_ADD_CATEGORY, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 

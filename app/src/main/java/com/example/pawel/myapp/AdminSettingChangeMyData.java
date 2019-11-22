@@ -19,7 +19,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class AdminSettingChangeMyData extends AppCompatActivity {
-    private static String URL_UPDATE_MYDATA = "http://s34787.s.pwste.edu.pl/app/updateMyData.php";
+
     EditText mName, mSurname, mStreet, mCity, mPostcode, mPhone;
     SessionManager sessionManager;
     ProgressDialog progressDialog;
@@ -93,7 +93,7 @@ public class AdminSettingChangeMyData extends AppCompatActivity {
         sessionManager.updateDataInSession(name, surname, street, city, postcode, phone);
 
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_UPDATE_MYDATA, new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Const.URL_UPDATE_MYDATA, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 

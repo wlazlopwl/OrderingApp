@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class SessionManager {
@@ -24,6 +25,7 @@ public class SessionManager {
     SharedPreferences sharedPreferences;
     public SharedPreferences.Editor editor;
     public Context context;
+
 
     public SessionManager(Context context) {
         this.context = context;
@@ -47,6 +49,11 @@ public class SessionManager {
         editor.commit();
     }
 
+
+
+
+
+
     public boolean isLogin() {
         return sharedPreferences.getBoolean(LOGIN, false);
     }
@@ -68,6 +75,12 @@ public class SessionManager {
             }
             if (vv == 1) {
                 Intent intent = new Intent(context, AdminActivity.class);
+                context.startActivity(intent);
+
+
+            }
+            if (vv == 2) {
+                Intent intent = new Intent(context, WorkerActivity.class);
                 context.startActivity(intent);
 
 

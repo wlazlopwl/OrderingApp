@@ -27,7 +27,7 @@ import java.sql.Time;
 import java.util.ArrayList;
 
 public class AdminActivity extends AppCompatActivity {
-    private static String URL_GET_ADMIN="http://s34787.s.pwste.edu.pl/app/getAdminData.php";
+
     private TextView mTextMessage, mCountUser;
     public String dane;
 
@@ -39,8 +39,6 @@ public class AdminActivity extends AppCompatActivity {
         setContentView(R.layout.activity_admin);
 
 
-        Log.d("create","s");
-       // mTextMessage = (TextView) findViewById(R.id.message);
 
         BottomNavigationView navigation =  findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -85,10 +83,6 @@ public class AdminActivity extends AppCompatActivity {
     };
 
 
-    public String getCount(){
 
-        Log.d("genCount", "as");
-        return dane;
-    }
 
 }

@@ -27,8 +27,7 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 public class AdminSettingChangeTime extends AppCompatActivity {
-    private static String URL_UPDATE_TIME = "http://s34787.s.pwste.edu.pl/app/updateTime.php";
-    private static String URL_GET_TIME = "http://s34787.s.pwste.edu.pl/app/getTime.php";
+
     private TimePicker mTimePicker;
     private Button mUpdateTimeBtn;
     ProgressDialog progressDialog;
@@ -95,7 +94,7 @@ getActualTime();
         progressDialog.show();
 
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_UPDATE_TIME, new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Const.URL_UPDATE_TIME, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
@@ -130,7 +129,7 @@ getActualTime();
     }
     private void getActualTime(){
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL_GET_TIME, new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Const.URL_GET_TIME, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
