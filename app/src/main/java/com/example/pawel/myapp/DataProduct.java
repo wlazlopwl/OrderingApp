@@ -2,7 +2,7 @@ package com.example.pawel.myapp;
 
 import java.util.ArrayList;
 
-class DataProduct {
+public class DataProduct {
     private String id, name, description, imgUrl, categoryId,quantityTypeId, quantity;
     private ArrayList<DataProduct> dataProductList;
 
@@ -61,11 +61,5 @@ class DataProduct {
     public void setQuantity(String quantity) {
         this.quantity = quantity;
     }
-    public ArrayList<DataProduct> getDataProductList() {
-        return dataProductList;
-    }
 
-    public void setDataProductList(ArrayList<DataProduct> dataProductList) {
-        this.dataProductList = dataProductList;
-    }
 }

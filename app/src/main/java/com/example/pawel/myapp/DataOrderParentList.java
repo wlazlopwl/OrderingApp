@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class DataOrderParentList {
 
     private String id, name, date;
-    private ArrayList<DataOrderParentList> dataProductList;
+    private ArrayList<DataProduct> ChildOrderList;
 
     public String getId() {
         return id;
@@ -31,11 +31,11 @@ public class DataOrderParentList {
         this.date = date;
     }
 
-    public ArrayList<DataOrderParentList> getDataProductList() {
-        return dataProductList;
+    public ArrayList<DataProduct> getDataProductChildList() {
+        return ChildOrderList;
     }
 
-    public void setDataProductList(ArrayList<DataOrderParentList> dataProductList) {
-        this.dataProductList = dataProductList;
+    public void setDataProductList(ArrayList<DataProduct> ChildOrderList) {
+        this.ChildOrderList = ChildOrderList;
     }
 }

@@ -1,4 +1,4 @@
-package com.example.pawel.myapp;
+package com.example.pawel.myapp.Adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -8,28 +8,29 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.pawel.myapp.DataProduct;
+import com.example.pawel.myapp.R;
+
 import java.util.ArrayList;
 
 public class ChildOrderAdapter extends RecyclerView.Adapter<ChildOrderAdapter.MyViewHolder> {
 
 
-    public ArrayList<DataProduct> ChildOrderList ;
+    public ArrayList<DataProduct> ChildOrderList;
     private Context mContext;
 
 
-
-    public ChildOrderAdapter(Context context,ArrayList<DataProduct> ChildOrderList) {
+    public ChildOrderAdapter(Context context, ArrayList<DataProduct> ChildOrderList) {
         this.ChildOrderList = ChildOrderList;
-        this.mContext=context;
+        this.mContext = context;
 
 
     }
 
 
-
     @Override
-    public ChildOrderAdapter.MyViewHolder onCreateViewHolder( ViewGroup viewGroup, int i) {
-        View itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.layout_order_simple_item, viewGroup,false);
+    public ChildOrderAdapter.MyViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+        View itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.layout_order_simple_item, viewGroup, false);
 
 
         ChildOrderAdapter.MyViewHolder adapter = new MyViewHolder(itemView);
@@ -40,22 +41,25 @@ public class ChildOrderAdapter extends RecyclerView.Adapter<ChildOrderAdapter.My
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
         myViewHolder.name.setText((ChildOrderList.get(i).getName()));
-        myViewHolder.name.setText("test");
+        myViewHolder.orderProductDesc.setText(ChildOrderList.get(i).getDescription());
+        myViewHolder.orderProductQuantity.setText(ChildOrderList.get(i).getQuantity()+"x");
 
     }
 
     @Override
     public int getItemCount() {
 //
-        return   (ChildOrderList == null) ? 0 :ChildOrderList.size();
+        return (ChildOrderList == null) ? 0 : ChildOrderList.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView name;
+        TextView name, orderProductDesc, orderProductQuantity;
+
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             name = (TextView) itemView.findViewById(R.id.product_order_name);
-
+            orderProductDesc = (TextView) itemView.findViewById(R.id.order_product_desc);
+            orderProductQuantity=(TextView)itemView.findViewById(R.id.order_product_quantity);
         }
     }
 }

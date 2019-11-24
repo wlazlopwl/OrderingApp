@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.pawel.myapp.Adapter.AdminEditTabAdapter;
+
 public class AdminEditFragment extends Fragment {
 
     @Nullable

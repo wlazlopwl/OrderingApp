@@ -1,41 +1,41 @@
-package com.example.pawel.myapp;
+package com.example.pawel.myapp.Adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
+import com.example.pawel.myapp.UserActualOrderFragment;
+import com.example.pawel.myapp.UserArchivalOrderFragment;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdminEditTabAdapter extends FragmentStatePagerAdapter {
+public class UserOrderTabAdapter extends FragmentStatePagerAdapter {
     private final List<Fragment> fragmentList = new ArrayList<>();
-    private String[] tabTitles = new String[]{"Dodaj użytk.", "Kategoria", "Produkt"};
+    private String[] tabTitles = new String[]{"Aktualne", "Zakończone"};
 
-    public AdminEditTabAdapter(FragmentManager fm) {
+    public UserOrderTabAdapter(FragmentManager fm) {
         super(fm);
+    }
 
-    }
-    @Override
-    public int getCount() {
-        return fragmentList.size();
-    }
     @Override
     public Fragment getItem(int position) {
-        switch (position) {
+        switch (position){
             case 0:
-                AdminEditTab1Fragment tab1 = new AdminEditTab1Fragment();
+                UserActualOrderFragment tab1 = new UserActualOrderFragment();
                 return tab1;
             case 1:
-                AdminEditTab2Fragment tab2 = new AdminEditTab2Fragment();
+                UserArchivalOrderFragment tab2 = new UserArchivalOrderFragment();
                 return tab2;
-            case 2:
-                AdminEditTab3Fragment tab3 = new AdminEditTab3Fragment();
-                return tab3;
             default:
                 return null;
         }
 
+    }
 
+    @Override
+    public int getCount() {
+        return fragmentList.size();
     }
 
     public void addFragment(Fragment fragment){
@@ -45,5 +45,4 @@ public class AdminEditTabAdapter extends FragmentStatePagerAdapter {
     public CharSequence getPageTitle(int position) {
         return tabTitles[position];
     }
-
 }

@@ -1,6 +1,5 @@
-package com.example.pawel.myapp;
+package com.example.pawel.myapp.Adapter;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,9 +7,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.pawel.myapp.DataModel;
+import com.example.pawel.myapp.R;
+import com.example.pawel.myapp.RecyclerViewClickListener;
 import com.squareup.picasso.Picasso;
 
-import java.text.BreakIterator;
 import java.util.ArrayList;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {

@@ -1,4 +1,4 @@
-package com.example.pawel.myapp;
+package com.example.pawel.myapp.Adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -9,18 +9,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.pawel.myapp.DataOrderParentList;
+import com.example.pawel.myapp.DataProduct;
+import com.example.pawel.myapp.R;
+
 import java.util.ArrayList;
 
 public class ActualOrderAdapter extends RecyclerView.Adapter<ActualOrderAdapter.MyViewHolder> {
 
 
-    private ArrayList<DataProduct> ActualOrderArrayList;
+    private ArrayList<DataOrderParentList> ActualOrderArrayList;
 
     private Context mContext;
 
 
 
-    public ActualOrderAdapter( ArrayList<DataProduct> ActualOrderArrayList) {
+    public ActualOrderAdapter( ArrayList<DataOrderParentList> ActualOrderArrayList) {
         this.ActualOrderArrayList = ActualOrderArrayList;
 
     }
@@ -38,12 +42,15 @@ public class ActualOrderAdapter extends RecyclerView.Adapter<ActualOrderAdapter.
     @Override
     public void onBindViewHolder(ActualOrderAdapter.MyViewHolder holder, int i) {
     holder.name.setText(ActualOrderArrayList.get(i).getName());
+    holder.date_order.setText(ActualOrderArrayList.get(i).getDate());
 
 
-ArrayList<DataProduct> ChildOrderList = ActualOrderArrayList.get(i).getDataProductList();
 
-    ChildOrderAdapter childAdapter = new ChildOrderAdapter(mContext, ChildOrderList);
-        holder.childRV.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL,false));
+//ArrayList<DataProduct> ChildOrderList = ActualOrderArrayList.get(i).getDataOrderParentList();
+    DataOrderParentList dataOrderParentList = ActualOrderArrayList.get(i);
+    ArrayList<DataProduct> dataOrderChildList = dataOrderParentList.getDataProductChildList();
+    ChildOrderAdapter childAdapter = new ChildOrderAdapter(mContext, dataOrderChildList);
+        holder.childRV.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL,false));
         holder.childRV.setHasFixedSize(true);
         holder.childRV.setVisibility(View.VISIBLE);
         holder.childRV.setClickable(true);
@@ -56,11 +63,13 @@ ArrayList<DataProduct> ChildOrderList = ActualOrderArrayList.get(i).getDataProdu
     }
 
     public class MyViewHolder  extends RecyclerView.ViewHolder {
-        TextView name;
+        TextView name, date_order;
         RecyclerView childRV;
         public MyViewHolder( View itemView) {
             super(itemView);
             name= (TextView) itemView.findViewById(R.id.parent_rv_orderNr_textview);
+            date_order= (TextView) itemView.findViewById(R.id.parent_rv_date_textview);
+
             childRV= (RecyclerView) itemView.findViewById(R.id.child_order_product_rv);
         }
     }

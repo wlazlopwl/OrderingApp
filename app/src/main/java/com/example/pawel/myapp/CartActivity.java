@@ -21,11 +21,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.pawel.myapp.Adapter.CartAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,7 +35,7 @@ public class CartActivity extends AppCompatActivity {
 
 
     private static DataProduct data;
-    private CartAdapter CartAdapter;
+    private com.example.pawel.myapp.Adapter.CartAdapter CartAdapter;
     public static ArrayList<DataProduct> dataCartArrayList;
     private RecyclerView recyclerView;
     SessionManager sessionManager;
@@ -193,7 +193,6 @@ public class CartActivity extends AppCompatActivity {
 
 
                         dataCartArrayList = new ArrayList<>();
-                        Log.i("tagconvertstr1", "[" + response + "]");
                         JSONArray dataArray = new JSONArray(response);
 
                         for (int i = 0; i < dataArray.length(); i++) {
