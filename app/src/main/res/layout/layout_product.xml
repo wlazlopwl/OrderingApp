@@ -7,36 +7,25 @@
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        >
+        android:layout_centerInParent="true">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <TextView
+                android:id="@+id/product_name"
                 android:layout_width="match_parent"
                 android:layout_height="25dp"
-                android:layout_below="@+id/product_image"
 
+                android:layout_below="@+id/product_image"
                 android:layout_marginTop="2dp"
                 android:layout_marginBottom="5dp"
-                android:gravity="center"
 
-                android:id="@+id/product_name"
+                android:gravity="center"
 
 
                 />
-
-
-
-
-
-
-
-
-
-
 
 
             <ImageView
@@ -56,32 +45,33 @@
                 android:id="@+id/actual_number_product"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="0"
-                android:gravity="center"
-                android:layout_marginTop="200dp"
                 android:layout_alignRight="@id/product_name"
                 android:layout_alignParentRight="true"
+                android:layout_marginTop="200dp"
                 android:layout_marginRight="57dp"
-                android:text="0"
-                />
-                <ImageView
-                    android:id="@+id/btn_plus_product"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginRight="10dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginTop="200dp"
-                    android:src="@drawable/ic_plus">
+                android:gravity="center"
+                android:hint="0"
+                android:text="0" />
 
-                </ImageView>
+            <ImageView
+                android:id="@+id/btn_plus_product"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="200dp"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/ic_plus">
+
+            </ImageView>
+
             <android.support.v7.widget.AppCompatImageView
 
                 android:id="@+id/product_image"
-                android:paddingTop="5dp"
                 android:layout_width="150dp"
                 android:layout_height="170dp"
                 android:layout_centerHorizontal="true"
+                android:paddingTop="5dp"
                 android:src="@drawable/ic_dashboard_black_24dp"
 
                 />

@@ -5,7 +5,7 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AdminActivity">
+    tools:context=".Admin.AdminActivity">
 
     <FrameLayout
         android:id="@+id/admin_fragment_container"

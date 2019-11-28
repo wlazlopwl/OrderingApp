@@ -13,8 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".SettingsChangeMyPassword"></activity>
-        <activity android:name=".AdminSettingChangeMyData" />
+        <activity android:name=".User.UserOrderActivity"></activity>
+        <activity android:name=".Worker.WorkerActivity" />
+        <activity android:name=".SettingsChangeMyEmail" />
+        <activity android:name=".User.UserSettingsActivity" />
+        <activity android:name=".SettingsChangeMyPassword" />
+        <activity android:name=".Admin.AdminSettingChangeMyData" />
         <activity android:name=".WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,10 +26,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AdminSettingChangeTime" />
+        <activity android:name=".Admin.AdminSettingChangeTime" />
         <activity android:name=".CartActivity" />
         <activity android:name=".ProductListActivity" />
-        <activity android:name=".SupportActivity" />
+        <activity android:name=".User.SupportActivity" />
         <activity android:name=".LogInActivity" />
         <activity android:name=".secActivity" />
         <activity
@@ -33,7 +37,7 @@
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".AdminActivity"
+            android:name=".Admin.AdminActivity"
             android:label="@string/title_activity_admin" />
     </application>
 

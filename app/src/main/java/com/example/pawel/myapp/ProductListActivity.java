@@ -19,6 +19,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.pawel.myapp.Adapter.ProductAdapter;
+import com.example.pawel.myapp.Model.DataProduct;
 
 import org.json.JSONArray;
 import org.json.JSONException;

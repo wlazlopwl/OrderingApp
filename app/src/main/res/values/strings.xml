@@ -32,7 +32,6 @@
         <item>7</item>
     </string-array>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string-array name="support_answer">
         <item>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce euismod lectus eget ex lobortis, eu convallis tortor pulvinar.</item>
         <item>Suspendisse quis velit pharetra, lobortis turpis a, dictum eros. </item>
@@ -57,5 +56,6 @@
         <item>Admin</item>
 
     </string-array>
+    <string name="title_activity_worker">WorkerActivity</string>
 
 </resources>

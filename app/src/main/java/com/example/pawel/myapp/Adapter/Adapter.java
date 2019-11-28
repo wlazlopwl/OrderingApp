@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.pawel.myapp.DataModel;
+import com.example.pawel.myapp.Model.DataModel;
 import com.example.pawel.myapp.R;
 import com.example.pawel.myapp.RecyclerViewClickListener;
 import com.squareup.picasso.Picasso;

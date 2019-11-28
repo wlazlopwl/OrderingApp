@@ -14,12 +14,21 @@
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Kategorie" />
         <item
+
             android:id="@+id/nav_cart"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Twój koszyk" />
-    </group>
+            android:title="Mój koszyk"
+            
 
-    <item>
+            />
+        <item
+            android:id="@+id/nav_order"
+            android:icon="@drawable/ic_menu_manage"
+
+            android:title="Zamówienia" />
+    </group>
+<group>
+    <item android:title="Pozostałe">
         <menu>
             <item
                 android:id="@+id/nav_setting"
@@ -30,6 +39,12 @@
                 android:icon="@drawable/ic_help_black_24dp"
                 android:title="Pomoc" />
             <item
+                android:id="@+id/nav_about"
+                android:icon="@drawable/ic_remove_circle_outline_black_24dp"
+                android:title="O aplikacji"
+
+                />
+            <item
                 android:id="@+id/nav_logout"
                 android:icon="@drawable/ic_remove_circle_outline_black_24dp"
                 android:title="Wyloguj"
@@ -37,5 +52,6 @@
                 />
         </menu>
     </item>
+</group>
 
 </menu>

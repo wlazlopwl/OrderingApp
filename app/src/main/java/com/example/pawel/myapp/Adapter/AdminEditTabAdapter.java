@@ -4,9 +4,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.example.pawel.myapp.AdminEditTab1Fragment;
-import com.example.pawel.myapp.AdminEditTab2Fragment;
-import com.example.pawel.myapp.AdminEditTab3Fragment;
+import com.example.pawel.myapp.Admin.AdminEditTab1Fragment;
+import com.example.pawel.myapp.Admin.AdminEditTab2Fragment;
+import com.example.pawel.myapp.Admin.AdminEditTab3Fragment;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -4,8 +4,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.example.pawel.myapp.UserActualOrderFragment;
-import com.example.pawel.myapp.UserArchivalOrderFragment;
+import com.example.pawel.myapp.User.UserActualOrderFragment;
+import com.example.pawel.myapp.User.UserArchivalOrderFragment;
 
 import java.util.ArrayList;
 import java.util.List;

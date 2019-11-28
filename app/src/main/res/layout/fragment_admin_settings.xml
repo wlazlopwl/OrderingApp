@@ -88,6 +88,15 @@
                 android:paddingLeft="10dp"
                 android:background="@android:color/background_light"
                 android:text="Zmień hasło" />
+            <Button
+                android:id="@+id/admin_setting_change_myEmail_btn"
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="10dp"
+                android:background="@android:color/background_light"
+                android:text="Zmień E-mail" />
         <Button
             android:id="@+id/admin_setting_change_time"
             android:layout_width="match_parent"
@@ -97,13 +106,7 @@
             android:background="@android:color/background_light"
             android:text="Zmień czas dla zamówień" />
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="left|center_vertical"
-            android:paddingLeft="10dp"
-            android:background="@android:color/background_light"
-            android:text="Test" />
+
 
         </LinearLayout>
 

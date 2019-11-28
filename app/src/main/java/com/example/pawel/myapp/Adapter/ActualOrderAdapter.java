@@ -9,8 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.pawel.myapp.DataOrderParentList;
-import com.example.pawel.myapp.DataProduct;
+import com.example.pawel.myapp.Model.DataOrderParentList;
+import com.example.pawel.myapp.Model.DataProduct;
 import com.example.pawel.myapp.R;
 
 import java.util.ArrayList;
