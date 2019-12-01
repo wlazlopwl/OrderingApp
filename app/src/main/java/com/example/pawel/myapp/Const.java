@@ -19,6 +19,8 @@ public class Const {
     public static String URL_GET_PRODUCT="http://s34787.s.pwste.edu.pl/app/getProduct.php";
 //    public static String URL_UPDATE_CART="http://192.168.0.165/app2/addProductToCart.php";
     public static String URL_UPDATE_CART="http://s34787.s.pwste.edu.pl/app/addProductToCart.php";
+      public static String URL_GET_USER_INFO="http://192.168.0.165/app2/getUserInfo.php";
+
 
 
 

@@ -6,12 +6,9 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,11 +18,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.pawel.myapp.Adapter.ActualOrderAdapter;
-import com.example.pawel.myapp.Adapter.CartAdapter;
 import com.example.pawel.myapp.Adapter.PeopleListAdapter;
 import com.example.pawel.myapp.Const;
-import com.example.pawel.myapp.Model.DataProduct;
 import com.example.pawel.myapp.Model.UserModel;
 import com.example.pawel.myapp.R;
 
@@ -34,11 +28,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class WorkerPeopleFragment extends Fragment {
     private TextView mUserCount, mCountWorker;
-    public  ArrayList<UserModel> PeopleListForWorker;
+    public ArrayList<UserModel> PeopleListForWorker;
     RecyclerView recyclerView;
     private com.example.pawel.myapp.Adapter.PeopleListAdapter peopleListAdapter;
     View view;
@@ -47,15 +40,7 @@ public class WorkerPeopleFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view= inflater.inflate(R.layout.fragment_worker_people, container, false);
-
-
-
-
-
-
-
-
+        view = inflater.inflate(R.layout.fragment_worker_people, container, false);
 
 
         return view;
@@ -70,16 +55,10 @@ public class WorkerPeopleFragment extends Fragment {
         getUser();
 
 
-
-
-
-
-
     }
 
 
-
-    public void getUser(){
+    public void getUser() {
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, Const.URL_GET_WORKER, new Response.Listener<String>() {
             @Override
@@ -87,16 +66,14 @@ public class WorkerPeopleFragment extends Fragment {
 
 
                 try {
-                    Log.d("tag",""+response);
 
-                     PeopleListForWorker = new ArrayList();
-
-
-                    JSONArray jsonArray=new JSONArray(response);
+                    PeopleListForWorker = new ArrayList();
 
 
+                    JSONArray jsonArray = new JSONArray(response);
 
-                    for(int i=0;i<jsonArray.length();i++) {
+
+                    for (int i = 0; i < jsonArray.length(); i++) {
                         UserModel user = new UserModel();
                         JSONObject object = jsonArray.getJSONObject(i);
                         user.setName(object.getString("name").trim());
@@ -106,7 +83,7 @@ public class WorkerPeopleFragment extends Fragment {
 
 //
 
-                       PeopleListForWorker.add(user);
+                        PeopleListForWorker.add(user);
 
 
                     }
@@ -114,7 +91,7 @@ public class WorkerPeopleFragment extends Fragment {
 
 
                     recyclerView = (RecyclerView) view.findViewById(R.id.worker_people_list_rv);
-                    recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL, false));
+                    recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
 
 
                     recyclerView.setHasFixedSize(true);
@@ -124,18 +101,9 @@ public class WorkerPeopleFragment extends Fragment {
                     recyclerView.setAdapter(peopleListAdapter);
 
 
-
-
-
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
-
-
-
-
 
 
             }
@@ -153,10 +121,7 @@ public class WorkerPeopleFragment extends Fragment {
         requestQueue.add(stringRequest);
 
 
-
     }
-
-
 
 
 }

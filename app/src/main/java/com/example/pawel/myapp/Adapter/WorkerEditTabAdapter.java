@@ -6,7 +6,6 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.example.pawel.myapp.Worker.WorkerEditTab1Fragment;
 import com.example.pawel.myapp.Worker.WorkerEditTab2Fragment;
-import com.example.pawel.myapp.Worker.WorkerEditTab3Fragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,9 +31,7 @@ public class WorkerEditTabAdapter extends FragmentStatePagerAdapter {
             case 1:
                 WorkerEditTab2Fragment tab2 = new WorkerEditTab2Fragment();
                 return tab2;
-            case 2:
-                WorkerEditTab3Fragment tab3 = new WorkerEditTab3Fragment();
-                return tab3;
+
             default:
                 return null;
         }

@@ -26,7 +26,6 @@ public class WorkerEditFragment extends Fragment {
 
         adapter.addFragment(new WorkerEditTab1Fragment());
         adapter.addFragment(new WorkerEditTab2Fragment());
-        adapter.addFragment(new WorkerEditTab3Fragment());
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
 

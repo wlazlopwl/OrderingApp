@@ -45,7 +45,6 @@ public class WorkerHomeFragment extends Fragment {
 
 
 
-        Log.d("fragment","sa");
 
 
 

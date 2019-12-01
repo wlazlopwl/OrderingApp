@@ -1,6 +1,7 @@
 package com.example.pawel.myapp.User;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -8,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,10 +61,35 @@ public class UserArchivalOrderFragment extends Fragment {
         sessionManager = new SessionManager(getContext());
         mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.archival_order_refresh);
 
+
+
+
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
         userStatus = String.valueOf(Integer.parseInt(String.valueOf(sessionManager.getUserInfo().get("value"))) - 1);
         userId = sessionManager.getUserInfo().get("id");
 
-        getProduct("1", userStatus, userId, "1");
+        int userS = Integer.parseInt(userStatus);
+
+        if (userS==2){
+
+            String idU = getArguments().getString("idUser");
+            getProduct("1", "0", idU, "1");
+            mSwipeRefreshLayout.setRefreshing(false);
+            mSwipeRefreshLayout.setEnabled(false);
+            Log.d("t","if"+userStatus);
+        }
+        else{
+            getProduct("1", "0", userId, "1");
+            Log.d("t","else"+userStatus);
+        }
+
+
 
 
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.parent_actual_order_rv);
@@ -74,13 +101,6 @@ public class UserArchivalOrderFragment extends Fragment {
         actualAdapter = new ActualOrderAdapter(ArchivalOrderArrayList);
         recyclerView.setAdapter(actualAdapter);
 
-
-        return view;
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
 
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
