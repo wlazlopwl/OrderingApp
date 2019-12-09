@@ -19,6 +19,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.pawel.myapp.Admin.AdminActivity;
+import com.example.pawel.myapp.User.MainActivity;
 import com.example.pawel.myapp.Worker.WorkerActivity;
 
 
@@ -46,7 +47,7 @@ public class LogInActivity extends AppCompatActivity {
         sessionManager= new SessionManager(this);
 
 
-        email=findViewById(R.id.email_login);
+        email=findViewById(R.id.pass_login);
         password=findViewById(R.id.pass_login);
         btn_login=findViewById(R.id.btn_login);
 
@@ -98,7 +99,7 @@ public class LogInActivity extends AppCompatActivity {
 
                                     sessionManager.createSession(name, email, success, surname, street,city, postcode, phone, id);
 
-                                    Intent intent=new Intent(LogInActivity.this,MainActivity.class);
+                                    Intent intent=new Intent(LogInActivity.this, MainActivity.class);
 
                                     startActivity(intent);
 

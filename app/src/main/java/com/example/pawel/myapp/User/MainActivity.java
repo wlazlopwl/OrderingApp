@@ -1,4 +1,4 @@
-package com.example.pawel.myapp;
+package com.example.pawel.myapp.User;
 
 import android.content.Intent;
 import android.icu.util.Calendar;
@@ -30,10 +30,12 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.pawel.myapp.Adapter.Adapter;
+import com.example.pawel.myapp.Const;
 import com.example.pawel.myapp.Model.DataModel;
-import com.example.pawel.myapp.User.SupportActivity;
-import com.example.pawel.myapp.User.UserOrderActivity;
-import com.example.pawel.myapp.User.UserSettingsActivity;
+import com.example.pawel.myapp.ProductListActivity;
+import com.example.pawel.myapp.R;
+import com.example.pawel.myapp.RecyclerViewClickListener;
+import com.example.pawel.myapp.SessionManager;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -380,9 +382,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_home) {
             // Handle the camera action
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_category) {
 
         } else if (id == R.id.nav_cart) {
             Intent i = new Intent(MainActivity.this, CartActivity.class);
@@ -448,6 +450,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         title.setText("O aplikacji");
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
         alert.setView(alertLayout);
+
         AlertDialog alertDialog = alert.create();
         alertDialog.show();
 

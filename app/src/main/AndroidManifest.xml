@@ -13,7 +13,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Worker.Worker_UserActualOrder"></activity>
         <activity android:name=".Worker.WorkerUserDetailActivity" />
         <activity android:name=".User.UserOrderActivity" />
         <activity android:name=".Worker.WorkerActivity" />
@@ -29,13 +28,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".Admin.AdminSettingChangeTime" />
-        <activity android:name=".CartActivity" />
+        <activity android:name=".User.CartActivity" />
         <activity android:name=".ProductListActivity" />
         <activity android:name=".User.SupportActivity" />
         <activity android:name=".LogInActivity" />
-        <activity android:name=".secActivity" />
+
         <activity
-            android:name=".MainActivity"
+            android:name=".User.MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme" />
         <activity

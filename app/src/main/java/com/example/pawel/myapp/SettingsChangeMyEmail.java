@@ -8,10 +8,21 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.pawel.myapp.Admin.AdminSettingChangeMyData;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class SettingsChangeMyEmail extends AppCompatActivity {
     EditText mMyCurrentEmail, mNewEmail;
     Button mChangeEmailBtn;
-    String currentEmail, newEmail;
+    String currentEmail, newEmail, userId;
     SessionManager sessionManager;
 
     @Override
@@ -25,8 +36,9 @@ public class SettingsChangeMyEmail extends AppCompatActivity {
         mChangeEmailBtn = findViewById(R.id.setting_change_myEmail_btn);
 
         mMyCurrentEmail.setEnabled(false);
-        mMyCurrentEmail.setText(sessionManager.getUserInfo().get("login"));
-        //ZMIEN NA EMAIL
+        mMyCurrentEmail.setText(sessionManager.getUserInfo().get("password"));
+        userId=sessionManager.getUserInfo().get("id");
+        //TODO: ZMIEN NA EMAIL
 
 
         mChangeEmailBtn.setOnClickListener(new View.OnClickListener() {
@@ -48,8 +60,46 @@ public class SettingsChangeMyEmail extends AppCompatActivity {
         }
         else {
             Toast.makeText(this, "Poprawnie", Toast.LENGTH_SHORT).show();
-//            funkcja aktualizacji email
+updateEmail();
         }
+
+    }
+
+    private void updateEmail(){
+
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Const.URL_UPDATE_EMAIL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                Toast.makeText(SettingsChangeMyEmail.this, response, Toast.LENGTH_LONG).show();
+                sessionManager.updateEmailInSession(newEmail);
+
+            }
+        },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                        Toast.makeText(SettingsChangeMyEmail.this, error.toString(), Toast.LENGTH_LONG).show();
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+
+                // Adding All values to Params.
+                // The firs argument should be same sa your MySQL database table columns.
+                params.put("id", userId);
+                params.put("email", newEmail);
+
+
+                return params;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+
+        requestQueue.add(stringRequest);
 
     }
 }

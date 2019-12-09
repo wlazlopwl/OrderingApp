@@ -27,7 +27,7 @@
 
                 <android.support.v7.widget.AppCompatImageView
 
-                    android:id="@+id/product_cart_image"
+                    android:id="@+id/user_product_order_image"
                     android:layout_width="150dp"
                     android:layout_height="170dp"
                     android:paddingTop="5dp"

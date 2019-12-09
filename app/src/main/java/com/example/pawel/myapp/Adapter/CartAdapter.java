@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.pawel.myapp.CartActivity;
+import com.example.pawel.myapp.User.CartActivity;
 import com.example.pawel.myapp.Model.DataProduct;
 import com.example.pawel.myapp.R;
 import com.squareup.picasso.Picasso;

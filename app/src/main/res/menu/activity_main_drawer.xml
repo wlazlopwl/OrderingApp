@@ -5,25 +5,25 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home_black_24dp"
             android:title="Strona główna" />
 
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:id="@+id/nav_category"
+            android:icon="@drawable/ic_list_black_24dp"
             android:title="Kategorie" />
         <item
 
             android:id="@+id/nav_cart"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/ic_shopping_cart"
             android:title="Mój koszyk"
             
 
             />
         <item
             android:id="@+id/nav_order"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/ic_assignment_black_24dp"
 
             android:title="Zamówienia" />
     </group>
@@ -40,13 +40,13 @@
                 android:title="Pomoc" />
             <item
                 android:id="@+id/nav_about"
-                android:icon="@drawable/ic_remove_circle_outline_black_24dp"
+                android:icon="@drawable/ic_info_black_24dp"
                 android:title="O aplikacji"
 
                 />
             <item
                 android:id="@+id/nav_logout"
-                android:icon="@drawable/ic_remove_circle_outline_black_24dp"
+                android:icon="@drawable/ic_exit_to_app_black_24dp"
                 android:title="Wyloguj"
 
                 />

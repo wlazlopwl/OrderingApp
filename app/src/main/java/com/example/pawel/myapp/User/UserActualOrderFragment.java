@@ -143,7 +143,7 @@ public class UserActualOrderFragment extends Fragment {
                                 dataProduct.setDescription(dataobj.getString("desc"));
                                 dataProduct.setQuantity(dataobj.getString("quantity"));
 //                                dataProduct.setId(dataobj.getString("id"));
-//                                dataProduct.setImgUrl(dataobj.getString("img"));
+                                dataProduct.setImgUrl(dataobj.getString("img"));
 
 
                                 ChildOrderList.add(dataProduct);

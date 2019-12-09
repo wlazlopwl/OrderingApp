@@ -1,4 +1,4 @@
-package com.example.pawel.myapp;
+package com.example.pawel.myapp.User;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -22,7 +22,10 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.pawel.myapp.Adapter.CartAdapter;
 import com.example.pawel.myapp.Admin.AdminSettingChangeMyData;
+import com.example.pawel.myapp.Const;
 import com.example.pawel.myapp.Model.DataProduct;
+import com.example.pawel.myapp.R;
+import com.example.pawel.myapp.SessionManager;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -98,6 +101,21 @@ public class CartActivity extends AppCompatActivity {
 
 
     }
+    private void alertDate() {
+        new AlertDialog.Builder(CartActivity.this).setTitle("Uwaga!.")
+                .setMessage("W dniu dzisiejszym nie możesz już złożyć zamówienia" +
+                        " Czy chcesz złożyc zamówienie z datą następnego dnia roboczego?").setPositiveButton("Tak, chcę!", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //TODO: order with next day date
+
+
+            }
+        }).setNegativeButton("Nie, dziękuję", null)
+                .setIcon(android.R.drawable.ic_dialog_alert).show();
+
+
+    }
 
     private Boolean checkAddress() {
         boolean enteredAddress;
@@ -135,7 +153,7 @@ public class CartActivity extends AppCompatActivity {
                     dataCartArrayList.clear();
 
                 } else {
-                    Toast.makeText(ctx, "not" + response, Toast.LENGTH_LONG).show();
+                    alertDate();
                 }
             }
         },

@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.example.pawel.myapp.Admin.AdminActivity;
+import com.example.pawel.myapp.User.MainActivity;
 import com.example.pawel.myapp.Worker.WorkerActivity;
 
 import java.util.HashMap;
@@ -118,6 +119,12 @@ public class SessionManager {
         editor.putString(CITY, city);
         editor.putString(POSTCODE, postcode);
         editor.putString(PHONE, phone);
+        editor.commit();
+    }
+    public void updateEmailInSession(String email) {
+
+        editor.putString(EMAIL, email);
+
         editor.commit();
     }
 

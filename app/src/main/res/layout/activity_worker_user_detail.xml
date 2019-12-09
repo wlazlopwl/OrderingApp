@@ -50,7 +50,7 @@
                     android:id="@+id/worker_user_detail_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Adam "
+
                     android:textSize="20dp"
                     android:textStyle="bold"
 
@@ -60,7 +60,7 @@
                     android:id="@+id/worker_user_detail_surname"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Adam"
+
                     android:textSize="20dp"
                     android:textStyle="bold"></TextView>
 
@@ -82,7 +82,7 @@
                     android:id="@+id/worker_user_detail_street"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Sportowa 55"
+
                     android:textSize="20dp"></TextView>
 
             </LinearLayout>
@@ -96,14 +96,14 @@
                     android:id="@+id/worker_user_detail_postcode"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="37-204 "
+
                     android:textSize="20dp"></TextView>
 
                 <TextView
                     android:id="@+id/worker_user_detail_city"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Tryńcza"
+
                     android:textSize="20dp"></TextView>
 
             </LinearLayout>
@@ -117,14 +117,14 @@
                     android:id="@+id/worker_user_detail_phone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="665 333 222 "
+
                     android:textSize="20dp"></TextView>
 
                 <TextView
                     android:id="@+id/worker_user_detail_email"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="e-mail "
+
                     android:textSize="20dp"></TextView>
 
 
