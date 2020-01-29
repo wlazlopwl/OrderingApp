@@ -1,5 +1,6 @@
 package com.example.pawel.myapp.Adapter;
 
+import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import com.example.pawel.myapp.Model.DataModel;
 import com.example.pawel.myapp.R;
 import com.example.pawel.myapp.RecyclerViewClickListener;
+import com.example.pawel.myapp.User.CategoryListActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -17,7 +19,7 @@ import java.util.ArrayList;
 public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
 
     private LayoutInflater inflater;
-    private ArrayList<DataModel> dataModelArrayList;
+    public static ArrayList<DataModel> dataModelArrayList;
     private RecyclerViewClickListener recyclerViewClickListener;
 
 
@@ -31,10 +33,25 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
     @Override
     public Adapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_home_category, parent, false);
-        MyViewHolder holder = new MyViewHolder(view, recyclerViewClickListener);
+        Activity activity = (Activity) parent.getContext();
+        ;
+        if ( activity.getClass().getSimpleName().contains("Main")){
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_home_category, parent, false);
+            MyViewHolder holder = new MyViewHolder(view, recyclerViewClickListener);
+            return holder;
 
-        return holder;
+
+        }
+        else
+        {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_category_vertical, parent, false);
+            MyViewHolder holder = new MyViewHolder(view, recyclerViewClickListener);
+            return holder;
+
+
+        }
+
+
 
 
     }
@@ -61,7 +78,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
         public MyViewHolder(View itemView, RecyclerViewClickListener recyclerViewClickListener) {
             super(itemView);
             this.recyclerViewClickListener=recyclerViewClickListener;
-            name = (TextView) itemView.findViewById(R.id.name);
+            name = (TextView) itemView.findViewById(R.id.category_name);
             category_image = (ImageView) itemView.findViewById(R.id.category_image);
             itemView.setOnClickListener(this);
         }

@@ -1,38 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.pawel.myapp">
-
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".Admin.AdminCheckCategoryList"></activity>
+        <activity android:name=".Admin.AdminWorkerList" />
+        <activity android:name=".Admin.AdminUserList" />
+        <activity android:name=".User.CategoryListActivity" />
         <activity android:name=".Worker.WorkerUserDetailActivity" />
         <activity android:name=".User.UserOrderActivity" />
         <activity android:name=".Worker.WorkerActivity" />
-        <activity android:name=".SettingsChangeMyEmail" />
+        <activity android:name=".SettingsChangeMyEmail"            />
         <activity android:name=".User.UserSettingsActivity" />
         <activity android:name=".SettingsChangeMyPassword" />
-        <activity android:name=".Admin.AdminSettingChangeMyData" />
+        <activity android:name=".SettingsChangeMyData" />
         <activity android:name=".WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".Admin.AdminSettingChangeTime" />
         <activity android:name=".User.CartActivity" />
-        <activity android:name=".ProductListActivity" />
+        <activity android:name=".User.ProductListActivity" />
         <activity android:name=".User.SupportActivity" />
         <activity android:name=".LogInActivity" />
-
         <activity
             android:name=".User.MainActivity"
             android:label="@string/title_activity_main"
@@ -41,5 +39,4 @@
             android:name=".Admin.AdminActivity"
             android:label="@string/title_activity_admin" />
     </application>
-
 </manifest>

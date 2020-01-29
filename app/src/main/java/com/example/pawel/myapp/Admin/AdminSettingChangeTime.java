@@ -4,7 +4,10 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -33,19 +36,26 @@ public class AdminSettingChangeTime extends AppCompatActivity {
     private Button mUpdateTimeBtn;
     ProgressDialog progressDialog;
     String fullHour;
+    CoordinatorLayout coordinatorLayout;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_admin_settings_change_time);
+        coordinatorLayout = (CoordinatorLayout) findViewById(R.id.change_time_fragment_layout);
+        Toolbar toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.toolbara);
+        toolbar.setTitle("Czas zamówień");
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         mTimePicker = findViewById(R.id.time_picker);
         mUpdateTimeBtn = findViewById(R.id.update_time);
         progressDialog = new ProgressDialog(this);
+        mTimePicker.setIs24HourView(true);
 
-getActualTime();
-
+        getActualTime();
 
 
         mUpdateTimeBtn.setOnClickListener(new View.OnClickListener() {
@@ -60,10 +70,6 @@ getActualTime();
 
 
     }
-
-
-
-
 
 
     private void getTime() {
@@ -81,6 +87,7 @@ getActualTime();
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 updateTime();
+
 
             }
         }).setNegativeButton(android.R.string.no, null)
@@ -100,7 +107,8 @@ getActualTime();
             public void onResponse(String response) {
 
                 progressDialog.dismiss();
-                Toast.makeText(AdminSettingChangeTime.this, response, Toast.LENGTH_LONG).show();
+                Snackbar.make(coordinatorLayout, "Godzina została zmieniona.", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+
             }
         },
                 new Response.ErrorListener() {
@@ -128,7 +136,8 @@ getActualTime();
 
 
     }
-    public void getActualTime(){
+
+    public void getActualTime() {
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, Const.URL_GET_TIME, new Response.Listener<String>() {
             @Override
@@ -136,30 +145,22 @@ getActualTime();
 
                 try {
 
-                    JSONArray jsonArray  = new JSONArray(response);
-
-
+                    JSONArray jsonArray = new JSONArray(response);
 
 
                     for (int i = 0; i < jsonArray.length(); i++) {
 
-                        JSONObject object=jsonArray.getJSONObject(i);
+                        JSONObject object = jsonArray.getJSONObject(i);
                         String count = object.getString("hour").trim();
-                        String hourFromDatabase = count.substring(0,2);
-                        String minuteFromDatabase = count.substring(3,5);
+                        String hourFromDatabase = count.substring(0, 2);
+                        String minuteFromDatabase = count.substring(3, 5);
                         mTimePicker.setCurrentHour(Integer.parseInt(hourFromDatabase));
                         mTimePicker.setCurrentMinute(Integer.parseInt(minuteFromDatabase));
-                        Log.d("h", hourFromDatabase);
-                        Log.d("m", minuteFromDatabase);
-
-                        Toast.makeText(AdminSettingChangeTime.this, ""+count, Toast.LENGTH_SHORT).show();
 
 
 
 
                     }
-
-
 
 
                 } catch (JSONException e) {
@@ -183,7 +184,14 @@ getActualTime();
 
     }
 
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return true;
     }
+
+
+}
 
 
 

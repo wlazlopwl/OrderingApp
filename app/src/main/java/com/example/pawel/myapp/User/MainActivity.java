@@ -1,11 +1,15 @@
 package com.example.pawel.myapp.User;
 
+import android.app.SearchManager;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.icu.util.Calendar;
-import android.icu.util.TimeZone;
+import android.graphics.Color;
+import android.graphics.DashPathEffect;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.support.design.widget.NavigationView;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -14,15 +18,18 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -32,36 +39,103 @@ import com.android.volley.toolbox.Volley;
 import com.example.pawel.myapp.Adapter.Adapter;
 import com.example.pawel.myapp.Const;
 import com.example.pawel.myapp.Model.DataModel;
-import com.example.pawel.myapp.ProductListActivity;
 import com.example.pawel.myapp.R;
 import com.example.pawel.myapp.RecyclerViewClickListener;
 import com.example.pawel.myapp.SessionManager;
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+import com.github.mikephil.charting.utils.Utils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, RecyclerViewClickListener {
 
-    ArrayList<DataModel> dataModelArrayList;
+
+    public static ArrayList<DataModel> dataModelArrayList;
     private com.example.pawel.myapp.Adapter.Adapter Adapter;
     private RecyclerView recyclerView;
     SessionManager sessionManager;
-    TextView textCartItemCount, mHour, mMinute, mSecond;
-    int mCartItemCount = 1;
+    public TextView textCartItemCount, mHour, mMinute, mActualOrder, mMyWorkerName, mMonthOrder;
+    public int mCartItemCount = 0;
     int pHour, pMinute, pSecond;
-    Boolean timeFromDatabase;
+    private Button mCategoryBtn;
+    public String userId;
+    LineChart mChart;
+
+    public android.app.SearchManager searchManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.support_toolbar);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         sessionManager = new SessionManager(getApplicationContext());
+        mCategoryBtn = (Button) findViewById(R.id.category_btn);
+        mActualOrder = (TextView) findViewById(R.id.user_home_actual_order);
+        mMyWorkerName = (TextView) findViewById(R.id.user_home_my_worker_name);
+        mMonthOrder = (TextView) findViewById(R.id.user_home_all_month_order);
+        mChart = (LineChart) findViewById(R.id.user_home_statistic);
+        mChart.setTouchEnabled(true);
+        mChart.setPinchZoom(true);
+
+        ArrayList<Entry> values = new ArrayList<>();
+
+
+        for (int i = 0; i <30 ; i++) {
+            int a;
+            if (i%2==0) {
+                a=5;
+            }
+            else{
+                a=2;
+            }
+            values.add(new Entry(i+1, a));
+        }
+        LineDataSet set1;
+        if (mChart.getData() != null &&
+                mChart.getData().getDataSetCount() > 0) {
+            set1 = (LineDataSet) mChart.getData().getDataSetByIndex(0);
+            set1.setValues(values);
+            mChart.getData().notifyDataChanged();
+            mChart.notifyDataSetChanged();
+        } else {
+            set1 = new LineDataSet(values, "Sample Data");
+            set1.setDrawIcons(false);
+            set1.enableDashedLine(10f, 5f, 0f);
+            set1.enableDashedHighlightLine(10f, 5f, 0f);
+            set1.setColor(Color.DKGRAY);
+            set1.setCircleColor(Color.DKGRAY);
+            set1.setLineWidth(1f);
+            set1.setCircleRadius(3f);
+            set1.setDrawCircleHole(false);
+            set1.setValueTextSize(9f);
+            set1.setDrawFilled(true);
+            set1.setFormLineWidth(1f);
+            set1.setFormLineDashEffect(new DashPathEffect(new float[]{10f, 5f}, 0f));
+            set1.setFormSize(15.f);
+            if (Utils.getSDKInt() >= 18) {
+                Drawable drawable = ContextCompat.getDrawable(this, R.color.colorAccent);
+                set1.setFillDrawable(drawable);
+            } else {
+                set1.setFillColor(Color.DKGRAY);
+            }
+            ArrayList<ILineDataSet> dataSets = new ArrayList<>();
+            dataSets.add(set1);
+            LineData data = new LineData(dataSets);
+            mChart.setData(data);
+        }
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -76,162 +150,69 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         View headerView = navigationView.getHeaderView(0);
         TextView menuName = (TextView) headerView.findViewById(R.id.menu_name);
+        TextView menuEmail = (TextView) headerView.findViewById(R.id.menu_email);
 
         menuName.setText(sessionManager.getUserInfo().get("login") + " " + sessionManager.getUserInfo().get("surname"));
-
+        menuEmail.setText(sessionManager.getUserInfo().get("password"));
+        userId = sessionManager.getUserInfo().get("id");
 
         recyclerView = findViewById(R.id.recyclerVievCategory);
 
         getCategory();
+        getUserData();
 
 
         mHour = (TextView) findViewById(R.id.main_hour_textView);
         mMinute = (TextView) findViewById(R.id.main_minute_textView);
-        mSecond = (TextView) findViewById(R.id.main_second_textView);
-        timeFromDatabase=false;
-//        getTime();
-        timmer();
+        getActualTime();
 
 
-
-
-
-
-
-
-
-
-
-            CountDownTimer timer = new CountDownTimer(30000000, 1000) {
-
-
-                @Override
-                public void onTick(long millisUntilFinished) {
-
-                    int aHour = Integer.parseInt(mHour.getText().toString());
-                    int aMinute = Integer.parseInt(mMinute.getText().toString());
-                    int aSecond = Integer.parseInt(mSecond.getText().toString());
-
-
-
-                    if (aSecond <= 60) {
-                        aSecond = aSecond - 1;
-
-
-                        if (aSecond <0) {
-                            aMinute = aMinute - 1;
-
-                            aSecond = 59;
-
-                        }
-                        if (aMinute<0) {
-                            aMinute=59;
-                            aHour = aHour - 1;
-                            if (aHour<=0) {
-                                aHour=23;
-                            }
-                        }
-
-
-
-
-                    }
-
-                    if (aSecond<10){
-                        mSecond.setText( "0"+String.valueOf(aSecond));
-                    }
-                    else{
-                        mSecond.setText( String.valueOf(aSecond));
-                    }
-                    if (aMinute<10){
-                        mMinute.setText( "0"+String.valueOf(aMinute));
-                    }
-                    else{
-                        mMinute.setText( String.valueOf(aMinute));
-                    }
-
-
-
-
-
-                    mHour.setText( String.valueOf(aHour));
-
-
-
-
-
-                }
-
-                @Override
-                public void onFinish() {
-
-                }
-            };
-
-            timer.start();
-        }
-
-
-
-
-
-    public void timmer() {
-        getTime();
-        int dbMinute = Integer.valueOf(mMinute.getText().toString());
-        int dbHour = Integer.valueOf(mHour.getText().toString());
-        int dbSecond = Integer.valueOf(mSecond.getText().toString());
-
-        Calendar calendar = Calendar.getInstance();
-        //TODO check winter time / summer time
-        calendar.setTimeZone(TimeZone.getTimeZone("GMT+1"));
-        int cHour = calendar.get(Calendar.HOUR_OF_DAY);
-        int cMinute = calendar.get(Calendar.MINUTE);
-        int cSecond = calendar.get(Calendar.SECOND);
-
-        pHour = dbHour - cHour;
-        pMinute = dbMinute - cMinute;
-        pSecond = dbSecond - cSecond;
-        mHour.setText(String.valueOf(pHour));
-        mMinute.setText(String.valueOf(pMinute));
-        mSecond.setText(String.valueOf(pSecond));
-
-        Log.d("dbHour",""+dbHour);
-        Log.d("cHour",""+cHour);
-        Log.d("pHour",""+pHour);
-
+        mCategoryBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, CategoryListActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
 
-    public void getTime() {
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, Const.URL_GET_TIME, new Response.Listener<String>() {
+        invalidateOptionsMenu();
+    }
+
+    private void getUserData() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Const.URL_GET_USER_DATA, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
                 try {
 
-                    JSONArray jsonArray = new JSONArray(response);
 
+                    JSONArray dataArray = new JSONArray(response);
 
-                    for (int i = 0; i < jsonArray.length(); i++) {
+                    for (int i = 0; i < dataArray.length(); i++) {
+                        JSONObject obj = dataArray.getJSONObject(i);
 
-                        JSONObject object = jsonArray.getJSONObject(i);
-                        String count = object.getString("hour").trim();
-                        mHour.setText(count.substring(0,2));
-                        mMinute.setText(count.substring(3,5));
-                        mSecond.setText(count.substring(6,7));
-
-
-
-                        Log.d("mHourget",""+mHour.getText().toString().trim());
-                        Log.d("mMinuteget",""+mMinute);
-                        Log.d("Msecget",""+mSecond);
+                        mActualOrder.setText(obj.getString("countActualOrder"));
+                        mMyWorkerName.setText(obj.getString("name"));
+                        mMonthOrder.setText(obj.getString("countLastMonthOrder"));
+//                        String cartCount = "10";
+//                        mCartItemCount = Integer.parseInt(cartCount);
+//                        mCartItemCount=5;
+                        String count =obj.getString("countCart");
+                        if (count=="null") {
+                            textCartItemCount.setText("0");
+                        }
+                        sessionManager.updateCartCountForUser(textCartItemCount.getText().toString());
+                        Log.d("countCart", response);
 
 
                     }
-
-                    timeFromDatabase=true;
 
 
                 } catch (JSONException e) {
@@ -246,20 +227,77 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         //displaying the error in toast if occurrs
                         Toast.makeText(MainActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
                     }
-                });
+                }) {
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
 
-        // request queue
+                params.put("id", userId);
+
+
+                return params;
+            }
+        };
+
+
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
         requestQueue.add(stringRequest);
 
+
     }
+
+    public void getActualTime() {
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Const.URL_GET_TIME, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                try {
+
+                    JSONArray jsonArray = new JSONArray(response);
+
+
+                    for (int i = 0; i < jsonArray.length(); i++) {
+
+                        JSONObject object = jsonArray.getJSONObject(i);
+                        String count = object.getString("hour").trim();
+                        String hourFromDatabase = count.substring(0, 2);
+                        String minuteFromDatabase = count.substring(3, 5);
+
+                        mHour.setText(hourFromDatabase);
+                        mMinute.setText(minuteFromDatabase);
+
+
+                    }
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        //displaying the error in toast if occurrs
+                        Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+        // request queue
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+
+        requestQueue.add(stringRequest);
+
+
+    }
+
 
     public void getCategory() {
         StringRequest stringRequest = new StringRequest(Request.Method.GET, Const.URL_GET_CATEGORY, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.d("strrrrr", ">>" + response);
+
                 try {
 
 
@@ -283,13 +321,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
                 } catch (JSONException e) {
-                    e.printStackTrace();
-                    DataModel playerModell = new DataModel();
-                    playerModell.setId("1");
-                    playerModell.setImgUrl("https://acegif.com/wp-content/gifs/apple-81-gap.jpg");
-                    playerModell.setName("Test");
-                    dataModelArrayList.add(playerModell);
-                    setupRecycler();
+
 
                 }
             }
@@ -343,22 +375,36 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         final MenuItem menuItem = menu.findItem(R.id.action_cart);
 
+
         View actionView = MenuItemCompat.getActionView(menuItem);
         textCartItemCount = (TextView) actionView.findViewById(R.id.cart_badge);
-
-        setupBadge();
+//        setupBadge();
+        searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
 
         actionView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                onOptionsItemSelected(menuItem);
+
                 Intent intent = new Intent(MainActivity.this, CartActivity.class);
                 startActivity(intent);
             }
         });
 
+
+
         return true;
     }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+
+
+        textCartItemCount.setText(sessionManager.getUserInfo().get("cartCount"));
+
+
+        return true;
+    }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -367,10 +413,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
+
 
         return super.onOptionsItemSelected(item);
     }
@@ -385,6 +428,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (id == R.id.nav_home) {
             // Handle the camera action
         } else if (id == R.id.nav_category) {
+            Intent i = new Intent(MainActivity.this, CategoryListActivity.class);
+            startActivity(i);
 
         } else if (id == R.id.nav_cart) {
             Intent i = new Intent(MainActivity.this, CartActivity.class);
@@ -407,8 +452,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.nav_about) {
             aboutApp();
         } else if (id == R.id.nav_logout) {
-            sessionManager.logout();
-            this.finish();
+
+            logoutAlert();
 
         }
 
@@ -454,6 +499,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         AlertDialog alertDialog = alert.create();
         alertDialog.show();
 
+    }
+
+    public void logoutAlert() {
+        AlertDialog.Builder logoutDialog = new AlertDialog.Builder(this);
+        logoutDialog.setTitle("UWAGA!");
+        logoutDialog.setIcon(R.drawable.ic_sad_face);
+        logoutDialog.setMessage("Czy na pewno chcesz się wylogować?").setCancelable(false).setPositiveButton("TAK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                sessionManager.logout();
+                finish();
+
+            }
+        }).setNegativeButton("NIE", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+
+        AlertDialog alertDialog = logoutDialog.create();
+        alertDialog.show();
     }
 }
 

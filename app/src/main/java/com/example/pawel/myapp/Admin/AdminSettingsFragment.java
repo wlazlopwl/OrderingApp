@@ -1,22 +1,27 @@
 package com.example.pawel.myapp.Admin;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
+import com.example.pawel.myapp.SettingsChangeMyData;
 import com.example.pawel.myapp.R;
 import com.example.pawel.myapp.SessionManager;
 import com.example.pawel.myapp.SettingsChangeMyEmail;
 import com.example.pawel.myapp.SettingsChangeMyPassword;
 
 public class AdminSettingsFragment extends Fragment {
-    Button mChangeTime, mLogout, mChangeMyData, mChangePassBtn, mChangeEmailBtn;
+    LinearLayout mChangeTime, mChangeMyData, mChangePass, mChangeEmail, mUserList, mWorkerList;
+    Button mLogout;
     SessionManager sessionManager;
 
     @Nullable
@@ -30,20 +35,18 @@ public class AdminSettingsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         mChangeTime = view.findViewById(R.id.admin_setting_change_time);
         mLogout = view.findViewById(R.id.admin_logout_btn);
-        mChangeMyData = view.findViewById(R.id.admin_change_mydata_btn);
-        mChangePassBtn =  view.findViewById(R.id.admin_setting_change_mypassword_btn);
-        mChangeEmailBtn = view.findViewById(R.id.admin_setting_change_myEmail_btn);
+        mChangeMyData = view.findViewById(R.id.admin_change_mydata);
+        mChangePass =  view.findViewById(R.id.admin_setting_change_mypassword);
+        mChangeEmail = view.findViewById(R.id.admin_setting_change_myEmail);
+        mUserList = view.findViewById(R.id.admin_setting_all_user);
+        mWorkerList = view.findViewById(R.id.admin_setting_all_worker);
         sessionManager = new SessionManager(getActivity());
 
 
         mChangeTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-//                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//                fragmentTransaction.replace(R.id.container, new AdminSettingsChangeTimeFragment());
-//                fragmentTransaction.addToBackStack(null);
-//                fragmentTransaction.commit();
+
 
                 Intent intent = new Intent(getActivity(), AdminSettingChangeTime.class);
                 startActivity(intent);
@@ -54,22 +57,37 @@ public class AdminSettingsFragment extends Fragment {
         mChangeMyData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), AdminSettingChangeMyData.class);
+                Intent intent = new Intent(getActivity(), SettingsChangeMyData.class);
                 startActivity(intent);
             }
         });
 
-        mChangePassBtn.setOnClickListener(new View.OnClickListener() {
+        mChangePass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), SettingsChangeMyPassword.class);
                 startActivity(intent);
             }
         });
-        mChangeEmailBtn.setOnClickListener(new View.OnClickListener() {
+        mChangeEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), SettingsChangeMyEmail.class);
+                startActivity(intent);
+            }
+        });
+        mUserList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), AdminUserList.class);
+                startActivity(intent);
+
+            }
+        });
+        mWorkerList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), AdminWorkerList.class);
                 startActivity(intent);
             }
         });
@@ -77,12 +95,33 @@ public class AdminSettingsFragment extends Fragment {
         mLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sessionManager.logout();
-                getActivity().finish();
+                logoutAlert();
 
             }
         });
 
+    }
+
+    private void logoutAlert(){
+        AlertDialog.Builder logoutDialog = new AlertDialog.Builder(getContext());
+        logoutDialog.setTitle("UWAGA!");
+        logoutDialog.setIcon(R.drawable.ic_sad_face);
+        logoutDialog.setMessage("Czy na pewno chcesz się wylogować?").setCancelable(false).setPositiveButton("TAK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                sessionManager.logout();
+                getActivity().finish();
+
+            }
+        }).setNegativeButton("NIE", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+
+        AlertDialog alertDialog= logoutDialog.create();
+        alertDialog.show();
     }
 
 

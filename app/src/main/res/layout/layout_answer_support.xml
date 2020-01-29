@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:layout_marginBottom="32dp"
-        android:text="TextView"
+        android:text=""
         android:textSize="20dp"
         app:layout_constraintBottom_toTopOf="@+id/answer_support_btn_ok"
         app:layout_constraintEnd_toEndOf="parent"

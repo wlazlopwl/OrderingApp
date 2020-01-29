@@ -5,6 +5,16 @@ public class UserModel {
     String id;
     String name;
     String surname;
+    Boolean isSelected;
+    public Boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(Boolean selected) {
+        isSelected = selected;
+    }
+
+
 
     public String getId() {
         return id;

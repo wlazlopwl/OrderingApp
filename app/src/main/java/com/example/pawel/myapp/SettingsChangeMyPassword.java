@@ -2,6 +2,7 @@ package com.example.pawel.myapp;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -30,6 +31,12 @@ public class SettingsChangeMyPassword extends AppCompatActivity {
         setContentView(R.layout.activity_settings_change_my_password);
         sessionManager = new SessionManager(getApplicationContext());
         idUser = sessionManager.getUserInfo().get("id");
+
+        Toolbar toolbar = (android.support.v7.widget.Toolbar)findViewById(R.id.toolbara);
+        toolbar.setTitle("Zmiana hasła");
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
 
         mMyCurrentPass = findViewById(R.id.myCurrentPass);
@@ -106,5 +113,10 @@ public class SettingsChangeMyPassword extends AppCompatActivity {
 
         requestQueue.add(stringRequest);
 
+    }
+    @Override
+    public boolean onSupportNavigateUp(){
+        finish();
+        return true;
     }
 }

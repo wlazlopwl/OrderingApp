@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/admin_fragment_people"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@color/cardview_shadow_end_color"
 
 
@@ -12,10 +12,23 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/worker_people_list_rv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
     </android.support.v7.widget.RecyclerView>
 
+    <TextView
+        android:id="@+id/textEmptyUser"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:visibility="invisible"
+        android:text="Nie przypisano do Ciebie żadnego użytkownika"
+
+        >
+
+    </TextView>
 
 
 </RelativeLayout>

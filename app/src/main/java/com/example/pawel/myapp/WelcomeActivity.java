@@ -26,7 +26,6 @@ public class WelcomeActivity extends AppCompatActivity {
             public void run() {
                 while (progressBarStatus < 50) {
                     progressBarStatus += 5;
-                    Log.d("s",""+progressBarStatus);
                     // Update the progress bar and display the+pr
                     //current value in the text view
                     handler.post(new Runnable() {

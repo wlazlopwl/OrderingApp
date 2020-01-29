@@ -40,7 +40,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class WorkerEditTab2Fragment extends Fragment {
-    private ImageView mOpenDatePicker, mShareRaport;
+    private ImageView mOpenDatePicker;
     TextView mDate, mEmptyListInfo;
     Calendar c;
     DatePickerDialog datePickerDialog;
@@ -66,13 +66,12 @@ public class WorkerEditTab2Fragment extends Fragment {
         sessionManager = new SessionManager(getActivity());
         mShopListListView = (ListView) view.findViewById(R.id.raport_shop_list);
         mEmptyListInfo = (TextView) view.findViewById(R.id.raport_empty_list_inf);
-        mShareRaport = (ImageView) view.findViewById(R.id.raport_shareIV);
         mListContent = (CardView) view.findViewById(R.id.raport_shop_list_content);
         shopList = new ArrayList<>();
         adapter = new ArrayAdapter<ShopListModel>(getContext(), android.R.layout.simple_list_item_1, shopList);
         mListContent.setVisibility(View.INVISIBLE);
         user_id = sessionManager.getUserInfo().get("id");
-// getRaport();
+
         mOpenDatePicker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,14 +89,14 @@ public class WorkerEditTab2Fragment extends Fragment {
                     @Override
                     public void onDateSet(DatePicker view, int mYear, int mMonth, int mDayOfMonth) {
                         Calendar calendar = Calendar.getInstance();
-                        mMonth = mMonth + 1;
+                        int mMonthText = mMonth + 1;
 
-                        Log.d("month", "" + mMonth);
+
 
                         calendar.set(mYear, mMonth, mDayOfMonth);
-                        mDate.setText(mDayOfMonth + "." + mMonth + "." + mYear);
+                        mDate.setText(mDayOfMonth + "." + mMonthText + "." + mYear);
                         Log.d("d2", mDate.getText().toString());
-                        dateFromPicker = mYear + "-" + mMonth + "-" + mDayOfMonth;
+                        dateFromPicker = mYear + "-" + mMonthText + "-" + mDayOfMonth;
                         int actualDayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
                         Log.d("d3", "" + actualDayOfWeek);
                         if (calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
@@ -121,18 +120,7 @@ public class WorkerEditTab2Fragment extends Fragment {
             }
         });
 
-        mShareRaport.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent shareRaport = new Intent();
-                shareRaport.setAction(Intent.ACTION_SEND);
-                shareRaport.setType("text/plain");
-//TODO: usuń share icon and method
 
-                Intent share = Intent.createChooser(shareRaport, null);
-                startActivity(share);
-            }
-        });
 
     }
 
@@ -143,14 +131,13 @@ public class WorkerEditTab2Fragment extends Fragment {
             public void onResponse(String response) {
                 if (response.contains("Brak")) {
                     mShopListListView.setVisibility(View.GONE);
-                    mShareRaport.setVisibility(View.INVISIBLE);
+
                     mEmptyListInfo.setText("Brak raportu w wybranym dniu");
                 } else {
                     mEmptyListInfo.setText("Lista zakupów w tym dniu:");
                     shopList.clear();
 
                     try {
-                        mShareRaport.setVisibility(View.VISIBLE);
 
                         Log.d("e", "" + response);
                         JSONArray dataArray = new JSONArray(response);
@@ -160,6 +147,7 @@ public class WorkerEditTab2Fragment extends Fragment {
 
                             item.setName(jsonObject.getString("name").trim());
                             item.setQuantity(jsonObject.getString("q").trim());
+                            item.setDescription(jsonObject.getString("description").trim());
 
                             shopList.add(item);
 

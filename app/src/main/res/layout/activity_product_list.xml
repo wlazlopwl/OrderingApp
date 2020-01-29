@@ -4,14 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    tools:context=".ProductListActivity">
+    tools:context=".User.ProductListActivity">
 
-
+    <include
+        android:id="@+id/support_toolbar"
+        layout="@layout/appbarlayout"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerViewProduct"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/support_toolbar"
 
         />
 

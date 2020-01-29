@@ -5,11 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".User.CartActivity">
+    <include
+        android:id="@+id/support_toolbar"
+        layout="@layout/appbarlayout"/>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerViewProductCart"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/btn_order"
+        android:layout_below="@id/support_toolbar"
 
         />
     <TextView

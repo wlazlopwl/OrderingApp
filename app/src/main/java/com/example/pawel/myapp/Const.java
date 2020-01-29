@@ -28,6 +28,13 @@ public class Const {
     //    public static final String URL_GET_RAPORT ="http://192.168.0.165/app2/getRaport.php ";
     public static final String URL_GET_RAPORT = "http://s34787.s.pwste.edu.pl/app/getRaport.php ";
     public static final String URL_UPDATE_ORDER_STATUS = "http://s34787.s.pwste.edu.pl/app/updateOrderStatus.php ";
+    public static final String URL_GET_ALL_USER = "http://s34787.s.pwste.edu.pl/app/getAllUser.php ";
+    public static final String URL_DELETE_USER = "http://s34787.s.pwste.edu.pl/app/deleteUser.php ";
 
+
+    public static String URL_GET_WORKER_DATA = "http://s34787.s.pwste.edu.pl/app/getWorkerData.php ";
+    public static String URL_GET_USER_DATA = "http://s34787.s.pwste.edu.pl/app/getUserData.php ";
+    public static String URL_GET_USER_NAME= "http://s34787.s.pwste.edu.pl/app/getUserName.php ";
+    public static String URL_CHANGE_WORKER= "http://s34787.s.pwste.edu.pl/app/changeWorker.php ";
 
 }

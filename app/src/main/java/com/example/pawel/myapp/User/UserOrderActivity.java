@@ -15,8 +15,6 @@ public class UserOrderActivity extends AppCompatActivity {
     private UserOrderTabAdapter adapter;
     private TabLayout tabLayout;
     private ViewPager viewPager;
-    Toolbar toolbar;
-    AppBarLayout appBarLayout;
 
 
     @Override
@@ -25,8 +23,12 @@ public class UserOrderActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user_order);
         tabLayout=(TabLayout) findViewById(R.id.userOrderTabLayout) ;
         viewPager=(ViewPager)findViewById(R.id.userOrderViewPager);
+        Toolbar toolbar = (android.support.v7.widget.Toolbar)findViewById(R.id.toolbara);
+        toolbar.setTitle("Zamówienia");
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        toolbar= (Toolbar) findViewById(R.id.toolbar);
 
 
         adapter= new UserOrderTabAdapter(getSupportFragmentManager());
@@ -39,5 +41,10 @@ public class UserOrderActivity extends AppCompatActivity {
 
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
+    }
+    @Override
+    public boolean onSupportNavigateUp(){
+        finish();
+        return true;
     }
 }

@@ -24,19 +24,21 @@
     </android.support.v7.widget.RecyclerView>
 
 
-    <Button
-        android:id="@+id/update_all_status_as_realized"
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
 
-        android:layout_alignParentEnd="true"
-        android:background="#F57F17"
-        android:padding="5dp"
-        android:text="Oznacz wszystkie jako zrealizowane"
+
+    <TextView
+        android:id="@+id/textEmptyOrder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Brak aktualnych zamówień"
+
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/worker_parent_actual_order_rv">
 
+    </TextView>
 
 
 </android.support.constraint.ConstraintLayout>

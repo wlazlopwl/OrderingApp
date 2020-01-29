@@ -1,11 +1,14 @@
-package com.example.pawel.myapp;
+package com.example.pawel.myapp.User;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -19,7 +22,10 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.pawel.myapp.Adapter.ProductAdapter;
+import com.example.pawel.myapp.Const;
 import com.example.pawel.myapp.Model.DataProduct;
+import com.example.pawel.myapp.R;
+import com.example.pawel.myapp.SessionManager;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -36,9 +42,10 @@ public class ProductListActivity extends AppCompatActivity {
     ArrayList<DataProduct> dataProductArrayList;
     private RecyclerView recyclerView;
     public static Context ctx;
-    SessionManager sessionManager;
+    static SessionManager sessionManager;
     static String userId;
     public EditText actualQuantity;
+    public static View view;
 
 
     @Override
@@ -49,15 +56,23 @@ public class ProductListActivity extends AppCompatActivity {
         userId = sessionManager.getUserInfo().get("id");
 
         ctx = getApplicationContext();
+        view = getWindow().getDecorView();
+
         Intent i = getIntent();
         String position = i.getStringExtra("position");
+
+        Toolbar toolbar = (android.support.v7.widget.Toolbar)findViewById(R.id.toolbara);
+        toolbar.setTitle("Produkty");
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
 
 
         recyclerView = findViewById(R.id.recyclerViewProduct);
 
         getProduct(position, "0", "55", "2");
 
-        Toast.makeText(ctx, "" + userId, Toast.LENGTH_SHORT).show();
 
 
     }
@@ -78,11 +93,11 @@ public class ProductListActivity extends AppCompatActivity {
 
                         DataProduct playerModel = new DataProduct();
 
-                        Log.i("tagconvertstr2", "[" + response + "]");
                         JSONObject dataobj = dataArray.getJSONObject(i);
 
                         playerModel.setName(dataobj.getString("name"));
                         playerModel.setId(dataobj.getString("id"));
+                        playerModel.setDescription(dataobj.getString("description"));
                         playerModel.setImgUrl(dataobj.getString("img"));
 
 
@@ -152,7 +167,37 @@ public class ProductListActivity extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
 
-                Toast.makeText(ctx, response, Toast.LENGTH_LONG).show();
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    String countCart = jsonObject.getString("actualCartCount");
+                    Log.d("asd", countCart);
+                    sessionManager.updateCartCountForUser(countCart);
+                    ;
+
+
+                    Snackbar snackbar = Snackbar
+                            .make(view, "Dodano do koszyka", Snackbar.LENGTH_LONG).setAction("Przejdź do koszyka", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    Intent intent = new Intent(ctx, CartActivity.class);
+                                    ctx.startActivity(intent);
+
+                                }
+                            });
+                    snackbar.show();
+
+
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+//                Toast.makeText(ctx, "Dodano do koszyka", Toast.LENGTH_LONG).show();
+
+
+
+
             }
         },
                 new Response.ErrorListener() {
@@ -175,13 +220,17 @@ public class ProductListActivity extends AppCompatActivity {
                 return params;
             }
         };
-        Log.d("liczba q ", "" + check);
         RequestQueue requestQueue;
         requestQueue = Volley.newRequestQueue(ctx);
 
         requestQueue.add(stringRequest);
 
 
+    }
+    @Override
+    public boolean onSupportNavigateUp(){
+        finish();
+        return true;
     }
 
 

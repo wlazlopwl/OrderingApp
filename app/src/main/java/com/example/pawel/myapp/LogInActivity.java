@@ -97,6 +97,7 @@ public class LogInActivity extends AppCompatActivity {
 
 
 
+
                                     sessionManager.createSession(name, email, success, surname, street,city, postcode, phone, id);
 
                                     Intent intent=new Intent(LogInActivity.this, MainActivity.class);
@@ -109,7 +110,6 @@ public class LogInActivity extends AppCompatActivity {
                                 if (success.equals("2")){
                                     for(int i=0;i<jsonArray.length();i++) {
                                         JSONObject object = jsonArray.getJSONObject(i);
-                                        Toast.makeText(LogInActivity.this, "Zalogowany ADMIN", Toast.LENGTH_SHORT).show();
                                         String name = object.getString("name").trim();
                                         String email = object.getString("email").trim();
                                         String surname= object.getString("surname").trim();
@@ -128,7 +128,6 @@ public class LogInActivity extends AppCompatActivity {
                             if (success.equals("3")){
                                 for(int i=0;i<jsonArray.length();i++) {
                                     JSONObject object = jsonArray.getJSONObject(i);
-                                    Toast.makeText(LogInActivity.this, "Zalogowany WORKER", Toast.LENGTH_SHORT).show();
                                     String name = object.getString("name").trim();
                                     String email = object.getString("email").trim();
                                     String surname= object.getString("surname").trim();

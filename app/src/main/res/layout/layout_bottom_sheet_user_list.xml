@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+
+
+        >
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="100dp"
+            android:layout_height="7dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/line"
+             />
+        <TextView
+            android:id="@+id/user_list_bottom_sheet_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="test test"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            >
+
+        </TextView>
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/user_list_bottom_sheet_change_pass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="20dp"
+        >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_security_black_24dp"
+            >
+
+        </ImageView>
+        <TextView
+            android:id="@+id/user_list_bottom_sheet_change_pass_TV"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Zmień hasło"
+            android:layout_marginLeft="10dp"
+            >
+
+        </TextView>
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/user_list_bottom_sheet_change_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="20dp"
+        >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_security_black_24dp"
+            >
+
+        </ImageView>
+        <TextView
+            android:id="@+id/user_list_bottom_sheet_change_email_TV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Zmień email"
+            android:layout_marginLeft="10dp"
+            >
+
+        </TextView>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/user_list_bottom_sheet_change_worker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="20dp"
+        >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_update_black_24dp"
+            >
+
+        </ImageView>
+        <TextView
+            android:id="@+id/user_list_bottom_sheet_select_worker_TV"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Zmień pracownika"
+            android:layout_marginLeft="10dp"
+            >
+
+        </TextView>
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/user_list_bottom_sheet_delete_user"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="20dp"
+        >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_delete_black_24dp"
+            android:tint="@android:color/holo_red_light"
+            >
+
+        </ImageView>
+        <TextView
+            android:id="@+id/user_list_bottom_sheet_delete_user_TV"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Usuwanie użytkownika"
+            android:textColor="@android:color/holo_red_light"
+            android:layout_marginLeft="10dp"
+            >
+
+        </TextView>
+
+
+    </LinearLayout>
+</LinearLayout>

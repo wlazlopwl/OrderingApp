@@ -23,36 +23,165 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <Button
-                    android:id="@+id/worker_change_mydata_btn"
+
+                <LinearLayout
+                    android:id="@+id/worker_change_mydata"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@android:color/background_light"
-                    android:gravity="left|center_vertical"
-                    android:paddingLeft="10dp"
-                    android:text="Edycja profilu" />
+                    android:layout_height="70dp"
 
-                <Button
-                    android:id="@+id/worker_setting_change_mypassword_btn"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+
+
+                    >
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:src="@drawable/ic_person_outline_black_24dp">
+
+                    </ImageView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="Edycja profilu"
+
+                        >
+
+                    </TextView>
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+
+                    </Space>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_chevron_right_black"
+                        android:tint="@android:color/darker_gray">
+
+                    </ImageView>
+
+                </LinearLayout>
+
+                <View
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@android:color/background_light"
-                    android:gravity="left|center_vertical"
-                    android:paddingLeft="10dp"
-                    android:text="Zmień hasło" />
+                    android:layout_height="0.25dp"
+                    android:background="@android:color/darker_gray" />
 
-                <Button
-                    android:id="@+id/worker_setting_change_myEmail_btn"
-
+                <LinearLayout
+                    android:id="@+id/worker_setting_change_mypassword"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@android:color/background_light"
-                    android:gravity="left|center_vertical"
-                    android:paddingLeft="10dp"
-                    android:text="Zmień E-mail" />
+                    android:layout_height="70dp"
+                    android:background="?android:attr/selectableItemBackground"
+
+                    android:clickable="true"
 
 
+                    >
 
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:src="@drawable/ic_lock_outline_black_24dp">
+
+                    </ImageView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="Zmień hasło"
+
+                        >
+
+                    </TextView>
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+
+                    </Space>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_chevron_right_black"
+                        android:tint="@android:color/darker_gray">
+
+                    </ImageView>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.25dp"
+                    android:background="@android:color/darker_gray" />
+
+                <LinearLayout
+                    android:id="@+id/worker_setting_change_myEmail"
+                    android:layout_width="match_parent"
+
+                    android:layout_height="70dp"
+                    android:background="?android:attr/selectableItemBackground"
+
+
+                    >
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:src="@drawable/ic_mail_outline_black_24dp">
+
+                    </ImageView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="Zmień e-mail"
+
+                        >
+
+                    </TextView>
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+
+                    </Space>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_chevron_right_black"
+                        android:tint="@android:color/darker_gray">
+
+                    </ImageView>
+
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -63,13 +192,15 @@
             android:id="@+id/cardview_logout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp">
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginRight="40dp">
 
             <Button
                 android:id="@+id/worker_logout_btn"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@android:color/background_light"
+                android:background="?android:attr/selectableItemBackground"
                 android:text="Wyloguj" />
 
 

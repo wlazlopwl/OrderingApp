@@ -1,100 +1,284 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    
+
+    android:background="@android:color/white"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".User.MainActivity">
 
-    <Button
-        android:id="@+id/category_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Kategorie"
-        android:layout_centerHorizontal="true"
-        android:textColor="#000000"
-        android:textSize="20dp"
-        android:layout_marginTop="-7dp"
-        android:layout_below="@id/recyclerVievCategory"
-        android:background="#FFFFFF"
 
-        />
+<android.support.constraint.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerVievCategory"
-        android:layout_width="match_parent"
-        android:layout_height="120dp"
 
-        />
+        <Button
+            android:id="@+id/category_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/recyclerVievCategory"
+            android:layout_centerHorizontal="true"
+            android:background="#FFFFFF"
+            android:elevation="0dp"
+            android:text="Lista kategorii"
+            android:textColor="#000000"
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_below="@+id/category_btn"
-       android:gravity="center_horizontal"
-        android:layout_marginTop="20dp"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recyclerVievCategory" />
 
-        >
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="125dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/btn_ui"
+            app:layout_constraintBottom_toBottomOf="@+id/textView10"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView10"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerVievCategory"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+
+            android:layout_marginTop="32dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+        <LinearLayout
+            android:layout_width="85dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/category_btn"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+
+            app:layout_constraintBottom_toBottomOf="@+id/imageView"
+            app:layout_constraintEnd_toEndOf="@+id/imageView"
+            app:layout_constraintStart_toStartOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="@+id/imageView">
+
+            <TextView
+                android:id="@+id/main_hour_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="?"
+                android:textColor="@android:color/white"
+                android:textSize="20dp">
+
+            </TextView>
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp"
+                android:text=":"
+                android:textColor="@android:color/white"
+                android:textSize="20dp">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/main_minute_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="?"
+                android:textColor="@android:color/white"
+                android:textSize="20dp">
+
+            </TextView>
+
+
+        </LinearLayout>
 
         <TextView
-            android:id="@+id/main_hour_textView"
+            android:id="@+id/textView9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1"
-            android:textSize="20dp"
-            >
-
-        </TextView>
-        <TextView
-
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=":"
-            android:textSize="20dp"
-            android:layout_marginLeft="3dp"
-            android:layout_marginRight="3dp"
-            >
-
-        </TextView>
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:text="Witaj"
+            android:textSize="18dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/main_minute_textView"
+            android:id="@+id/textView10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="22"
-            android:textSize="20dp"
-            >
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:text="Zamówienie złożysz do godziny:"
+            android:textSize="12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
-        </TextView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cardView2"
+            android:layout_width="145dp"
+
+            android:layout_height="140dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/category_btn">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:text="Twój pracownik to:"
+                android:textSize="12sp">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/user_home_my_worker_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:text="? "
+                android:textSize="25sp" />
+
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="145dp"
+            android:layout_height="140dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="32dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/category_btn">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+
+                android:layout_marginTop="10dp"
+                android:text="Aktualnych zamówień"
+                android:textSize="12sp">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/user_home_actual_order"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:text="?"
+                android:textSize="60sp" />
+
+        </android.support.v7.widget.CardView>
+
         <TextView
-
+            android:id="@+id/textView13"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=":"
-            android:textSize="20dp"
-            android:layout_marginLeft="3dp"
-            android:layout_marginRight="3dp"
-            >
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:text="Miesięczne statystyki"
+            android:textSize="18dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
-        </TextView>
+        <android.support.v7.widget.CardView
+            android:id="@+id/cardView3"
+            android:layout_width="145dp"
+            android:layout_height="140dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="32dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView13">
 
-        <TextView
-            android:id="@+id/main_second_textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="33"
-            android:textSize="20dp"
-            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:text="Wszystkich zamówień"
+                android:textSize="12sp">
 
-        </TextView>
+            </TextView>
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/user_home_all_month_order"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+
+                android:text="?"
+                android:textSize="60sp" />
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cardView4"
+            android:layout_width="145dp"
+            android:layout_height="140dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView13">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:text="Produktów łącznie"
+                android:textSize="12sp">
+
+            </TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:text="?"
+                android:textSize="60sp" />
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cardView5"
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="32dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView3">
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/user_home_statistic"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </com.github.mikephil.charting.charts.LineChart>
 
 
 
+        </android.support.v7.widget.CardView>
+</android.support.constraint.ConstraintLayout>
 
-</RelativeLayout>
+</ScrollView>

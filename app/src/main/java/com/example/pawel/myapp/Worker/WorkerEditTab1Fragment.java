@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -46,6 +47,7 @@ public class WorkerEditTab1Fragment extends Fragment {
     SessionManager sessionManager;
     RecyclerView recyclerView;
     Button mUpdateAllOrder;
+    TextView mTextEmptyOrder;
 
 
     public WorkerEditTab1Fragment() {
@@ -62,12 +64,12 @@ public class WorkerEditTab1Fragment extends Fragment {
         ChildOrderList = new ArrayList<>();
         sessionManager = new SessionManager(getContext());
         ctx = getContext();
-        mUpdateAllOrder=(Button) view.findViewById(R.id.update_all_status_as_realized);
+        mTextEmptyOrder = (TextView) view.findViewById(R.id.textEmptyOrder);
 
         userStatus = String.valueOf(Integer.parseInt(String.valueOf(sessionManager.getUserInfo().get("value"))) - 1);
         userId = sessionManager.getUserInfo().get("id");
 
-        getProduct("1", "2", "34", "0");
+        getProduct("1", "2", userId, "0");
 
 
         recyclerView = (RecyclerView) view.findViewById(R.id.worker_parent_actual_order_rv);
@@ -87,12 +89,12 @@ public class WorkerEditTab1Fragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        mUpdateAllOrder.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
+//        mUpdateAllOrder.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//            }
+//        });
 
     }
 
@@ -141,40 +143,44 @@ public class WorkerEditTab1Fragment extends Fragment {
                 try {
 
                     JSONArray dataArray = new JSONArray(response);
-                    for (int i = 0; i < dataArray.length(); i++) {
-                        JSONObject idOrder = dataArray.getJSONObject(i);
-                        DataOrderParentList datamodel = new DataOrderParentList();
-                        datamodel.setName(idOrder.getString("fullName"));
-                        datamodel.setDate(idOrder.getString("date_order"));
-                        datamodel.setId(idOrder.getString("id"));
-                        ArrayList<DataProduct> ChildOrderList = new ArrayList<>();
+                    if (dataArray.length() == 0) {
+                        mTextEmptyOrder.setVisibility(View.VISIBLE);
+                    } else {
+                        for (int i = 0; i < dataArray.length(); i++) {
+                            JSONObject idOrder = dataArray.getJSONObject(i);
+                            DataOrderParentList datamodel = new DataOrderParentList();
+                            datamodel.setName(idOrder.getString("fullName"));
+                            datamodel.setDate(idOrder.getString("date_order"));
+                            datamodel.setId(idOrder.getString("id"));
+                            ArrayList<DataProduct> ChildOrderList = new ArrayList<>();
 
+                            JSONArray product = idOrder.getJSONArray("product");
 
-                        JSONArray product = idOrder.getJSONArray("product");
+                            for (int j = 0; j < product.length(); j++) {
 
-                        for (int j = 0; j < product.length(); j++) {
+                                DataProduct dataProduct = new DataProduct();
+                                JSONObject dataobj = product.getJSONObject(j);
 
-                            DataProduct dataProduct = new DataProduct();
-                            JSONObject dataobj = product.getJSONObject(j);
-
-                            dataProduct.setName(dataobj.getString("name"));
-                            dataProduct.setDescription(dataobj.getString("desc"));
-                            dataProduct.setQuantity(dataobj.getString("quantity"));
+                                dataProduct.setName(dataobj.getString("name"));
+                                dataProduct.setDescription(dataobj.getString("desc"));
+                                dataProduct.setQuantity(dataobj.getString("quantity"));
 //                                dataProduct.setId(dataobj.getString("id"));
-                            dataProduct.setImgUrl(dataobj.getString("img"));
+                                dataProduct.setImgUrl(dataobj.getString("img"));
 
 
-                            ChildOrderList.add(dataProduct);
+                                ChildOrderList.add(dataProduct);
+
+                            }
+                            datamodel.setDataProductList(ChildOrderList);
+
+
+                            ActualOrderArrayList.add(datamodel);
+
 
                         }
-                        datamodel.setDataProductList(ChildOrderList);
-//
-//
-                        ActualOrderArrayList.add(datamodel);
-//
-
 
                     }
+
                     actualAdapter.notifyDataSetChanged();
 
 
@@ -190,7 +196,6 @@ public class WorkerEditTab1Fragment extends Fragment {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        //displaying the error in toast if occurrs
                         Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }) {

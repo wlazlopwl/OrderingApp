@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -29,12 +30,13 @@ import com.example.pawel.myapp.User.UserArchivalOrderFragment;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class WorkerUserDetailActivity extends AppCompatActivity {
-    private TextView test, mName, mSurname, mAllOrder, mActualOrder, mStreet, mCity, mPhone, mPostcode, mEmail;
+    private TextView test, mName, mSurname, mAllOrder, mActualOrder, mStreet, mCity, mPhone, mPostcode, mEmail, mFirstStreet;
     private ImageView mNavIV, mPhoneIV, mEmailIV;
     LinearLayout linearLayout;
     String idUser, city, street, phone, email;
@@ -42,7 +44,15 @@ public class WorkerUserDetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_worker_user_detail);
+        setContentView(R.layout.user_details);
+
+        Toolbar toolbar = (android.support.v7.widget.Toolbar)findViewById(R.id.toolbara);
+        toolbar.setTitle("Szczegóły");
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+
         mName = (TextView) findViewById(R.id.worker_user_detail_name);
         mSurname = (TextView) findViewById(R.id.worker_user_detail_surname);
         mNavIV = (ImageView) findViewById(R.id.worker_user_detail_navIV);
@@ -55,6 +65,7 @@ public class WorkerUserDetailActivity extends AppCompatActivity {
         mPhone = (TextView) findViewById(R.id.worker_user_detail_phone);
         mPostcode = (TextView) findViewById(R.id.worker_user_detail_postcode);
         mEmail = (TextView) findViewById(R.id.worker_user_detail_email);
+        mFirstStreet=(TextView) findViewById(R.id.textView_street);
 //        linearLayout = (LinearLayout) findViewById(R.id.linear);
 
 
@@ -75,7 +86,7 @@ public class WorkerUserDetailActivity extends AppCompatActivity {
                 if (!(isEmptyTextView(mStreet))&&!(isEmptyTextView(mCity))) {
                     Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
                             Uri.parse("google.navigation:q=" + street + ",+" + city + "+Poland"));
-                
+
                 startActivity(intent);
                 }
                 else {
@@ -107,24 +118,24 @@ public class WorkerUserDetailActivity extends AppCompatActivity {
             }
         });
 
-        mAllOrder.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-                Bundle bundle = new Bundle();
-                bundle.putString("idUser", idUser);
-
-
-                FragmentManager fm = getSupportFragmentManager();
-                Fragment order = new UserArchivalOrderFragment();
-                order.setArguments(bundle);
-                FragmentTransaction transaction = fm.beginTransaction();
-                transaction.replace(R.id.frame, order).addToBackStack(null).commit();
-
-
-            }
-        });
+//        mAllOrder.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//
+//                Bundle bundle = new Bundle();
+//                bundle.putString("idUser", idUser);
+//
+//
+//                FragmentManager fm = getSupportFragmentManager();
+//                Fragment order = new UserArchivalOrderFragment();
+//                order.setArguments(bundle);
+//                FragmentTransaction transaction = fm.beginTransaction();
+//                transaction.replace(R.id.frame, order).addToBackStack(null).commit();
+//
+//
+//            }
+//        });
 
 
     }
@@ -139,11 +150,12 @@ private Boolean isEmptyTextView(TextView textView){
     }
         
 }
-    private void checkValue(TextView textView) {
+    private void checkValue(TextView textView, String name) {
         String value = textView.getText().toString();
         if (value.isEmpty()) {
-            textView.setText("Nie podano");
+            textView.setText(name + "Nie podano");
             textView.setTextColor(Color.RED);
+
 
         }
 
@@ -164,19 +176,26 @@ private Boolean isEmptyTextView(TextView textView){
                         mName.setText(jsonObject.getString("name") + " ");
                         mSurname.setText(jsonObject.getString("surname"));
 //                        mAllOrder.setText(jsonObject.getString("finishedOrderCount"));
-                        mActualOrder.setText(jsonObject.getString("orderCount"));
+//                        mActualOrder.setText(jsonObject.getString("orderCount"));
                         mCity.setText(jsonObject.getString("city"));
                         mStreet.setText(jsonObject.getString("street"));
                         mPostcode.setText(jsonObject.getString("postcode")+" ");
                         mPhone.setText(jsonObject.getString("phone"));
                         mEmail.setText(jsonObject.getString("email"));
-                        checkValue(mCity);
-                        checkValue(mStreet);
-                        checkValue(mPostcode);
-                        checkValue(mPhone);
+                        checkValue(mCity, "Miasto: ");
+                        checkValue(mStreet, "Ulica: ");
+                        checkValue(mPostcode, "Kod pocztowy: ");
+                        checkValue(mPhone, "Telefon: ");
+                        checkValue(mEmail,"E-mail: ");
 
                         city = mCity.getText().toString();
                         street = mStreet.getText().toString();
+                        if (isEmptyTextView(mPostcode)) {
+                            mPostcode.setVisibility(View.GONE);
+                        }
+                        if (isEmptyTextView(mStreet)) {
+                            mFirstStreet.setVisibility(View.GONE);
+                        }
                         phone = mPhone.getText().toString();
                         email = mEmail.getText().toString();
 
@@ -210,5 +229,10 @@ private Boolean isEmptyTextView(TextView textView){
         requestQueue.add(stringRequest);
 
 
+    }
+    @Override
+    public boolean onSupportNavigateUp(){
+        finish();
+        return true;
     }
 }

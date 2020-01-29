@@ -2,7 +2,7 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/admin_fragment_settings"
+    android:id="@+id/admin_fragment_settings_email"
     android:background="@color/cardview_light_background"
     >
 
@@ -19,71 +19,70 @@
         />
 
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/photo_add_category"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:layout_marginTop="30dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingBottom="20dp">
 
 
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="10dp"
-        android:orientation="vertical">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:text="Podaj nazwę nowej kategorii:"
-        android:textStyle="bold"
-        />
-
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColorHint="@color/cardview_shadow_start_color">
-
-        <EditText
-            android:id="@+id/admin_edit_tab2_category_name"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nazwa kategorii"
-            android:imeOptions="actionNext"
-            android:maxLines="1"
-            android:textColorHint="@color/colorPrimary" />
-
-        <Button
-            android:id="@+id/admin_edit_tab2_add_btn"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"
-            android:background="@color/design_default_color_primary"
-            android:textColor="@color/cardview_light_background"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
-            android:paddingRight="10dp"
-            android:paddingLeft="10dp"
-            android:text="Dodaj do bazy" />
+            android:layout_marginRight="20dp"
+            android:orientation="vertical">
 
-        <Button
-            android:id="@+id/admin_edit_tab2_check_btn"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"
-            android:background="@color/design_default_color_primary"
-            android:textColor="@color/cardview_light_background"
-            android:layout_marginTop="10dp"
-            android:paddingRight="10dp"
-            android:paddingLeft="10dp"
-            android:text="Sprawdź kategrie w bazie" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Podaj nazwę nowej kategorii:"
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
-    </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/cardview_shadow_start_color">
 
-    </LinearLayout>
+                <EditText
+                    android:id="@+id/admin_edit_tab2_category_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Nazwa kategorii"
+                    android:imeOptions="actionNext"
+                    android:maxLines="1"
+                    android:textColorHint="@color/colorPrimary" />
+
+                <Button
+                    android:id="@+id/admin_edit_tab2_add_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/btn_ui"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="Dodaj do bazy"
+                    android:textColor="@color/cardview_light_background" />
+
+                <Button
+                    android:id="@+id/admin_edit_tab2_check_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/btn_ui"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="Sprawdź kategrie w bazie"
+                    android:textColor="@color/cardview_light_background" />
+
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
     </LinearLayout>
 </RelativeLayout>
 

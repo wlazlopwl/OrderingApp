@@ -20,9 +20,10 @@ public class SessionManager {
     private static final String SURNAME = "SURNAME";
     private static final String STREET = "STREET";
     private static final String CITY = "CITY";
-    private static final String POSTCODE= "POSTCODE";
+    private static final String POSTCODE = "POSTCODE";
     private static final String PHONE = "PHONE";
-    private static final String ID_USER= "ID_USER";
+    private static final String ID_USER = "ID_USER";
+    private static final String COUNT_CART_USER = "COUNT_CART_USER";
 
     SharedPreferences sharedPreferences;
     public SharedPreferences.Editor editor;
@@ -48,12 +49,14 @@ public class SessionManager {
         editor.putString(POSTCODE, postcode);
         editor.putString(PHONE, phone);
         editor.putString(ID_USER, id);
+        if (value=="1") {
+            editor.putString(COUNT_CART_USER, "0");
+
+        }
+
+
         editor.commit();
     }
-
-
-
-
 
 
     public boolean isLogin() {
@@ -103,12 +106,11 @@ public class SessionManager {
         user.put("postcode", sharedPreferences.getString(POSTCODE, null));
         user.put("phone", sharedPreferences.getString(PHONE, null));
         user.put("id", sharedPreferences.getString(ID_USER, null));
-
+        user.put("cartCount", sharedPreferences.getString(COUNT_CART_USER, "0"));
 
 
         return user;
     }
-
 
 
     public void updateDataInSession(String login, String surname, String street, String city, String postcode, String phone) {
@@ -121,10 +123,15 @@ public class SessionManager {
         editor.putString(PHONE, phone);
         editor.commit();
     }
+
     public void updateEmailInSession(String email) {
 
         editor.putString(EMAIL, email);
 
+        editor.commit();
+    }
+    public void updateCartCountForUser(String cartCount){
+        editor.putString(COUNT_CART_USER, cartCount);
         editor.commit();
     }
 
@@ -133,6 +140,7 @@ public class SessionManager {
         editor.clear();
         editor.commit();
         Intent intent = new Intent(context, LogInActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
 
 

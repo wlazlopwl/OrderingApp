@@ -4,17 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:context=".Admin.AdminCheckCategoryList">
 
-    tools:context=".Worker.Worker_UserActualOrder">
 
-    <fragment
-        android:id="@+id/fff"
-        class="com.example.pawel.myapp.User.UserArchivalOrderFragment"
+    <ListView
+        android:id="@+id/admin_check_category_listView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        >
 
-        android:layout_weight="1" >
 
-    </fragment>
+    </ListView>
 
 </LinearLayout>

@@ -1,20 +1,27 @@
 package com.example.pawel.myapp.Adapter;
 
+import android.app.DatePickerDialog;
+import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.pawel.myapp.Model.DataProduct;
-import com.example.pawel.myapp.ProductListActivity;
+import com.example.pawel.myapp.User.CartActivity;
+import com.example.pawel.myapp.User.ProductListActivity;
 import com.example.pawel.myapp.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+
+import static com.example.pawel.myapp.User.ProductListActivity.ctx;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHolder> {
  public static String actualNumberAfterChange;
@@ -39,8 +46,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
 
             public void AddItem(int p) {
 
-                String a = dataProductArrayList.get(p).getName();
                 String b = dataProductArrayList.get(p).getId() ;
+
 
                     ProductListActivity.updateCart(b, "1");
 
@@ -67,6 +74,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
     @Override
     public void onBindViewHolder(ProductAdapter.MyViewHolder holder, int position) {
         holder.name.setText(dataProductArrayList.get(position).getName());
+        holder.description.setText(dataProductArrayList.get(position).getDescription());
         Picasso.get().load(dataProductArrayList.get(position).getImgUrl()).into(holder.mProductImage);
     }
 
@@ -78,50 +86,35 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
     static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         MyClickListener listener;
 
-        TextView name;
-        ImageView plus, minus,mProductImage;
+        TextView name, description;
+        ImageView mProductImage;
+        Button plus;
         EditText mActualNumberProduct;
 
         public MyViewHolder(View itemView, MyClickListener listener) {
             super(itemView);
             name = (TextView) itemView.findViewById(R.id.product_name);
-            plus = (ImageView) itemView.findViewById(R.id.btn_plus_product);
-            minus = (ImageView) itemView.findViewById(R.id.btn_minus_product);
+            description = (TextView) itemView.findViewById(R.id.product_description);
+            plus = (Button) itemView.findViewById(R.id.plus_product);
             mProductImage = (ImageView) itemView.findViewById(R.id.product_image);
 
 
-            mActualNumberProduct = (EditText) itemView.findViewById(R.id.actual_number_product);
             this.listener = listener;
             plus.setOnClickListener(this);
-            minus.setOnClickListener(this);
         }
 
 
         @Override
         public void onClick(View view) {
-            int actualNumber = Integer.parseInt(mActualNumberProduct.getText().toString().trim());
             switch (view.getId()) {
-                case R.id.btn_plus_product:
+                case R.id.plus_product:
                     listener.AddItem(this.getLayoutPosition());
                     check="1";
-                    mActualNumberProduct.setText(Integer.toString(actualNumber+1));
-                Log.d("check 1 ", ""+ check);
 
                     break;
-                case R.id.btn_minus_product:
-                    listener.DelItem(this.getLayoutPosition());
 
-                    if (actualNumber>0) {
-                        mActualNumberProduct.setText(Integer.toString(actualNumber-1));
-
-                    }
-
-                    Log.d("check 2 ", ""+ check);
-
-                    break;
 
             }
-            actualNumberAfterChange = mActualNumberProduct.getText().toString().trim();
         }
 
         public interface MyClickListener {

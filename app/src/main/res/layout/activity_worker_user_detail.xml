@@ -16,6 +16,9 @@
     android:layout_height="wrap_content">
 
 </FrameLayout>
+    <include
+        android:id="@+id/support_toolbar"
+        layout="@layout/appbarlayout"/>
 <LinearLayout
     android:id="@+id/linear"
     android:layout_width="match_parent"
@@ -72,7 +75,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-
+                    android:id="@+id/textView_street"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="ul. "
@@ -182,6 +185,7 @@
                     android:layout_height="wrap_content"
                     android:minWidth="80dp"
                     android:minHeight="80dp"
+
                     android:layout_marginLeft="40dp"
                     android:layout_marginRight="40dp"
                     android:src="@drawable/ic_local_phone_black_24dp">

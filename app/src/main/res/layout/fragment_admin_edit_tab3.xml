@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/admin_fragment_settings"
+    android:id="@+id/admin_fragment_settings_email"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/cardview_light_background">
@@ -27,7 +27,8 @@
                 android:layout_height="match_parent"
                 android:layout_below="@+id/photo_add_product"
                 android:layout_marginTop="30dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingBottom="20dp">
 
 
                 <LinearLayout
@@ -107,39 +108,20 @@
 
                     <android.support.design.widget.TextInputLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                    >
-                        <RadioGroup
-                            android:id="@+id/radio_group"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            >
-
-                            <RadioButton
-                                android:id="@+id/radio_btn_szt"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="sztuka"
-                                 />
-                            <RadioButton
-                                android:id="@+id/radio_btn_g"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="gram"
-                                 />
+                        android:layout_height="wrap_content">
 
 
-                        </RadioGroup>
+
 
                         <Button
                             android:id="@+id/admin_edit_tab3_add_btn"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_gravity="center_horizontal"
-                            android:background="@color/design_default_color_primary"
+                            android:background="@drawable/btn_ui"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
+                            android:layout_marginTop="50px"
                             android:text="Dodaj do bazy"
                             android:textColor="@color/cardview_light_background" />
 

@@ -2,7 +2,7 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/admin_fragment_settings"
+    android:id="@+id/admin_fragment_settings_email"
     android:background="@color/cardview_light_background"
 
 
@@ -26,28 +26,27 @@
             android:orientation="vertical">
 
 
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="30dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingBottom="20dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
                     android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
                     android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="20dp"
                         android:text="Wymagane dane nowej osoby:"
-                        android:textStyle="bold"
-                        />
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
 
                     <android.support.design.widget.TextInputLayout
                         android:layout_width="match_parent"
@@ -91,13 +90,12 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="eMail*"
-                            android:maxLines="1"
                             android:imeOptions="actionNext"
                             android:inputType="textEmailAddress"
+                            android:maxLines="1"
                             android:textColorHint="@color/colorPrimary" />
 
                     </android.support.design.widget.TextInputLayout>
-
 
 
                     <android.support.design.widget.TextInputLayout
@@ -111,8 +109,8 @@
                             android:layout_height="wrap_content"
                             android:hint="Hasło*"
                             android:imeOptions="actionNext"
-                            android:maxLines="1"
                             android:inputType="textPassword"
+                            android:maxLines="1"
                             android:textColorHint="@color/colorPrimary" />
 
                     </android.support.design.widget.TextInputLayout>
@@ -123,6 +121,7 @@
                         android:orientation="horizontal"
 
                         >
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
@@ -130,19 +129,18 @@
                             android:textSize="16dp"
 
 
+                            />
 
-
-                        />
                         <Spinner
                             android:id="@+id/status_spinner"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
-                            android:prompt="@string/person_status_top"
                             android:entries="@array/person_status"
-                            />
+                            android:prompt="@string/person_status_top" />
 
                     </LinearLayout>
+
                     <LinearLayout
                         android:id="@+id/worker_spinner_row"
                         android:layout_width="wrap_content"
@@ -150,6 +148,7 @@
                         android:orientation="horizontal"
 
                         >
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
@@ -157,29 +156,26 @@
                             android:textSize="16dp"
 
 
-
-
                             />
+
                         <Spinner
                             android:id="@+id/worker_spinner"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
-                            android:prompt="@string/person_status_top"
                             android:entries="@array/person_status"
-                            />
+                            android:prompt="@string/person_status_top" />
 
                     </LinearLayout>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="20dp"
                         android:layout_marginTop="30dp"
                         android:layout_marginBottom="30dp"
                         android:text="Opcjonalnie"
-                        android:textStyle="bold"
-                        />
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
 
 
                     <android.support.design.widget.TextInputLayout
@@ -192,12 +188,13 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="Ulica"
-                            android:maxLines="1"
                             android:imeOptions="actionNext"
+                            android:maxLines="1"
 
                             android:textColorHint="@color/colorPrimary" />
 
                     </android.support.design.widget.TextInputLayout>
+
                     <android.support.design.widget.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -208,12 +205,13 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="Miasto"
-                            android:maxLines="1"
                             android:imeOptions="actionNext"
+                            android:maxLines="1"
 
                             android:textColorHint="@color/colorPrimary" />
 
                     </android.support.design.widget.TextInputLayout>
+
                     <android.support.design.widget.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -224,12 +222,13 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="Kod pocztowy"
-                            android:maxLines="1"
                             android:imeOptions="actionNext"
+                            android:maxLines="1"
 
                             android:textColorHint="@color/colorPrimary" />
 
                     </android.support.design.widget.TextInputLayout>
+
                     <android.support.design.widget.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -240,8 +239,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="Telefon"
-                            android:inputType="phone"
                             android:imeOptions="actionNext"
+                            android:inputType="phone"
 
                             android:textColorHint="@color/colorPrimary" />
 
@@ -253,11 +252,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_gravity="center_horizontal"
-                        android:background="@color/design_default_color_primary"
-                        android:textColor="@color/cardview_light_background"
-                        android:paddingRight="10dp"
+                        android:background="@drawable/btn_ui"
                         android:paddingLeft="10dp"
-                        android:text="Dodaj do bazy" />
+                        android:paddingRight="10dp"
+                        android:text="Dodaj do bazy"
+                        android:textColor="@color/cardview_light_background" />
 
                 </LinearLayout>
             </LinearLayout>

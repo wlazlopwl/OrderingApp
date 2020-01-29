@@ -78,9 +78,9 @@ public class AdminEditTab3Fragment extends Fragment {
         progressDialog = new ProgressDialog(getContext());
         imageView = view.findViewById(R.id.photo_add_product);
         mCategorySpinner = view.findViewById(R.id.category_spinner);
-        mRadioGroup = view.findViewById(R.id.radio_group);
-        mRadioBtnSzt = view.findViewById(R.id.radio_btn_szt);
-        mRadioBtnG = view.findViewById(R.id.radio_btn_g);
+//        mRadioGroup = view.findViewById(R.id.radio_group);
+//        mRadioBtnSzt = view.findViewById(R.id.radio_btn_szt);
+//        mRadioBtnG = view.findViewById(R.id.radio_btn_g);
 
         isPhoto = false;
         quantityTypeId=3;
@@ -118,22 +118,22 @@ public class AdminEditTab3Fragment extends Fragment {
             }
         });
 
-        mRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                switch(checkedId) {
-                    case R.id.radio_btn_szt:
-                        quantityTypeId=1;
-                            break;
-                    case R.id.radio_btn_g:
-                        quantityTypeId=2;
-
-
-                        break;
-                }
-
-            }
-        });
+//        mRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(RadioGroup group, int checkedId) {
+//                switch(checkedId) {
+//                    case R.id.radio_btn_szt:
+//                        quantityTypeId=1;
+//                            break;
+//                    case R.id.radio_btn_g:
+//                        quantityTypeId=2;
+//
+//
+//                        break;
+//                }
+//
+//            }
+//        });
 
     }
 
@@ -285,7 +285,7 @@ public class AdminEditTab3Fragment extends Fragment {
                 params.put("description", desc);
                 String categoryId = (String) id.get(mCategorySpinner.getSelectedItemPosition());
                 params.put("category_id", categoryId);
-                params.put("quantity_type_id", String.valueOf(quantityTypeId));
+                params.put("quantity_type_id", "1");
 
 
 

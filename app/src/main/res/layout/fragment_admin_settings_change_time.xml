@@ -1,32 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/background_light"
+    android:id="@+id/change_time_fragment_layout"
 
-    >
+    android:background="@android:color/background_light">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-android:gravity="center_horizontal"        >
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
-        <TimePicker
-            android:id="@+id/time_picker"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-        </TimePicker>
-        <Button
-            android:id="@+id/update_time"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Zaktualizuj godzinę"
-            >
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
 
-        </Button>
 
-    </LinearLayout>
+            <include
+                android:id="@+id/support_toolbar"
+                layout="@layout/appbarlayout" />
 
-</RelativeLayout>
+            <TimePicker
+                android:id="@+id/time_picker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                >
+
+            </TimePicker>
+
+            <Button
+                android:id="@+id/update_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/btn_ui"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:text="Zmień czas"
+                android:textColor="@android:color/white">
+
+            </Button>
+
+        </LinearLayout>
+    </RelativeLayout>
+</android.support.design.widget.CoordinatorLayout>

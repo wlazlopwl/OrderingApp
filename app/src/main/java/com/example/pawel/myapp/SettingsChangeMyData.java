@@ -1,8 +1,9 @@
-package com.example.pawel.myapp.Admin;
+package com.example.pawel.myapp;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,14 +15,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.pawel.myapp.Const;
-import com.example.pawel.myapp.R;
-import com.example.pawel.myapp.SessionManager;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class AdminSettingChangeMyData extends AppCompatActivity {
+public class SettingsChangeMyData extends AppCompatActivity {
 
     EditText mName, mSurname, mStreet, mCity, mPostcode, mPhone;
     SessionManager sessionManager;
@@ -32,6 +30,11 @@ public class AdminSettingChangeMyData extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_setting_change_my_data);
+        Toolbar toolbar = (android.support.v7.widget.Toolbar)findViewById(R.id.toolbara);
+        toolbar.setTitle("Zmiana danych");
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
         sessionManager = new SessionManager(getApplicationContext());
         Button mChangeDataBtn = (Button) findViewById(R.id.admin_setting_change_mydata_btn);
 
@@ -90,7 +93,7 @@ public class AdminSettingChangeMyData extends AppCompatActivity {
         city = mCity.getText().toString().trim();
         postcode = mPostcode.getText().toString().trim();
         phone = mPhone.getText().toString().trim();
-        progressDialog.setMessage("Proszę czekać");
+//        progressDialog.setMessage("Proszę czekać");
         progressDialog.show();
 
         sessionManager.updateDataInSession(name, surname, street, city, postcode, phone);
@@ -101,22 +104,21 @@ public class AdminSettingChangeMyData extends AppCompatActivity {
             public void onResponse(String response) {
 
                 progressDialog.dismiss();
-                Toast.makeText(AdminSettingChangeMyData.this, response, Toast.LENGTH_LONG).show();
+                Toast.makeText(SettingsChangeMyData.this, response, Toast.LENGTH_LONG).show();
             }
         },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
 
-                        Toast.makeText(AdminSettingChangeMyData.this, error.toString(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(SettingsChangeMyData.this, error.toString(), Toast.LENGTH_LONG).show();
                     }
                 }) {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
 
-                // Adding All values to Params.
-                // The firs argument should be same sa your MySQL database table columns.
+
                 params.put("id", id);
                 params.put("name", name);
                 params.put("surname", surname);
@@ -132,6 +134,11 @@ public class AdminSettingChangeMyData extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
         requestQueue.add(stringRequest);
+    }
+    @Override
+    public boolean onSupportNavigateUp(){
+        finish();
+        return true;
     }
 
 }

@@ -1,7 +1,7 @@
 package com.example.pawel.myapp.Adapter;
 
+import android.accessibilityservice.GestureDescription;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,16 +10,18 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.pawel.myapp.User.CartActivity;
 import com.example.pawel.myapp.Model.DataProduct;
 import com.example.pawel.myapp.R;
+import com.example.pawel.myapp.SessionManager;
+import com.example.pawel.myapp.User.CartActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> {
 
-    private ArrayList<DataProduct> dataCartArrayList;
+    public ArrayList<DataProduct> dataCartArrayList;
+    public Integer actualNumber, newNumber;
 
 
     public CartAdapter(ArrayList<DataProduct> dataCartArrayList) {
@@ -37,9 +39,11 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
             public void DelProduct(int p) {
                 String idProduct = dataCartArrayList.get(p).getId();
                 dataCartArrayList.remove(p);
+
                 notifyItemRemoved(p);
 
-                CartActivity.deleteProduct(idProduct);
+                CartActivity.deleteProduct(idProduct, p);
+
 
 
             }
@@ -75,35 +79,40 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
         holder.mQuantityPlusMinus.setText(dataCartArrayList.get(position).getQuantity());
         holder.mCartDesc.setText(dataCartArrayList.get(position).getDescription());
         Picasso.get().load(dataCartArrayList.get(position).getImgUrl()).into(holder.mProductCartImage);
-        Log.d("itemcount",""+getItemCount());
-        if (getItemCount()>0) {
+//        if (getItemCount() > 0) {
+
             holder.mActualNumberProduct.setOnFocusChangeListener(new View.OnFocusChangeListener() {
                 @Override
                 public void onFocusChange(View v, boolean hasFocus) {
-                    Integer actualNumber, newNumber;
-                    actualNumber = Integer.parseInt((dataCartArrayList.get(position).getQuantity()));
 
-                    if (!hasFocus) {
-                        newNumber = Integer.parseInt(holder.mActualNumberProduct.getText().toString());
-                        if (actualNumber != newNumber) {
-                            if (newNumber > 0) {
-                                String quantity = Integer.toString(newNumber);
+                    if (getItemCount() > 0) {
+                        if (!hasFocus) {
+                            actualNumber = Integer.parseInt((dataCartArrayList.get(position).getQuantity()));
 
-                                CartActivity.updateCart(dataCartArrayList.get(position).getId(), "3", quantity);
-                            } else
-                                holder.mActualNumberProduct.setText(Integer.toString(actualNumber));
+                            newNumber = Integer.parseInt(holder.mActualNumberProduct.getText().toString());
+                            if (actualNumber != newNumber) {
+                                if (newNumber > 0) {
+                                    String quantity = Integer.toString(newNumber);
 
+                                    CartActivity.updateCart(dataCartArrayList.get(position).getId(), "3", quantity);
+                                }
+
+                                else
+                                    holder.mActualNumberProduct.setText(Integer.toString(actualNumber));
+
+
+                            }
 
                         }
-
                     }
+
 
                 }
             });
         }
 
 
-    }
+//    }
 
     @Override
     public int getItemCount() {
@@ -114,6 +123,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
 
     static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         MyClickListener listener;
+        SessionManager sessionManager;
         TextView name, mCartDesc;
         ImageView deleteIcon, plus, minus, mProductCartImage;
         Button btnNewOrder;
@@ -128,13 +138,14 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
             mQuantityPlusMinus = (EditText) itemView.findViewById(R.id.cart_quantity_plus_minus);
             plus = (ImageView) itemView.findViewById(R.id.btn_plus_product_cart);
             minus = (ImageView) itemView.findViewById(R.id.btn_minus_product_cart);
-            mProductCartImage= (ImageView) itemView.findViewById(R.id.product_cart_image);
+            mProductCartImage = (ImageView) itemView.findViewById(R.id.product_cart_image);
             this.listener = listener;
             deleteIcon.setOnClickListener(this);
             minus.setOnClickListener(this);
             plus.setOnClickListener(this);
             mActualNumberProduct = (EditText) itemView.findViewById(R.id.cart_quantity_plus_minus);
 
+            sessionManager = new SessionManager(itemView.getContext());
 
         }
 
