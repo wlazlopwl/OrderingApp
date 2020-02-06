@@ -81,8 +81,8 @@ public class WorkerEditTab2Fragment extends Fragment {
                 int month = c.get(Calendar.MONTH);
 
                 int year = c.get(Calendar.YEAR);
-                dateFromPicker = year + "-" + month + "-" + day;
-                Log.d("d1", dateFromPicker);
+//                dateFromPicker = year + "-" + month + "-" + day;
+
 
 
                 datePickerDialog = new DatePickerDialog(getContext(), new DatePickerDialog.OnDateSetListener() {
@@ -92,21 +92,14 @@ public class WorkerEditTab2Fragment extends Fragment {
                         int mMonthText = mMonth + 1;
 
 
-
                         calendar.set(mYear, mMonth, mDayOfMonth);
                         mDate.setText(mDayOfMonth + "." + mMonthText + "." + mYear);
-                        Log.d("d2", mDate.getText().toString());
+
                         dateFromPicker = mYear + "-" + mMonthText + "-" + mDayOfMonth;
-                        int actualDayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
-                        Log.d("d3", "" + actualDayOfWeek);
                         if (calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
-
-
                             mEmptyListInfo.setText("Wybrany dzień jest niedzielą. Brak raportu.");
-
                             shopList.clear();
                             adapter.notifyDataSetChanged();
-
 
                         } else {
                             getRaport();
@@ -119,7 +112,6 @@ public class WorkerEditTab2Fragment extends Fragment {
 
             }
         });
-
 
 
     }
@@ -139,7 +131,7 @@ public class WorkerEditTab2Fragment extends Fragment {
 
                     try {
 
-                        Log.d("e", "" + response);
+
                         JSONArray dataArray = new JSONArray(response);
                         for (int i = 0; i < dataArray.length(); i++) {
                             ShopListModel item = new ShopListModel();

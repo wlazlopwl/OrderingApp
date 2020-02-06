@@ -10,7 +10,6 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity android:name=".Admin.AdminCheckCategoryList"></activity>
-        <activity android:name=".Admin.AdminWorkerList" />
         <activity android:name=".Admin.AdminUserList" />
         <activity android:name=".User.CategoryListActivity" />
         <activity android:name=".Worker.WorkerUserDetailActivity" />

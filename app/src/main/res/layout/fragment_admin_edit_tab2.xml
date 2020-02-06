@@ -61,24 +61,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="100dp"
                     android:background="@drawable/btn_ui"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:text="Dodaj do bazy"
                     android:textColor="@color/cardview_light_background" />
 
-                <Button
-                    android:id="@+id/admin_edit_tab2_check_btn"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/btn_ui"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:text="Sprawdź kategrie w bazie"
-                    android:textColor="@color/cardview_light_background" />
+
 
             </android.support.design.widget.TextInputLayout>
 

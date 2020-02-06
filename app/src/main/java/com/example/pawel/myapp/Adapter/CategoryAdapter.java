@@ -8,42 +8,37 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.pawel.myapp.Model.DataModel;
+import com.example.pawel.myapp.Model.CategoryModel;
 import com.example.pawel.myapp.R;
 import com.example.pawel.myapp.RecyclerViewClickListener;
-import com.example.pawel.myapp.User.CategoryListActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
+public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyViewHolder> {
 
-    private LayoutInflater inflater;
-    public static ArrayList<DataModel> dataModelArrayList;
+    public static ArrayList<CategoryModel> categoryModelArrayList;
     private RecyclerViewClickListener recyclerViewClickListener;
 
 
-    public Adapter(  RecyclerViewClickListener recyclerViewClickListener, ArrayList<DataModel> dataModelArrayList){
+    public CategoryAdapter(RecyclerViewClickListener recyclerViewClickListener, ArrayList<CategoryModel> categoryModelArrayList) {
 
 
-        this.dataModelArrayList = dataModelArrayList;
-        this.recyclerViewClickListener=recyclerViewClickListener;
+        this.categoryModelArrayList = categoryModelArrayList;
+        this.recyclerViewClickListener = recyclerViewClickListener;
     }
 
     @Override
-    public Adapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public CategoryAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         Activity activity = (Activity) parent.getContext();
-        ;
-        if ( activity.getClass().getSimpleName().contains("Main")){
+        if (activity.getClass().getSimpleName().contains("Main")) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_home_category, parent, false);
             MyViewHolder holder = new MyViewHolder(view, recyclerViewClickListener);
             return holder;
 
 
-        }
-        else
-        {
+        } else {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_category_vertical, parent, false);
             MyViewHolder holder = new MyViewHolder(view, recyclerViewClickListener);
             return holder;
@@ -52,20 +47,18 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
         }
 
 
-
-
     }
 
     @Override
-    public void onBindViewHolder(Adapter.MyViewHolder holder, int position) {
-        holder.name.setText(dataModelArrayList.get(position).getName());
-        Picasso.get().load(dataModelArrayList.get(position).getImgUrl()).into(holder.category_image);
+    public void onBindViewHolder(CategoryAdapter.MyViewHolder holder, int position) {
+        holder.name.setText(categoryModelArrayList.get(position).getName());
+        Picasso.get().load(categoryModelArrayList.get(position).getImgUrl()).into(holder.category_image);
 
     }
 
     @Override
     public int getItemCount() {
-        return dataModelArrayList.size();
+        return categoryModelArrayList.size();
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -77,15 +70,16 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
 
         public MyViewHolder(View itemView, RecyclerViewClickListener recyclerViewClickListener) {
             super(itemView);
-            this.recyclerViewClickListener=recyclerViewClickListener;
-            name = (TextView) itemView.findViewById(R.id.category_name);
-            category_image = (ImageView) itemView.findViewById(R.id.category_image);
+            this.recyclerViewClickListener = recyclerViewClickListener;
+            name = itemView.findViewById(R.id.category_name);
+            category_image = itemView.findViewById(R.id.category_image);
             itemView.setOnClickListener(this);
         }
 
 
         @Override
         public void onClick(View view) {
-        recyclerViewClickListener.onClick(getAdapterPosition());
+            recyclerViewClickListener.onClick(getAdapterPosition());
         }
-    }}
+    }
+}

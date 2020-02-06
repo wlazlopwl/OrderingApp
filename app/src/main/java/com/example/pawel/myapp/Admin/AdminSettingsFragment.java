@@ -39,7 +39,6 @@ public class AdminSettingsFragment extends Fragment {
         mChangePass =  view.findViewById(R.id.admin_setting_change_mypassword);
         mChangeEmail = view.findViewById(R.id.admin_setting_change_myEmail);
         mUserList = view.findViewById(R.id.admin_setting_all_user);
-        mWorkerList = view.findViewById(R.id.admin_setting_all_worker);
         sessionManager = new SessionManager(getActivity());
 
 
@@ -82,13 +81,6 @@ public class AdminSettingsFragment extends Fragment {
                 Intent intent = new Intent(getActivity(), AdminUserList.class);
                 startActivity(intent);
 
-            }
-        });
-        mWorkerList.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), AdminWorkerList.class);
-                startActivity(intent);
             }
         });
 

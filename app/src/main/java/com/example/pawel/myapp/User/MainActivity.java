@@ -18,7 +18,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -36,12 +35,13 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.pawel.myapp.Adapter.Adapter;
+import com.example.pawel.myapp.Adapter.CategoryAdapter;
 import com.example.pawel.myapp.Const;
-import com.example.pawel.myapp.Model.DataModel;
+import com.example.pawel.myapp.Model.CategoryModel;
 import com.example.pawel.myapp.R;
 import com.example.pawel.myapp.RecyclerViewClickListener;
 import com.example.pawel.myapp.SessionManager;
+import com.example.pawel.myapp.VolleySingleton;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
@@ -52,7 +52,6 @@ import com.github.mikephil.charting.utils.Utils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -61,8 +60,8 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, RecyclerViewClickListener {
 
 
-    public static ArrayList<DataModel> dataModelArrayList;
-    private com.example.pawel.myapp.Adapter.Adapter Adapter;
+    public static ArrayList<CategoryModel> categoryModelArrayList;
+    private CategoryAdapter CategoryAdapter;
     private RecyclerView recyclerView;
     SessionManager sessionManager;
     public TextView textCartItemCount, mHour, mMinute, mActualOrder, mMyWorkerName, mMonthOrder;
@@ -93,15 +92,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ArrayList<Entry> values = new ArrayList<>();
 
 
-        for (int i = 0; i <30 ; i++) {
+        for (int i = 0; i < 30; i++) {
             int a;
-            if (i%2==0) {
-                a=5;
+            if (i % 2 == 0) {
+                a = 5;
+            } else {
+                a = 2;
             }
-            else{
-                a=2;
-            }
-            values.add(new Entry(i+1, a));
+            values.add(new Entry(i + 1, a));
         }
         LineDataSet set1;
         if (mChart.getData() != null &&
@@ -201,12 +199,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         mActualOrder.setText(obj.getString("countActualOrder"));
                         mMyWorkerName.setText(obj.getString("name"));
                         mMonthOrder.setText(obj.getString("countLastMonthOrder"));
-//                        String cartCount = "10";
-//                        mCartItemCount = Integer.parseInt(cartCount);
-//                        mCartItemCount=5;
-                        String count =obj.getString("countCart");
-                        if (count=="null") {
+
+                        String count = obj.getString("countCart");
+                        if (count == "null") {
                             textCartItemCount.setText("0");
+                        }
+                        else{
+                            textCartItemCount.setText(count);
+
                         }
                         sessionManager.updateCartCountForUser(textCartItemCount.getText().toString());
                         Log.d("countCart", response);
@@ -299,21 +299,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onResponse(String response) {
 
                 try {
-
-
-                    dataModelArrayList = new ArrayList<>();
+                    categoryModelArrayList = new ArrayList<>();
                     JSONArray dataArray = new JSONArray(response);
 
                     for (int i = 0; i < dataArray.length(); i++) {
 
-                        DataModel playerModel = new DataModel();
+                        CategoryModel categoryModel = new CategoryModel();
                         JSONObject dataobj = dataArray.getJSONObject(i);
-                        playerModel.setId(dataobj.getString("id"));
-                        playerModel.setName(dataobj.getString("name"));
-                        playerModel.setImgUrl(dataobj.getString("img"));
-
-
-                        dataModelArrayList.add(playerModel);
+                        categoryModel.setId(dataobj.getString("id"));
+                        categoryModel.setName(dataobj.getString("name"));
+                        categoryModel.setImgUrl(dataobj.getString("img"));
+                        categoryModelArrayList.add(categoryModel);
 
                     }
 
@@ -321,7 +317,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
                 } catch (JSONException e) {
-
+                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
 
                 }
             }
@@ -329,16 +325,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        //displaying the error in toast if occurrs
+
                         Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
 
-        // request queue
 
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
 
-        requestQueue.add(stringRequest);
+        VolleySingleton.getInstance(getApplicationContext()).addToRequestQueue(stringRequest);
 
 
     }
@@ -352,8 +346,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         recyclerView.setHasFixedSize(true);
         recyclerView.setVisibility(View.VISIBLE);
         recyclerView.setClickable(true);
-        Adapter = new Adapter(this, dataModelArrayList);
-        recyclerView.setAdapter(Adapter);
+        CategoryAdapter = new CategoryAdapter(this, categoryModelArrayList);
+        recyclerView.setAdapter(CategoryAdapter);
 
 
     }
@@ -391,7 +385,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
 
 
-
         return true;
     }
 
@@ -412,7 +405,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
 
 
         return super.onOptionsItemSelected(item);
@@ -465,7 +457,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public void onClick(int position) {
         Intent i = new Intent(MainActivity.this, ProductListActivity.class);
-        String id = dataModelArrayList.get(position).getId();
+        String id = categoryModelArrayList.get(position).getId();
         i.putExtra("position", id);
         startActivity(i);
     }

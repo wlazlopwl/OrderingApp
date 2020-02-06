@@ -1,6 +1,6 @@
 package com.example.pawel.myapp.Model;
 
-public class DataModel {
+public class CategoryModel {
 
     private String id, name, imgUrl;
 

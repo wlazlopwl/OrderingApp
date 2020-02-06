@@ -166,26 +166,18 @@ public class SimpleUserBottomOption extends BottomSheetDialogFragment {
 
                 AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
                 LayoutInflater inflater = getLayoutInflater();
-                final View dialogView = (View) inflater.inflate(R.layout.layout_select_worker_dialog, null);
+                final View dialogView =  inflater.inflate(R.layout.layout_select_worker_dialog, null);
                 dialog.setView(dialogView);
-
                 getWorker();
-                recyclerView = (RecyclerView) dialogView.findViewById(R.id.select_worker_dialog_RV);
-
+                recyclerView =  dialogView.findViewById(R.id.select_worker_dialog_RV);
                 recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
-
-
                 dialog.setTitle(mSelectWorkerTV.getText().toString() + " dla " + fullName);
                 dialog.setIcon(R.drawable.user);
-
                 dialog.setPositiveButton("Zmień", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         idWorker = WorkerDialogListAdapter.idWorker;
-                        Log.d("as", "" + idWorker);
                         changeWorker(userId, idWorker);
-
-
                     }
                 }).setNegativeButton("Anuluj", new DialogInterface.OnClickListener() {
                     @Override
@@ -196,10 +188,7 @@ public class SimpleUserBottomOption extends BottomSheetDialogFragment {
 
 
                 selectWorker = dialog.create();
-
                 selectWorker.show();
-
-
                 Button button;
                 button = selectWorker.getButton(AlertDialog.BUTTON_POSITIVE);
                     button.setEnabled(false);

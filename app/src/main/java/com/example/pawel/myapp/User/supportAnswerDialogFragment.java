@@ -50,11 +50,7 @@ Button mOk;
     }
 
 
-   public void setAnswer(String answer){
-//       View sheetView = getView();
-//
-//       mAnswer.setText(answer);
-    }
+
 
 
 }

@@ -9,8 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-import com.example.pawel.myapp.Adapter.Adapter;
-import com.example.pawel.myapp.Adapter.CategoryListAdapter;
+import com.example.pawel.myapp.Adapter.CategoryAdapter;
 import com.example.pawel.myapp.R;
 import com.example.pawel.myapp.RecyclerViewClickListener;
 
@@ -18,7 +17,7 @@ public class CategoryListActivity extends AppCompatActivity implements RecyclerV
 
 
     public static Context context;
-    private Adapter Adapter;
+    private CategoryAdapter CategoryAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +47,8 @@ public class CategoryListActivity extends AppCompatActivity implements RecyclerV
         recyclerView.setHasFixedSize(true);
         recyclerView.setVisibility(View.VISIBLE);
         recyclerView.setClickable(true);
-        Adapter = new Adapter(this, MainActivity.dataModelArrayList);
-        recyclerView.setAdapter(Adapter);
+        CategoryAdapter = new CategoryAdapter(this, MainActivity.categoryModelArrayList);
+        recyclerView.setAdapter(CategoryAdapter);
 
 
     }
@@ -63,7 +62,7 @@ public class CategoryListActivity extends AppCompatActivity implements RecyclerV
     @Override
     public void onClick(int position) {
         Intent i = new Intent(CategoryListActivity.this, ProductListActivity.class);
-        String id = MainActivity.dataModelArrayList.get(position).getId();
+        String id = MainActivity.categoryModelArrayList.get(position).getId();
         i.putExtra("position", id);
         startActivity(i);
     }

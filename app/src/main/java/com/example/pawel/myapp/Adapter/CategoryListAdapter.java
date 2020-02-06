@@ -9,8 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.pawel.myapp.Const;
-import com.example.pawel.myapp.Model.DataModel;
+import com.example.pawel.myapp.Model.CategoryModel;
 import com.example.pawel.myapp.R;
 import com.example.pawel.myapp.RecyclerViewClickListener;
 import com.example.pawel.myapp.User.CategoryListActivity;
@@ -22,17 +21,17 @@ import java.util.ArrayList;
 
 public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapter.MyViewHolder> {
 
-    private ArrayList<DataModel> dataModelArrayList;
+    private ArrayList<CategoryModel> categoryModelArrayList;
     private RecyclerViewClickListener recyclerViewClickListener;
     public Context context;
 
 
 
 
-    public CategoryListAdapter(RecyclerViewClickListener recyclerViewClickListener, ArrayList<DataModel> dataModelArrayList) {
+    public CategoryListAdapter(RecyclerViewClickListener recyclerViewClickListener, ArrayList<CategoryModel> categoryModelArrayList) {
 
 
-        this.dataModelArrayList = dataModelArrayList;
+        this.categoryModelArrayList = categoryModelArrayList;
         this.recyclerViewClickListener = recyclerViewClickListener;
     }
 
@@ -56,14 +55,14 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
 
     @Override
     public void onBindViewHolder(CategoryListAdapter.MyViewHolder holder, int position) {
-        holder.name.setText(dataModelArrayList.get(position).getName());
-        Picasso.get().load(dataModelArrayList.get(position).getImgUrl()).into(holder.category_image);
+        holder.name.setText(categoryModelArrayList.get(position).getName());
+        Picasso.get().load(categoryModelArrayList.get(position).getImgUrl()).into(holder.category_image);
 
     }
 
     @Override
     public int getItemCount() {
-        return dataModelArrayList.size();
+        return categoryModelArrayList.size();
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

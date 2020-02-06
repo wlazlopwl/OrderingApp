@@ -3,7 +3,6 @@ package com.example.pawel.myapp;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.util.Log;
 
 import com.example.pawel.myapp.Admin.AdminActivity;
 import com.example.pawel.myapp.User.MainActivity;
@@ -24,10 +23,9 @@ public class SessionManager {
     private static final String PHONE = "PHONE";
     private static final String ID_USER = "ID_USER";
     private static final String COUNT_CART_USER = "COUNT_CART_USER";
-
-    SharedPreferences sharedPreferences;
     public SharedPreferences.Editor editor;
     public Context context;
+    SharedPreferences sharedPreferences;
 
 
     public SessionManager(Context context) {
@@ -38,10 +36,11 @@ public class SessionManager {
 
     }
 
-    public void createSession(String login, String password, String value, String surname, String street, String city, String postcode, String phone, String id) {
+    public void createSession(String name, String email, String value, String surname, String street,
+                              String city, String postcode, String phone, String id) {
         editor.putBoolean(LOGIN, true);
-        editor.putString(NAME, login);
-        editor.putString(EMAIL, password);
+        editor.putString(NAME, name);
+        editor.putString(EMAIL, email);
         editor.putString(VALUE, value);
         editor.putString(SURNAME, surname);
         editor.putString(STREET, street);
@@ -49,46 +48,33 @@ public class SessionManager {
         editor.putString(POSTCODE, postcode);
         editor.putString(PHONE, phone);
         editor.putString(ID_USER, id);
-        if (value=="1") {
-            editor.putString(COUNT_CART_USER, "0");
-
-        }
-
 
         editor.commit();
     }
 
 
-    public boolean isLogin() {
+    public boolean isLoginAccount() {
         return sharedPreferences.getBoolean(LOGIN, false);
     }
 
-    public void checkLogin() {
-        if (!this.isLogin()) {
+    public void checkLoginAccount() {
+        if (!this.isLoginAccount()) {
             Intent intent = new Intent(context, LogInActivity.class);
             context.startActivity(intent);
         } else {
+            int userValue = Integer.parseInt(getUserInfo().get("value"))-1;
 
-            int v = Integer.parseInt(getUserInfo().get("value"));
-            int vv = v - 1;
-            Log.d("user value", "" + v);
-
-            if (vv == 0) {
+            if (userValue == 0) {
                 Intent intent = new Intent(context, MainActivity.class);
                 context.startActivity(intent);
-
             }
-            if (vv == 1) {
+            if (userValue == 1) {
                 Intent intent = new Intent(context, AdminActivity.class);
                 context.startActivity(intent);
-
-
             }
-            if (vv == 2) {
+            if (userValue == 2) {
                 Intent intent = new Intent(context, WorkerActivity.class);
                 context.startActivity(intent);
-
-
             }
 
 
@@ -97,7 +83,7 @@ public class SessionManager {
 
     public HashMap<String, String> getUserInfo() {
         HashMap<String, String> user = new HashMap<>();
-        user.put("login", sharedPreferences.getString(NAME, null));
+        user.put("name", sharedPreferences.getString(NAME, null));
         user.put("password", sharedPreferences.getString(EMAIL, null));
         user.put("value", sharedPreferences.getString(VALUE, null));
         user.put("surname", sharedPreferences.getString(SURNAME, null));
@@ -113,9 +99,9 @@ public class SessionManager {
     }
 
 
-    public void updateDataInSession(String login, String surname, String street, String city, String postcode, String phone) {
+    public void updateDataInSession(String name, String surname, String street, String city, String postcode, String phone) {
 
-        editor.putString(NAME, login);
+        editor.putString(NAME, name);
         editor.putString(SURNAME, surname);
         editor.putString(STREET, street);
         editor.putString(CITY, city);
@@ -130,7 +116,8 @@ public class SessionManager {
 
         editor.commit();
     }
-    public void updateCartCountForUser(String cartCount){
+
+    public void updateCartCountForUser(String cartCount) {
         editor.putString(COUNT_CART_USER, cartCount);
         editor.commit();
     }

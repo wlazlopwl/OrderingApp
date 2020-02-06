@@ -73,7 +73,13 @@ public class CartActivity extends AppCompatActivity {
 
 
         userId = sessionManager.getUserInfo().get("id");
-        cartCount = Integer.parseInt(sessionManager.getUserInfo().get("cartCount")) ;
+        if (sessionManager.getUserInfo().get("cartCount")!="null") {
+            cartCount = Integer.parseInt(sessionManager.getUserInfo().get("cartCount")) ;
+
+        }
+        else{
+            cartCount=0;
+        }
 
         if (cartCount==0) {
             btnNewOrder.setVisibility(View.INVISIBLE);

@@ -56,7 +56,6 @@ public class AdminEditTab2Fragment extends Fragment {
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mAddCategoryBtn =view.findViewById(R.id.admin_edit_tab2_add_btn);
-        mCheckCategory=view.findViewById(R.id.admin_edit_tab2_check_btn);
         mCategoryName= view.findViewById(R.id.admin_edit_tab2_category_name);
         progressDialog= new ProgressDialog(getContext());
         imageView= view.findViewById(R.id.photo_add_category);
@@ -96,14 +95,7 @@ public class AdminEditTab2Fragment extends Fragment {
             }
         });
 
-        mCheckCategory.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-
-                Toast.makeText(getContext(), "Check", Toast.LENGTH_SHORT).show();
-            }
-        });
 
     }
 
