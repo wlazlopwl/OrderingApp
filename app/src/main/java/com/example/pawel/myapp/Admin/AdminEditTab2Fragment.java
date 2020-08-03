@@ -36,7 +36,7 @@ import java.util.Map;
 public class AdminEditTab2Fragment extends Fragment {
 
     EditText mCategoryName;
-    Button mAddCategoryBtn, mCheckCategory;
+    Button mAddCategoryBtn;
     Boolean isData;
     Boolean isPhoto;
     ProgressDialog progressDialog;
@@ -46,6 +46,7 @@ public class AdminEditTab2Fragment extends Fragment {
     private static int GALLERY = 1;
 
     String name;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -55,11 +56,11 @@ public class AdminEditTab2Fragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mAddCategoryBtn =view.findViewById(R.id.admin_edit_tab2_add_btn);
-        mCategoryName= view.findViewById(R.id.admin_edit_tab2_category_name);
-        progressDialog= new ProgressDialog(getContext());
-        imageView= view.findViewById(R.id.photo_add_category);
-        isPhoto=false;
+        mAddCategoryBtn = view.findViewById(R.id.admin_edit_tab2_add_btn);
+        mCategoryName = view.findViewById(R.id.admin_edit_tab2_category_name);
+        progressDialog = new ProgressDialog(getContext());
+        imageView = view.findViewById(R.id.photo_add_category);
+        isPhoto = false;
 
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,25 +70,18 @@ public class AdminEditTab2Fragment extends Fragment {
         });
 
 
-
-
-
         mAddCategoryBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 checkEmptyData();
 
-                if(isData && isPhoto){
+                if (isData && isPhoto) {
                     addCategory();
-                }
-                else if (!isData && isPhoto){
-                    Toast.makeText(getContext(),"Wprowadź nazwę kategorii",Toast.LENGTH_SHORT).show();
-                }
-
-                else if (isData && !isPhoto){
-                    Toast.makeText(getContext(),"Dodaj zdjęcie",Toast.LENGTH_SHORT).show();
-                }
-                else if (!isData && !isPhoto) {
+                } else if (!isData && isPhoto) {
+                    Toast.makeText(getContext(), "Wprowadź nazwę kategorii", Toast.LENGTH_SHORT).show();
+                } else if (isData && !isPhoto) {
+                    Toast.makeText(getContext(), "Dodaj zdjęcie", Toast.LENGTH_SHORT).show();
+                } else if (!isData && !isPhoto) {
 
                     Toast.makeText(getContext(), "Dodaj zdjęcie i nazwę kategorii", Toast.LENGTH_SHORT).show();
                 }
@@ -96,37 +90,33 @@ public class AdminEditTab2Fragment extends Fragment {
         });
 
 
-
     }
 
-    public void checkEmptyData(){
-        name=mCategoryName.getText().toString().trim();
-       if(TextUtils.isEmpty(name)){
-            isData =false;
-       }
-       else
-       {
-           isData = true;
+    public void checkEmptyData() {
+        name = mCategoryName.getText().toString().trim();
+        if (TextUtils.isEmpty(name)) {
+            isData = false;
+        } else {
+            isData = true;
 
-       }
+        }
     }
-    public void addCategory(){
+
+    public void addCategory() {
         progressDialog.setMessage("Proszę czekać");
         progressDialog.show();
 
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 25, baos);
-        byte[] imageBytes = baos.toByteArray();
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 25, outputStream);
+        byte[] imageBytes = outputStream.toByteArray();
         final String imageString = Base64.encodeToString(imageBytes, Base64.DEFAULT);
-
-
 
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, Const.URL_ADD_CATEGORY, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
-            progressDialog.dismiss();
+                progressDialog.dismiss();
                 Toast.makeText(getContext(), response, Toast.LENGTH_LONG).show();
             }
         },
@@ -136,32 +126,26 @@ public class AdminEditTab2Fragment extends Fragment {
                         Toast.makeText(getContext(), error.toString(), Toast.LENGTH_LONG).show();
                     }
                 }) {
-           @Override
-            protected Map<String, String> getParams(){
-               Map<String, String> params = new HashMap<String, String>();
-
-               // Adding All values to Params.
-               // The firs argument should be same sa your MySQL database table columns.
-               params.put("name", name);
-               params.put("image", imageString);
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
 
 
-               return params;
-           }
+                params.put("name", name);
+                params.put("image", imageString);
+
+
+                return params;
+            }
         };
         RequestQueue requestQueue = Volley.newRequestQueue(getActivity().getApplicationContext());
 
         requestQueue.add(stringRequest);
 
 
-
     }
-    public void checkCategory(){
 
-
-
-    }
-    public void pickPhotoFromGallery(){
+    public void pickPhotoFromGallery() {
 
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(intent, GALLERY);
@@ -171,15 +155,15 @@ public class AdminEditTab2Fragment extends Fragment {
 
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data){
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == GALLERY) {
             if (data != null) {
                 Uri contentURI = data.getData();
                 try {
-                     bitmap = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), contentURI);
-                    isPhoto=true;
+                    bitmap = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), contentURI);
+                    isPhoto = true;
                     imageView.setImageBitmap(bitmap);
 
 

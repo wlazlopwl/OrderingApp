@@ -4,9 +4,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -25,18 +22,16 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.pawel.myapp.Const;
 import com.example.pawel.myapp.R;
-import com.example.pawel.myapp.User.UserArchivalOrderFragment;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class WorkerUserDetailActivity extends AppCompatActivity {
-    private TextView test, mName, mSurname, mAllOrder, mActualOrder, mStreet, mCity, mPhone, mPostcode, mEmail, mFirstStreet;
+    private TextView mName, mSurname, mAllOrder, mActualOrder, mStreet, mCity, mPhone, mPostcode, mEmail, mFirstStreet;
     private ImageView mNavIV, mPhoneIV, mEmailIV;
     LinearLayout linearLayout;
     String idUser, city, street, phone, email;
@@ -46,7 +41,7 @@ public class WorkerUserDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_details);
 
-        Toolbar toolbar = (android.support.v7.widget.Toolbar)findViewById(R.id.toolbara);
+        Toolbar toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.toolbara);
         toolbar.setTitle("Szczegóły");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -65,7 +60,7 @@ public class WorkerUserDetailActivity extends AppCompatActivity {
         mPhone = (TextView) findViewById(R.id.worker_user_detail_phone);
         mPostcode = (TextView) findViewById(R.id.worker_user_detail_postcode);
         mEmail = (TextView) findViewById(R.id.worker_user_detail_email);
-        mFirstStreet=(TextView) findViewById(R.id.textView_street);
+        mFirstStreet = (TextView) findViewById(R.id.textView_street);
 //        linearLayout = (LinearLayout) findViewById(R.id.linear);
 
 
@@ -83,13 +78,12 @@ public class WorkerUserDetailActivity extends AppCompatActivity {
         mNavIV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!(isEmptyTextView(mStreet))&&!(isEmptyTextView(mCity))) {
+                if (!(isEmptyTextView(mStreet)) && !(isEmptyTextView(mCity))) {
                     Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
                             Uri.parse("google.navigation:q=" + street + ",+" + city + "+Poland"));
 
-                startActivity(intent);
-                }
-                else {
+                    startActivity(intent);
+                } else {
                     Toast.makeText(WorkerUserDetailActivity.this, "Adres jest niepełny. Nawigowanie niemożliwe.", Toast.LENGTH_SHORT).show();
                 }
 
@@ -101,8 +95,7 @@ public class WorkerUserDetailActivity extends AppCompatActivity {
                 if (!(isEmptyTextView(mPhone))) {
                     Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null));
                     startActivity(intent);
-                }
-                else{
+                } else {
                     Toast.makeText(WorkerUserDetailActivity.this, "Użytkownik nie podał numeru. ", Toast.LENGTH_SHORT).show();
                 }
 
@@ -140,17 +133,17 @@ public class WorkerUserDetailActivity extends AppCompatActivity {
 
     }
 
-private Boolean isEmptyTextView(TextView textView){
-    String value = textView.getText().toString();
-    if (value.contains("Nie podano")){
-        return true;
+    public Boolean isEmptyTextView(TextView textView) {
+        String value = textView.getText().toString();
+        if (value.contains("Nie podano")) {
+            return true;
+        } else {
+            return false;
+        }
+
     }
-    else{
-        return false;
-    }
-        
-}
-    private void checkValue(TextView textView, String name) {
+
+    public void checkValue(TextView textView, String name) {
         String value = textView.getText().toString();
         if (value.isEmpty()) {
             textView.setText(name + "Nie podano");
@@ -179,14 +172,14 @@ private Boolean isEmptyTextView(TextView textView){
 //                        mActualOrder.setText(jsonObject.getString("orderCount"));
                         mCity.setText(jsonObject.getString("city"));
                         mStreet.setText(jsonObject.getString("street"));
-                        mPostcode.setText(jsonObject.getString("postcode")+" ");
+                        mPostcode.setText(jsonObject.getString("postcode") + " ");
                         mPhone.setText(jsonObject.getString("phone"));
                         mEmail.setText(jsonObject.getString("email"));
                         checkValue(mCity, "Miasto: ");
                         checkValue(mStreet, "Ulica: ");
                         checkValue(mPostcode, "Kod pocztowy: ");
                         checkValue(mPhone, "Telefon: ");
-                        checkValue(mEmail,"E-mail: ");
+                        checkValue(mEmail, "E-mail: ");
 
                         city = mCity.getText().toString();
                         street = mStreet.getText().toString();
@@ -230,8 +223,9 @@ private Boolean isEmptyTextView(TextView textView){
 
 
     }
+
     @Override
-    public boolean onSupportNavigateUp(){
+    public boolean onSupportNavigateUp() {
         finish();
         return true;
     }

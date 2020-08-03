@@ -5,12 +5,10 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.pawel.myapp.Model.UserModel;
 import com.example.pawel.myapp.R;
@@ -21,15 +19,15 @@ import java.util.ArrayList;
 public class PeopleListAdapter extends RecyclerView.Adapter<PeopleListAdapter.MyViewholder> {
     public ArrayList<UserModel> PeopleListForWorker;
 
-    public PeopleListAdapter(ArrayList<UserModel> PeopleListForWorker){
-        this.PeopleListForWorker=PeopleListForWorker;
+    public PeopleListAdapter(ArrayList<UserModel> PeopleListForWorker) {
+        this.PeopleListForWorker = PeopleListForWorker;
     }
 
     @NonNull
     @Override
     public MyViewholder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         final View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.layout_worker_user_list, viewGroup, false);
-        PeopleListAdapter.MyViewholder adapter = new MyViewholder(view, new MyViewholder.MyClickListener(){
+        PeopleListAdapter.MyViewholder adapter = new MyViewholder(view, new MyViewholder.MyClickListener() {
 
             @Override
             public void getDetail(int i) {
@@ -39,32 +37,32 @@ public class PeopleListAdapter extends RecyclerView.Adapter<PeopleListAdapter.My
         });
 
 
-    return adapter;
+        return adapter;
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewholder myViewholder, int i) {
 
-    myViewholder.name.setText(PeopleListForWorker.get(i).getName()+" ");
-    myViewholder.surname.setText(PeopleListForWorker.get(i).getSurname());
-     String idU = PeopleListForWorker.get(i).getId();
+        myViewholder.name.setText(PeopleListForWorker.get(i).getName() + " ");
+        myViewholder.surname.setText(PeopleListForWorker.get(i).getSurname());
+        String idU = PeopleListForWorker.get(i).getId();
         //TODO: change
-    final String idUser=idU;
-    myViewholder.cardView.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Context context = v.getContext();
-            Intent intent = new Intent(context, WorkerUserDetailActivity.class);
-            intent.putExtra("idUser", idUser );
-            context.startActivity(intent);
-        }
-    });
+        final String idUser = idU;
+        myViewholder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Context context = v.getContext();
+                Intent intent = new Intent(context, WorkerUserDetailActivity.class);
+                intent.putExtra("idUser", idUser);
+                context.startActivity(intent);
+            }
+        });
 
     }
 
     @Override
     public int getItemCount() {
-         return (PeopleListForWorker == null) ? 0 : PeopleListForWorker.size();
+        return (PeopleListForWorker == null) ? 0 : PeopleListForWorker.size();
     }
 
     public static class MyViewholder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -74,7 +72,7 @@ public class PeopleListAdapter extends RecyclerView.Adapter<PeopleListAdapter.My
 
         public MyViewholder(@NonNull View itemView, MyClickListener listener) {
             super(itemView);
-            this.listener=listener;
+            this.listener = listener;
             name = (TextView) itemView.findViewById(R.id.layout_user_list_name);
             surname = (TextView) itemView.findViewById(R.id.layout_user_list_surname);
             cardView = (CardView) itemView.findViewById(R.id.layout_user_list_cardview);
@@ -85,9 +83,9 @@ public class PeopleListAdapter extends RecyclerView.Adapter<PeopleListAdapter.My
         @Override
         public void onClick(View v) {
 
-            switch (v.getId()){
+            switch (v.getId()) {
                 case R.id.layout_user_list_cardview:
-                break;
+                    break;
             }
 
         }

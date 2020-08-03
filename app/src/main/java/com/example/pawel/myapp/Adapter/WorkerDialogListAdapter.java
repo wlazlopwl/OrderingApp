@@ -4,12 +4,9 @@ package com.example.pawel.myapp.Adapter;
 
 import android.app.AlertDialog;
 import android.graphics.Color;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,13 +16,12 @@ import android.widget.TextView;
 import com.example.pawel.myapp.Admin.SimpleUserBottomOption;
 import com.example.pawel.myapp.Model.UserModel;
 import com.example.pawel.myapp.R;
-import com.example.pawel.myapp.User.UserArchivalOrderFragment;
 
 import java.util.ArrayList;
 
 public class WorkerDialogListAdapter extends RecyclerView.Adapter<WorkerDialogListAdapter.MyViewHolder> {
     public ArrayList<UserModel> WorkerList;
-    public  int selectedPosition = -1;
+    public int selectedPosition = -1;
     public static String idWorker;
 
     public WorkerDialogListAdapter(ArrayList<UserModel> WorkerList) {
@@ -42,10 +38,7 @@ public class WorkerDialogListAdapter extends RecyclerView.Adapter<WorkerDialogLi
             public void checkItem(int p) {
 
 
-
             }
-
-
 
 
         });
@@ -125,7 +118,6 @@ public class WorkerDialogListAdapter extends RecyclerView.Adapter<WorkerDialogLi
             switch (v.getId()) {
                 case R.id.layout_select_worker_cardview:
                     listener.checkItem(getLayoutPosition());
-
 
 
                     break;

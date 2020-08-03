@@ -6,6 +6,7 @@ public class UserModel {
     String name;
     String surname;
     Boolean isSelected;
+
     public Boolean isSelected() {
         return isSelected;
     }
@@ -13,7 +14,6 @@ public class UserModel {
     public void setSelected(Boolean selected) {
         isSelected = selected;
     }
-
 
 
     public String getId() {

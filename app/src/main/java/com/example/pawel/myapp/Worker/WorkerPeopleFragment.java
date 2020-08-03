@@ -48,7 +48,7 @@ public class WorkerPeopleFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_worker_people, container, false);
 
-        mTextEmptyUser = (TextView) view.findViewById(R.id.textEmptyUser);
+        mTextEmptyUser =  view.findViewById(R.id.textEmptyUser);
 
         return view;
 

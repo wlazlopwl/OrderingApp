@@ -21,7 +21,6 @@ public class CategoryModel {
     }
 
 
-
     public String getId() {
         return id;
     }

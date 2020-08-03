@@ -1,7 +1,6 @@
 package com.example.pawel.myapp.User;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -62,8 +61,6 @@ public class UserArchivalOrderFragment extends Fragment {
         mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.archival_order_refresh);
 
 
-
-
         return view;
     }
 
@@ -76,20 +73,17 @@ public class UserArchivalOrderFragment extends Fragment {
 
         int userS = Integer.parseInt(userStatus);
 
-        if (userS==2){
+        if (userS == 2) {
 
             String idU = getArguments().getString("idUser");
             getProduct("1", "0", idU, "1");
             mSwipeRefreshLayout.setRefreshing(false);
             mSwipeRefreshLayout.setEnabled(false);
-            Log.d("t","if"+userStatus);
-        }
-        else{
+            Log.d("t", "if" + userStatus);
+        } else {
             getProduct("1", "0", userId, "1");
-            Log.d("t","else"+userStatus);
+            Log.d("t", "else" + userStatus);
         }
-
-
 
 
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.parent_actual_order_rv);
@@ -146,7 +140,7 @@ public class UserArchivalOrderFragment extends Fragment {
                             dataProduct.setDescription(dataobj.getString("desc"));
                             dataProduct.setQuantity(dataobj.getString("quantity"));
 //                                dataProduct.setId(dataobj.getString("id"));
-                                dataProduct.setImgUrl(dataobj.getString("img"));
+                            dataProduct.setImgUrl(dataobj.getString("img"));
 
 
                             ChildOrderList.add(dataProduct);

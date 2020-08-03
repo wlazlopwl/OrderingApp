@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">MyApp</string>
-    <string name="title_activity_main">MyApp</string>
+    <string name="app_name">FastOrder</string>
+    <string name="title_activity_main">EasyFastOrder</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
@@ -17,46 +17,34 @@
 
     <string-array name="support_questions">
         <item>W jaki sposób mogę złożyć zamówienie?</item>
-        <item>Co oznacza ubiegający czas?</item>
+        <item>Co oznacza godzina wyświetlona na ekranie głównym?</item>
         <item>Dodałem produkty do koszyka, ale nie chcę ich zamawiać. Czy mogę usunąć?</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
-        <item>7</item>
-        <item>jededn</item>
-        <item>dwa</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
-        <item>7</item>
+        <item>Chcę zmienić mój e-mail. Co zrobić?</item>
+        <item>Chcę zmienić moje hasło. Co zrobić?</item>
+        <item>Co opisuje liczba wszystkich zamówień?</item>
+        <item>Złożyłem zamówienie, ale nie chcę go - czy mogę usunąc?</item>
+        <item>chcę zmienić mój adres. W jaki sposób mogę to zrobić?</item>
     </string-array>
 
     <string-array name="support_answer">
         <item>Aby złożyć zamówienie, należy wybrać odpowiednią kategorię produktu, którego szukasz, następnie wybrać żądany produkt oraz ilość.
-            W następnym kroku należy przejść do koszyka, upewnić się, że wybrane produkty są tymi, które potrzebujemy, a następnie kliknąć w przycisk
+            W następnym kroku należy przejść do koszyka, upewnić się, że wybrane produkty są tymi, które potrzebujemy i kliknąć w przycisk
             "Złóż zamówienie" .
 
         </item>
-        <item>Czas ten jest informacją ile czasu zostało do złożenia zamówienia. Jesli czas się skończy, nadal będziesz mógł złożyć zamówienie, lecz jego realizacja nastąpi w następnym dniu roboczym.
-        </item>
-        <item>Tak, oczywiście. Dopóki nie złożysz zamówienia, produkty z koszyka w każdej chwili można usunąć klikając w ikonę czerwonego kosza bądź poprzez klikanie w minus przy odpowiednim produkcie.</item>
-        <item>Nullam ac augue et ante ornare venenatis et feugiat mauris. Etiam consectetur neque in posuere aliquet</item>
-        <item>Nullam ac augue et ante ornare venenatis et feugiat mauris. Etiam consectetur neque in posuere aliquet.</item>
-        <item>6Nullam ac augue et ante ornare venenatis et feugiat mauris. Etiam consectetur neque in posuere aliquet.</item>
-        <item>7Nullam ac augue et ante ornare venenatis et feugiat mauris. Etiam consectetur neque in posuere aliquet.</item>
-        <item>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce euismod lectus eget ex lobortis, eu convallis tortor pulvinar.</item>
-        <item>Suspendisse quis velit pharetra, lobortis turpis a, dictum eros. </item>
-        <item>Cras a pretium nulla. Ut risus purus, vehicula et mauris id, vestibulum finibus elit.</item>
-        <item>Nullam ac augue et ante ornare venenatis et feugiat mauris. Etiam consectetur neque in posuere aliquet</item>
-        <item>Nullam ac augue et ante ornare venenatis et feugiat mauris. Etiam consectetur neque in posuere aliquet.</item>
-        <item>6Nullam ac augue et ante ornare venenatis et feugiat mauris. Etiam consectetur neque in posuere aliquet.</item>
-        <item>7Nullam ac augue et ante ornare venenatis et feugiat mauris. Etiam consectetur neque in posuere aliquet.</item>
+        <item>Godzina ta jest informacją, do której godziny możesz możesz złożyć zamówienie, by otrzymaj je tego samego dnia (z wyłączeniem niedzieli). </item>
+        <item>Tak, oczywiście. Dopóki nie złożysz zamówienia, produkty z koszyka w każdej chwili można usunąć klikając w ikonę czerwonego kosza bądź poprzez wybór minusa przy odpowiednim produkcie.</item>
+        <item>Przejdź do ustawień, wybierz opcję "zmień mój e-mail" i wprowadź nowe dane.</item>
+        <item>Przejdź do ustawień, wybierz opcję "zmień moje hasło" i wprowadź nowe dane.</item>
+        <item>Liczba wszystkich zamówień mówi o tym ile zamówień złożono w ostatnim miesiącu.</item>
+        <item>Niestety nie. Złożonego zamówienia nie można anulować.</item>
+        <item>Przejdź do ustawień, wybierz opcję "Edycja profilu" i zaktualizuj swoje dane.</item>
+
     </string-array>
 
     <string name="person_status_top">Wybierz status</string>
     <string-array name="person_status">
-        <item>Użytkownik</item>
+        <item>Klient</item>
         <item>Pracownik</item>
         <item>Admin</item>
 

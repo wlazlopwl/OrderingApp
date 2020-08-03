@@ -25,7 +25,6 @@ public class WorkerActualOrderAdapter extends RecyclerView.Adapter<WorkerActualO
     private Context mContext;
 
 
-
     public WorkerActualOrderAdapter(ArrayList<DataOrderParentList> ActualOrderArrayList) {
         this.ActualOrderArrayList = ActualOrderArrayList;
 
@@ -34,8 +33,8 @@ public class WorkerActualOrderAdapter extends RecyclerView.Adapter<WorkerActualO
     @Override
     public WorkerActualOrderAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
 
-        View itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.layout_worker_actual_order, viewGroup,false);
-        WorkerActualOrderAdapter.MyViewHolder holder= new WorkerActualOrderAdapter.MyViewHolder(itemView, new MyViewHolder.MyClickListener(){
+        View itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.layout_worker_actual_order, viewGroup, false);
+        WorkerActualOrderAdapter.MyViewHolder holder = new WorkerActualOrderAdapter.MyViewHolder(itemView, new MyViewHolder.MyClickListener() {
 
 
             @Override
@@ -52,16 +51,15 @@ public class WorkerActualOrderAdapter extends RecyclerView.Adapter<WorkerActualO
 
     @Override
     public void onBindViewHolder(WorkerActualOrderAdapter.MyViewHolder holder, int i) {
-    holder.name.setText(ActualOrderArrayList.get(i).getName());
-    holder.date_order.setText(ActualOrderArrayList.get(i).getDate());
-
+        holder.name.setText(ActualOrderArrayList.get(i).getName());
+        holder.date_order.setText(ActualOrderArrayList.get(i).getDate());
 
 
 //ArrayList<DataProduct> ChildOrderList = ActualOrderArrayList.get(i).getDataOrderParentList();
-    DataOrderParentList dataOrderParentList = ActualOrderArrayList.get(i);
-    ArrayList<DataProduct> dataOrderChildList = dataOrderParentList.getDataProductChildList();
-    WorkerChildOrderAdapter childAdapter = new WorkerChildOrderAdapter(mContext, dataOrderChildList);
-        holder.childRV.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL,false));
+        DataOrderParentList dataOrderParentList = ActualOrderArrayList.get(i);
+        ArrayList<DataProduct> dataOrderChildList = dataOrderParentList.getDataProductChildList();
+        WorkerChildOrderAdapter childAdapter = new WorkerChildOrderAdapter(mContext, dataOrderChildList);
+        holder.childRV.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));
         holder.childRV.setHasFixedSize(true);
         holder.childRV.setVisibility(View.VISIBLE);
         holder.childRV.setClickable(true);
@@ -70,29 +68,31 @@ public class WorkerActualOrderAdapter extends RecyclerView.Adapter<WorkerActualO
 
     @Override
     public int getItemCount() {
+
         return ActualOrderArrayList.size();
     }
 
-    public static class MyViewHolder  extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         MyClickListener listener;
         TextView name, date_order;
         RecyclerView childRV;
         ImageView mChangeOneStatus;
-        public MyViewHolder( View itemView, MyClickListener listener) {
+
+        public MyViewHolder(View itemView, MyClickListener listener) {
             super(itemView);
-            name= (TextView) itemView.findViewById(R.id.worker_parent_rv_orderUser_textview);
-            date_order= (TextView) itemView.findViewById(R.id.worker_parent_rv_date_textview);
+            name = (TextView) itemView.findViewById(R.id.worker_parent_rv_orderUser_textview);
+            date_order = (TextView) itemView.findViewById(R.id.worker_parent_rv_date_textview);
             mChangeOneStatus = (ImageView) itemView.findViewById(R.id.worker_order_change_simple_status);
 
-            childRV= (RecyclerView) itemView.findViewById(R.id.worker_child_order_product_rv);
-            this.listener=listener;
+            childRV = (RecyclerView) itemView.findViewById(R.id.worker_child_order_product_rv);
+            this.listener = listener;
 
             mChangeOneStatus.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
-            switch (v.getId()){
+            switch (v.getId()) {
                 case R.id.worker_order_change_simple_status:
                     listener.changeSimpleStatus(this.getLayoutPosition());
                     break;

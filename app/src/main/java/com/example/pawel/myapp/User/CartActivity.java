@@ -22,11 +22,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.pawel.myapp.Adapter.CartAdapter;
-import com.example.pawel.myapp.SettingsChangeMyData;
 import com.example.pawel.myapp.Const;
 import com.example.pawel.myapp.Model.DataProduct;
 import com.example.pawel.myapp.R;
 import com.example.pawel.myapp.SessionManager;
+import com.example.pawel.myapp.SettingsChangeMyData;
 import com.example.pawel.myapp.VolleySingleton;
 
 import org.json.JSONArray;
@@ -73,18 +73,16 @@ public class CartActivity extends AppCompatActivity {
 
 
         userId = sessionManager.getUserInfo().get("id");
-        if (sessionManager.getUserInfo().get("cartCount")!="null") {
-            cartCount = Integer.parseInt(sessionManager.getUserInfo().get("cartCount")) ;
+        if (sessionManager.getUserInfo().get("cartCount") != "null") {
+            cartCount = Integer.parseInt(sessionManager.getUserInfo().get("cartCount"));
 
-        }
-        else{
-            cartCount=0;
+        } else {
+            cartCount = 0;
         }
 
-        if (cartCount==0) {
+        if (cartCount == 0) {
             btnNewOrder.setVisibility(View.INVISIBLE);
         }
-
 
 
         getProduct(userId);
@@ -174,7 +172,6 @@ public class CartActivity extends AppCompatActivity {
                     CartAdapter.notifyDataSetChanged();
                     dataCartArrayList.clear();
                     mTextEmptyCart.setVisibility(View.VISIBLE);
-
 
 
                 } else {
@@ -298,7 +295,6 @@ public class CartActivity extends AppCompatActivity {
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                     String countCart = jsonObject.getString("actualCartCount");
-
 
 
                     sessionManager.updateCartCountForUser(countCart);

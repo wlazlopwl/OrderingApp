@@ -3,20 +3,13 @@ package com.example.pawel.myapp.Adapter;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.BottomSheetDialog;
-import android.support.design.widget.BottomSheetDialogFragment;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.telephony.mbms.MbmsErrors;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.pawel.myapp.Admin.SimpleUserBottomOption;
 import com.example.pawel.myapp.Model.UserModel;
@@ -42,7 +35,7 @@ public class AllUserListAdapter extends RecyclerView.Adapter<AllUserListAdapter.
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         final View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.layout_all_user_list, viewGroup, false);
-        AllUserListAdapter.MyViewHolder adapter = new MyViewHolder(view, new MyViewHolder.MyClickListener(){
+        AllUserListAdapter.MyViewHolder adapter = new MyViewHolder(view, new MyViewHolder.MyClickListener() {
 
 
             @Override
@@ -54,14 +47,13 @@ public class AllUserListAdapter extends RecyclerView.Adapter<AllUserListAdapter.
         });
 
 
-
         return adapter;
     }
 
     @Override
     public void onBindViewHolder(@NonNull AllUserListAdapter.MyViewHolder myViewHolder, int i) {
         myViewHolder.name.setText(AllUserList.get(i).getName());
-        myViewHolder.surname.setText(AllUserList.get(i).getSurname()+" ");
+        myViewHolder.surname.setText(AllUserList.get(i).getSurname() + " ");
 
 
     }
@@ -77,12 +69,13 @@ public class AllUserListAdapter extends RecyclerView.Adapter<AllUserListAdapter.
         MyClickListener listener;
         CardView cardView;
         Context ctx;
+
         public MyViewHolder(@NonNull View itemView, MyClickListener listener) {
 
             super(itemView);
-            this.listener=listener;
-            name=(TextView) itemView.findViewById(R.id.layout_all_user_list_name);
-            surname=(TextView) itemView.findViewById(R.id.layout_all_user_list_surname);
+            this.listener = listener;
+            name = (TextView) itemView.findViewById(R.id.layout_all_user_list_name);
+            surname = (TextView) itemView.findViewById(R.id.layout_all_user_list_surname);
             cardView = (CardView) itemView.findViewById(R.id.layout_all_user_list_cardview);
 
             cardView.setOnClickListener(this);
@@ -91,10 +84,10 @@ public class AllUserListAdapter extends RecyclerView.Adapter<AllUserListAdapter.
 
         @Override
         public void onClick(View v) {
-            switch (v.getId()){
+            switch (v.getId()) {
                 case R.id.layout_all_user_list_cardview:
                     listener.getId(this.getLayoutPosition());
-                   ctx =v.getContext();
+                    ctx = v.getContext();
 
                     SimpleUserBottomOption bottomSheetDialogFragment = new SimpleUserBottomOption();
                     String name = this.name.getText().toString();
@@ -105,10 +98,10 @@ public class AllUserListAdapter extends RecyclerView.Adapter<AllUserListAdapter.
                     bundle.putString("name", name);
                     bundle.putString("surname", surname);
                     bundle.putString("userId", id);
-                    bundle.putInt("position",position);
+                    bundle.putInt("position", position);
 
                     bottomSheetDialogFragment.setArguments(bundle);
-                    bottomSheetDialogFragment.show(((FragmentActivity)ctx).getSupportFragmentManager(), bottomSheetDialogFragment.getTag());
+                    bottomSheetDialogFragment.show(((FragmentActivity) ctx).getSupportFragmentManager(), bottomSheetDialogFragment.getTag());
                     break;
 
             }
@@ -116,7 +109,7 @@ public class AllUserListAdapter extends RecyclerView.Adapter<AllUserListAdapter.
         }
 
         public interface MyClickListener {
-                 void getId(int p);
+            void getId(int p);
 
         }
     }

@@ -4,111 +4,111 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+    android:id="@+id/admin_fragment_home_layout"
     >
 
 
-       <LinearLayout
-           android:layout_width="85dp"
-           android:layout_height="wrap_content"
-           android:layout_below="@+id/category_btn"
-           android:gravity="center_horizontal"
-           android:orientation="horizontal"
+    <LinearLayout
+        android:layout_width="85dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/category_btn"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
 
-           app:layout_constraintBottom_toBottomOf="@+id/imageView"
-           app:layout_constraintEnd_toEndOf="@+id/imageView"
-           app:layout_constraintStart_toStartOf="@+id/imageView"
-           app:layout_constraintTop_toTopOf="@+id/imageView">
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/imageView">
 
-           <TextView
-               android:id="@+id/main_hour_textView"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:text="?"
-               android:textColor="@android:color/white"
-               android:textSize="20dp">
+        <TextView
+            android:id="@+id/main_hour_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="?"
+            android:textColor="@android:color/white"
+            android:textSize="20dp">
 
-           </TextView>
+        </TextView>
 
-           <TextView
+        <TextView
 
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_marginLeft="3dp"
-               android:layout_marginRight="3dp"
-               android:text=":"
-               android:textColor="@android:color/white"
-               android:textSize="20dp">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:text=":"
+            android:textColor="@android:color/white"
+            android:textSize="20dp">
 
-           </TextView>
+        </TextView>
 
-           <TextView
-               android:id="@+id/main_minute_textView"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:text="?"
-               android:textColor="@android:color/white"
-               android:textSize="20dp">
+        <TextView
+            android:id="@+id/main_minute_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="?"
+            android:textColor="@android:color/white"
+            android:textSize="20dp">
 
-           </TextView>
-
-
-       </LinearLayout>
-
-       <TextView
-           android:id="@+id/textView9"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_marginTop="32dp"
-           android:text="Witaj"
-           android:textSize="18dp"
-           app:layout_constraintStart_toStartOf="@+id/textView10"
-           app:layout_constraintTop_toTopOf="parent" />
-
-       <TextView
-           android:id="@+id/textView10"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_marginTop="8dp"
-           android:text="Użytkownicy zamawiają do: "
-           android:textSize="12dp"
-           app:layout_constraintStart_toStartOf="@+id/linearLayout"
-           app:layout_constraintTop_toBottomOf="@+id/textView9" />
-
-       <ImageView
-           android:id="@+id/imageView"
-           android:layout_width="125dp"
-           android:layout_height="50dp"
-           android:layout_marginTop="32dp"
-           android:background="@drawable/btn_ui"
-           app:layout_constraintBottom_toBottomOf="@+id/textView10"
-           app:layout_constraintEnd_toEndOf="@+id/linearLayout"
-           app:layout_constraintTop_toTopOf="parent" />
-       <LinearLayout
-           android:layout_width="85dp"
-           android:layout_height="wrap_content"
-           android:gravity="center_horizontal"
-           android:orientation="horizontal"
-
-           app:layout_constraintBottom_toBottomOf="@+id/imageView"
-           app:layout_constraintEnd_toEndOf="@+id/imageView"
-           app:layout_constraintStart_toStartOf="@+id/imageView"
-           app:layout_constraintTop_toTopOf="@+id/imageView">
+        </TextView>
 
 
+    </LinearLayout>
 
-           <TextView
-               android:id="@+id/actual_time_order_admin"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:text="?"
-               android:textColor="@android:color/white"
-               android:textSize="20dp">
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Witaj"
+        android:textSize="18dp"
+        app:layout_constraintStart_toStartOf="@+id/textView10"
+        app:layout_constraintTop_toTopOf="parent" />
 
-           </TextView>
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Użytkownicy zamawiają do: "
+        android:textSize="12dp"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="125dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/btn_ui"
+        app:layout_constraintBottom_toBottomOf="@+id/textView10"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="85dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/imageView">
 
 
-       </LinearLayout>
+        <TextView
+            android:id="@+id/actual_time_order_admin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="?"
+            android:textColor="@android:color/white"
+            android:textSize="20dp">
+
+        </TextView>
+
+
+    </LinearLayout>
 
 
     <LinearLayout
@@ -145,7 +145,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|center_vertical"
-                android:text="25"
+                android:text="?"
                 android:textSize="60sp" />
 
 
@@ -174,7 +174,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|center_vertical"
-                android:text="25"
+                android:text="?"
                 android:textSize="60sp" />
 
 

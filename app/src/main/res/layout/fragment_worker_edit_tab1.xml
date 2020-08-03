@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/fragment_worker_edit_tab1"
     android:background="@color/cardview_shadow_end_color"
     android:orientation="vertical">
 
@@ -20,10 +19,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
 
-
     </android.support.v7.widget.RecyclerView>
-
-
 
 
     <TextView

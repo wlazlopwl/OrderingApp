@@ -18,7 +18,7 @@
             android:id="@+id/nav_cart"
             android:icon="@drawable/ic_shopping_cart"
             android:title="Mój koszyk"
-            
+
 
             />
         <item
@@ -27,31 +27,31 @@
 
             android:title="Zamówienia" />
     </group>
-<group>
-    <item android:title="Pozostałe">
-        <menu>
-            <item
-                android:id="@+id/nav_setting"
-                android:icon="@drawable/ic_settings_black_24dp"
-                android:title="Ustawienia" />
-            <item
-                android:id="@+id/nav_help"
-                android:icon="@drawable/ic_help_black_24dp"
-                android:title="Pomoc" />
-            <item
-                android:id="@+id/nav_about"
-                android:icon="@drawable/ic_info_black_24dp"
-                android:title="O aplikacji"
+    <group>
+        <item android:title="Pozostałe">
+            <menu>
+                <item
+                    android:id="@+id/nav_setting"
+                    android:icon="@drawable/ic_settings_black_24dp"
+                    android:title="Ustawienia" />
+                <item
+                    android:id="@+id/nav_help"
+                    android:icon="@drawable/ic_help_black_24dp"
+                    android:title="Pomoc" />
+                <item
+                    android:id="@+id/nav_about"
+                    android:icon="@drawable/ic_info_black_24dp"
+                    android:title="O aplikacji"
 
-                />
-            <item
-                android:id="@+id/nav_logout"
-                android:icon="@drawable/ic_exit_to_app_black_24dp"
-                android:title="Wyloguj"
+                    />
+                <item
+                    android:id="@+id/nav_logout"
+                    android:icon="@drawable/ic_exit_to_app_black_24dp"
+                    android:title="Wyloguj"
 
-                />
-        </menu>
-    </item>
-</group>
+                    />
+            </menu>
+        </item>
+    </group>
 
 </menu>

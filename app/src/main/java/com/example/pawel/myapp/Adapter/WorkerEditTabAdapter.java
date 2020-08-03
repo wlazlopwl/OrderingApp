@@ -18,10 +18,12 @@ public class WorkerEditTabAdapter extends FragmentStatePagerAdapter {
         super(fm);
 
     }
+
     @Override
     public int getCount() {
         return fragmentList.size();
     }
+
     @Override
     public Fragment getItem(int position) {
         switch (position) {
@@ -39,9 +41,10 @@ public class WorkerEditTabAdapter extends FragmentStatePagerAdapter {
 
     }
 
-    public void addFragment(Fragment fragment){
+    public void addFragment(Fragment fragment) {
         fragmentList.add(fragment);
     }
+
     @Override
     public CharSequence getPageTitle(int position) {
         return tabTitles[position];

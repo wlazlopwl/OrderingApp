@@ -13,9 +13,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-import com.example.pawel.myapp.SettingsChangeMyData;
 import com.example.pawel.myapp.R;
 import com.example.pawel.myapp.SessionManager;
+import com.example.pawel.myapp.SettingsChangeMyData;
 import com.example.pawel.myapp.SettingsChangeMyEmail;
 import com.example.pawel.myapp.SettingsChangeMyPassword;
 
@@ -36,7 +36,7 @@ public class AdminSettingsFragment extends Fragment {
         mChangeTime = view.findViewById(R.id.admin_setting_change_time);
         mLogout = view.findViewById(R.id.admin_logout_btn);
         mChangeMyData = view.findViewById(R.id.admin_change_mydata);
-        mChangePass =  view.findViewById(R.id.admin_setting_change_mypassword);
+        mChangePass = view.findViewById(R.id.admin_setting_change_mypassword);
         mChangeEmail = view.findViewById(R.id.admin_setting_change_myEmail);
         mUserList = view.findViewById(R.id.admin_setting_all_user);
         sessionManager = new SessionManager(getActivity());
@@ -94,7 +94,7 @@ public class AdminSettingsFragment extends Fragment {
 
     }
 
-    private void logoutAlert(){
+    private void logoutAlert() {
         AlertDialog.Builder logoutDialog = new AlertDialog.Builder(getContext());
         logoutDialog.setTitle("UWAGA!");
         logoutDialog.setIcon(R.drawable.ic_sad_face);
@@ -112,7 +112,7 @@ public class AdminSettingsFragment extends Fragment {
             }
         });
 
-        AlertDialog alertDialog= logoutDialog.create();
+        AlertDialog alertDialog = logoutDialog.create();
         alertDialog.show();
     }
 

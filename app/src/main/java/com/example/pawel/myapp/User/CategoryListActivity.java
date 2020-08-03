@@ -32,7 +32,6 @@ public class CategoryListActivity extends AppCompatActivity implements RecyclerV
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
 
-        RecyclerView categoryListRV = (RecyclerView) findViewById(R.id.category_list_listview);
         setupRecycler();
 
 

@@ -23,8 +23,7 @@ public class ActualOrderAdapter extends RecyclerView.Adapter<ActualOrderAdapter.
     private Context mContext;
 
 
-
-    public ActualOrderAdapter( ArrayList<DataOrderParentList> ActualOrderArrayList) {
+    public ActualOrderAdapter(ArrayList<DataOrderParentList> ActualOrderArrayList) {
         this.ActualOrderArrayList = ActualOrderArrayList;
 
     }
@@ -33,7 +32,7 @@ public class ActualOrderAdapter extends RecyclerView.Adapter<ActualOrderAdapter.
     public ActualOrderAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
 
 
-        View itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.layout_user_actual_order, viewGroup,false);
+        View itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.layout_user_actual_order, viewGroup, false);
         ActualOrderAdapter.MyViewHolder adapter = new MyViewHolder(itemView);
 
         return adapter;
@@ -41,16 +40,15 @@ public class ActualOrderAdapter extends RecyclerView.Adapter<ActualOrderAdapter.
 
     @Override
     public void onBindViewHolder(ActualOrderAdapter.MyViewHolder holder, int i) {
-    holder.name.setText(ActualOrderArrayList.get(i).getName());
-    holder.date_order.setText(ActualOrderArrayList.get(i).getDate());
-
+        holder.name.setText(ActualOrderArrayList.get(i).getName());
+        holder.date_order.setText(ActualOrderArrayList.get(i).getDate());
 
 
 //ArrayList<DataProduct> ChildOrderList = ActualOrderArrayList.get(i).getDataOrderParentList();
-    DataOrderParentList dataOrderParentList = ActualOrderArrayList.get(i);
-    ArrayList<DataProduct> dataOrderChildList = dataOrderParentList.getDataProductChildList();
-    ChildOrderAdapter childAdapter = new ChildOrderAdapter(mContext, dataOrderChildList);
-        holder.childRV.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL,false));
+        DataOrderParentList dataOrderParentList = ActualOrderArrayList.get(i);
+        ArrayList<DataProduct> dataOrderChildList = dataOrderParentList.getDataProductChildList();
+        ChildOrderAdapter childAdapter = new ChildOrderAdapter(mContext, dataOrderChildList);
+        holder.childRV.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));
         holder.childRV.setHasFixedSize(true);
         holder.childRV.setVisibility(View.VISIBLE);
         holder.childRV.setClickable(true);
@@ -62,15 +60,16 @@ public class ActualOrderAdapter extends RecyclerView.Adapter<ActualOrderAdapter.
         return ActualOrderArrayList.size();
     }
 
-    public class MyViewHolder  extends RecyclerView.ViewHolder {
+    public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView name, date_order;
         RecyclerView childRV;
-        public MyViewHolder( View itemView) {
-            super(itemView);
-            name= (TextView) itemView.findViewById(R.id.parent_rv_orderNr_textview);
-            date_order= (TextView) itemView.findViewById(R.id.parent_rv_date_textview);
 
-            childRV= (RecyclerView) itemView.findViewById(R.id.child_order_product_rv);
+        public MyViewHolder(View itemView) {
+            super(itemView);
+            name = (TextView) itemView.findViewById(R.id.parent_rv_orderNr_textview);
+            date_order = (TextView) itemView.findViewById(R.id.parent_rv_date_textview);
+
+            childRV = (RecyclerView) itemView.findViewById(R.id.child_order_product_rv);
         }
     }
 }

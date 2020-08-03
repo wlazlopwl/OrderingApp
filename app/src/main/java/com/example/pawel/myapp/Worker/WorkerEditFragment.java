@@ -21,8 +21,8 @@ public class WorkerEditFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_worker_edit, container, false);
 
 
-    TabLayout tabLayout = (TabLayout) view.findViewById(R.id.worker_edit_tab);
-    ViewPager viewPager = (ViewPager) view.findViewById(R.id.worker_edit_viewPager);
+        TabLayout tabLayout = (TabLayout) view.findViewById(R.id.worker_edit_tab);
+        ViewPager viewPager = (ViewPager) view.findViewById(R.id.worker_edit_viewPager);
         WorkerEditTabAdapter adapter = new WorkerEditTabAdapter(getFragmentManager());
 
         adapter.addFragment(new WorkerEditTab1Fragment());

@@ -1,6 +1,5 @@
 package com.example.pawel.myapp.User;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -61,18 +60,16 @@ public class ProductListActivity extends AppCompatActivity {
         Intent i = getIntent();
         String position = i.getStringExtra("position");
 
-        Toolbar toolbar = (android.support.v7.widget.Toolbar)findViewById(R.id.toolbara);
+        Toolbar toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.toolbara);
         toolbar.setTitle("Produkty");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
 
-
         recyclerView = findViewById(R.id.recyclerViewProduct);
 
-        getProduct(position, "0", "55", "2");
-
+        getProduct(position, "0", userId, "2");
 
 
     }
@@ -187,15 +184,11 @@ public class ProductListActivity extends AppCompatActivity {
                     snackbar.show();
 
 
-
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
 
 //                Toast.makeText(ctx, "Dodano do koszyka", Toast.LENGTH_LONG).show();
-
-
 
 
             }
@@ -227,8 +220,9 @@ public class ProductListActivity extends AppCompatActivity {
 
 
     }
+
     @Override
-    public boolean onSupportNavigateUp(){
+    public boolean onSupportNavigateUp() {
         finish();
         return true;
     }

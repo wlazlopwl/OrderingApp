@@ -1,7 +1,7 @@
 package com.example.pawel.myapp.Admin;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
@@ -26,20 +26,17 @@ import java.util.ArrayList;
 public class AdminUserList extends AppCompatActivity {
 
     private RecyclerView mAllUserListRV;
-       public static ArrayList AllUserList;
-        public static AllUserListAdapter allUserListAdapter;
+    public static ArrayList AllUserList;
+    public static AllUserListAdapter allUserListAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_user_list);
 
-        mAllUserListRV= (RecyclerView) findViewById(R.id.all_user_list_RV);
+        mAllUserListRV = findViewById(R.id.all_user_list_RV);
 
         getAllUser();
-
-
-
-
 
 
     }
@@ -83,7 +80,6 @@ public class AdminUserList extends AppCompatActivity {
                     allUserListAdapter = new AllUserListAdapter(AllUserList);
                     allUserListAdapter.notifyDataSetChanged();
                     mAllUserListRV.setAdapter(allUserListAdapter);
-
 
 
                 } catch (JSONException e) {

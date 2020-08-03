@@ -38,15 +38,16 @@ public class WorkerHomeFragment extends Fragment {
     View view;
     SessionManager sessionManager;
     public String userId;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view= inflater.inflate(R.layout.fragment_worker_home, container, false);
+        view = inflater.inflate(R.layout.fragment_worker_home, container, false);
 
-        mActualOrderTime = (TextView) view.findViewById(R.id.actual_time_order_admin);
-        mCountUser = (TextView) view.findViewById(R.id.worker_home_count_user);
-        mCountActualOrder=(TextView) view.findViewById(R.id.worker_home_count_actual_order);
-        mGoToOrderBtn=(Button) view.findViewById(R.id.worker_home_to_order_btn);
+        mActualOrderTime =  view.findViewById(R.id.actual_time_order_admin);
+        mCountUser =  view.findViewById(R.id.worker_home_count_user);
+        mCountActualOrder =  view.findViewById(R.id.worker_home_count_actual_order);
+        mGoToOrderBtn =  view.findViewById(R.id.worker_home_to_order_btn);
         return view;
 
     }
@@ -71,16 +72,9 @@ public class WorkerHomeFragment extends Fragment {
         });
 
 
-
-
-
-
-
-
-
     }
 
-    public void getActualTime(){
+    public void getActualTime() {
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, Const.URL_GET_TIME, new Response.Listener<String>() {
             @Override
@@ -88,29 +82,20 @@ public class WorkerHomeFragment extends Fragment {
 
                 try {
 
-                    JSONArray jsonArray  = new JSONArray(response);
-
-
+                    JSONArray jsonArray = new JSONArray(response);
 
 
                     for (int i = 0; i < jsonArray.length(); i++) {
 
-                        JSONObject object=jsonArray.getJSONObject(i);
+                        JSONObject object = jsonArray.getJSONObject(i);
                         String count = object.getString("hour").trim();
-                        String hourFromDatabase = count.substring(0,2);
-                        String minuteFromDatabase = count.substring(3,5);
+                        String hourFromDatabase = count.substring(0, 2);
+                        String minuteFromDatabase = count.substring(3, 5);
 
-                        mActualOrderTime.setText(hourFromDatabase+":"+minuteFromDatabase);
-
-
-
-
-
+                        mActualOrderTime.setText(hourFromDatabase + ":" + minuteFromDatabase);
 
 
                     }
-
-
 
 
                 } catch (JSONException e) {
@@ -133,12 +118,12 @@ public class WorkerHomeFragment extends Fragment {
 
 
     }
-    private void getWorkerHomeData(){
+
+    private void getWorkerHomeData() {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, Const.URL_GET_WORKER_DATA, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
-                Log.d("aa", response);
 
                 try {
 
@@ -154,10 +139,7 @@ public class WorkerHomeFragment extends Fragment {
                         Log.d("cau", obj.getString("countActualOrder"));
 
 
-
-
                     }
-
 
 
                 } catch (JSONException e) {

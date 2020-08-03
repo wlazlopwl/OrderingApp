@@ -34,7 +34,7 @@ public class Const {
 
     public static String URL_GET_WORKER_DATA = "http://s34787.s.pwste.edu.pl/app/getWorkerData.php ";
     public static String URL_GET_USER_DATA = "http://s34787.s.pwste.edu.pl/app/getUserData.php ";
-    public static String URL_GET_USER_NAME= "http://s34787.s.pwste.edu.pl/app/getUserName.php ";
-    public static String URL_CHANGE_WORKER= "http://s34787.s.pwste.edu.pl/app/changeWorker.php ";
+    public static String URL_GET_USER_NAME = "http://s34787.s.pwste.edu.pl/app/getUserName.php ";
+    public static String URL_CHANGE_WORKER = "http://s34787.s.pwste.edu.pl/app/changeWorker.php ";
 
 }

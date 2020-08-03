@@ -43,11 +43,11 @@ public class SettingsChangeMyEmail extends AppCompatActivity {
         mMyCurrentEmail = findViewById(R.id.myCurrentEmail);
         mNewEmail = findViewById(R.id.myNewEmail);
         mChangeEmailBtn = findViewById(R.id.setting_change_myEmail_btn);
-        relativeLayout = findViewById(R.id.admin_fragment_settings_email);
+        relativeLayout = findViewById(R.id.admin_fragment_change_email);
         mMyCurrentEmail.setEnabled(false);
         mMyCurrentEmail.setText(sessionManager.getUserInfo().get("password"));
         userId = sessionManager.getUserInfo().get("id");
-        //TODO: ZMIEN NA EMAIL
+
 
 
         mChangeEmailBtn.setOnClickListener(new View.OnClickListener() {
@@ -67,7 +67,7 @@ public class SettingsChangeMyEmail extends AppCompatActivity {
         } else if (TextUtils.equals(currentEmail, newEmail)) {
             Toast.makeText(this, "Nowy E-mail jest identyczny do poprzedniego", Toast.LENGTH_SHORT).show();
         } else {
-            InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
+            InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
             updateEmail();
         }

@@ -1,45 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/fragment_worker_edit_tab2"
     android:background="@color/cardview_shadow_end_color"
     android:orientation="vertical"
 
 
     >
+
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        >
+        android:layout_margin="10dp">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            >
+            android:layout_margin="5dp">
 
             <TextView
                 android:id="@+id/worker_edit_tab2_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Wybierz datę"
-                >
+                android:text="Wybierz datę">
 
             </TextView>
+
             <ImageView
                 android:id="@+id/calennar_raport"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_date_range_black_24dp"
-                android:layout_alignParentEnd="true"
-                >
+                android:layout_alignParentEnd="true">
 
             </ImageView>
 
 
         </RelativeLayout>
-
-
 
 
     </android.support.v7.widget.CardView>
@@ -49,47 +47,45 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_margin="5dp"
-            >
+            android:layout_margin="5dp">
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            >
-            <TextView
-                android:id="@+id/raport_empty_list_inf"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Lista zakupów w tym dniu:"
-                >
-
-            </TextView>
-
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1">
-
-            </Space>
-            <ImageView
-                android:id="@+id/raport_shareIV"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_share_black_24dp"
-                android:visibility="invisible"
-                >
+                android:orientation="horizontal">
 
-            </ImageView>
+                <TextView
+                    android:id="@+id/raport_empty_list_inf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Lista zakupów w tym dniu:">
+
+                </TextView>
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+
+                </Space>
+
+                <ImageView
+                    android:id="@+id/raport_shareIV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_share_black_24dp"
+                    android:visibility="invisible">
+
+                </ImageView>
 
 
-        </LinearLayout>
-
+            </LinearLayout>
 
 
             <ListView
@@ -100,6 +96,6 @@
             </ListView>
         </LinearLayout>
     </android.support.v7.widget.CardView>
-    
+
 
 </LinearLayout>

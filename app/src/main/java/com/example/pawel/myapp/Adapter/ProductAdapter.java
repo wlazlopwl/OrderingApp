@@ -1,10 +1,6 @@
 package com.example.pawel.myapp.Adapter;
 
-import android.app.DatePickerDialog;
-import android.content.Intent;
-import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,17 +10,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.pawel.myapp.Model.DataProduct;
-import com.example.pawel.myapp.User.CartActivity;
-import com.example.pawel.myapp.User.ProductListActivity;
 import com.example.pawel.myapp.R;
+import com.example.pawel.myapp.User.ProductListActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-import static com.example.pawel.myapp.User.ProductListActivity.ctx;
-
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHolder> {
- public static String actualNumberAfterChange;
+    public static String actualNumberAfterChange;
     private LayoutInflater inflater;
     private ArrayList<DataProduct> dataProductArrayList;
 
@@ -46,10 +39,10 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
 
             public void AddItem(int p) {
 
-                String b = dataProductArrayList.get(p).getId() ;
+                String b = dataProductArrayList.get(p).getId();
 
 
-                    ProductListActivity.updateCart(b, "1");
+                ProductListActivity.updateCart(b, "1");
 
 //                if (check=="2")
 //                {
@@ -58,12 +51,11 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
 //                CartActivity.addItem(a);
 
 
-
             }
 
             @Override
             public void DelItem(int p) {
-                String b = dataProductArrayList.get(p).getId() ;
+                String b = dataProductArrayList.get(p).getId();
 
                 ProductListActivity.updateCart(b, "2");
             }
@@ -109,7 +101,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
             switch (view.getId()) {
                 case R.id.plus_product:
                     listener.AddItem(this.getLayoutPosition());
-                    check="1";
+                    check = "1";
 
                     break;
 
@@ -119,6 +111,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
 
         public interface MyClickListener {
             void AddItem(int p);
+
             void DelItem(int p);
 
 

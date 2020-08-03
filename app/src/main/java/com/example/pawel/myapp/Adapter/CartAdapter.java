@@ -1,6 +1,5 @@
 package com.example.pawel.myapp.Adapter;
 
-import android.accessibilityservice.GestureDescription;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,7 +44,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
                 CartActivity.deleteProduct(idProduct, p);
 
 
-
             }
 
             @Override
@@ -81,35 +79,33 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
         Picasso.get().load(dataCartArrayList.get(position).getImgUrl()).into(holder.mProductCartImage);
 //        if (getItemCount() > 0) {
 
-            holder.mActualNumberProduct.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-                @Override
-                public void onFocusChange(View v, boolean hasFocus) {
+        holder.mActualNumberProduct.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
 
-                    if (getItemCount() > 0) {
-                        if (!hasFocus) {
-                            actualNumber = Integer.parseInt((dataCartArrayList.get(position).getQuantity()));
+                if (getItemCount() > 0) {
+                    if (!hasFocus) {
+                        actualNumber = Integer.parseInt((dataCartArrayList.get(position).getQuantity()));
 
-                            newNumber = Integer.parseInt(holder.mActualNumberProduct.getText().toString());
-                            if (actualNumber != newNumber) {
-                                if (newNumber > 0) {
-                                    String quantity = Integer.toString(newNumber);
+                        newNumber = Integer.parseInt(holder.mActualNumberProduct.getText().toString());
+                        if (actualNumber != newNumber) {
+                            if (newNumber > 0) {
+                                String quantity = Integer.toString(newNumber);
 
-                                    CartActivity.updateCart(dataCartArrayList.get(position).getId(), "3", quantity);
-                                }
+                                CartActivity.updateCart(dataCartArrayList.get(position).getId(), "3", quantity);
+                            } else
+                                holder.mActualNumberProduct.setText(Integer.toString(actualNumber));
 
-                                else
-                                    holder.mActualNumberProduct.setText(Integer.toString(actualNumber));
-
-
-                            }
 
                         }
+
                     }
-
-
                 }
-            });
-        }
+
+
+            }
+        });
+    }
 
 
 //    }

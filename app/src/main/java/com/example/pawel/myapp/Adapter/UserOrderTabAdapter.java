@@ -20,7 +20,7 @@ public class UserOrderTabAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        switch (position){
+        switch (position) {
             case 0:
                 UserActualOrderFragment tab1 = new UserActualOrderFragment();
                 return tab1;
@@ -38,9 +38,10 @@ public class UserOrderTabAdapter extends FragmentStatePagerAdapter {
         return fragmentList.size();
     }
 
-    public void addFragment(Fragment fragment){
+    public void addFragment(Fragment fragment) {
         fragmentList.add(fragment);
     }
+
     @Override
     public CharSequence getPageTitle(int position) {
         return tabTitles[position];

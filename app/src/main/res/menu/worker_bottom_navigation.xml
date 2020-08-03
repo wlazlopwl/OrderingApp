@@ -11,9 +11,9 @@
         android:icon="@drawable/ic_dashboard_black_24dp"
         android:title="Zamówienia" />
     <item
-    android:id="@+id/worker_navigation_people"
-    android:icon="@drawable/ic_work_black_24dp"
-    android:title="Pracuję dla" />
+        android:id="@+id/worker_navigation_people"
+        android:icon="@drawable/ic_work_black_24dp"
+        android:title="Pracuję dla" />
 
     <item
         android:id="@+id/worker_navigation_setting"

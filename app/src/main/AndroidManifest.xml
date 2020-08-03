@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.pawel.myapp">
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:label="@string/app_name"
@@ -15,7 +17,7 @@
         <activity android:name=".Worker.WorkerUserDetailActivity" />
         <activity android:name=".User.UserOrderActivity" />
         <activity android:name=".Worker.WorkerActivity" />
-        <activity android:name=".SettingsChangeMyEmail"            />
+        <activity android:name=".SettingsChangeMyEmail" />
         <activity android:name=".User.UserSettingsActivity" />
         <activity android:name=".SettingsChangeMyPassword" />
         <activity android:name=".SettingsChangeMyData" />

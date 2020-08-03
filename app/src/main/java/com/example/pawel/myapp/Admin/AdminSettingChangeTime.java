@@ -8,7 +8,6 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TimePicker;
@@ -115,7 +114,8 @@ public class AdminSettingChangeTime extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
 
-                        Toast.makeText(AdminSettingChangeTime.this, error.toString(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(AdminSettingChangeTime.this, "Wystąpił problem z połączeniem internetowym." +
+                                " Sprawdź połączenie i spróbuj ponownie", Toast.LENGTH_LONG).show();
                     }
                 }) {
             @Override
@@ -158,8 +158,6 @@ public class AdminSettingChangeTime extends AppCompatActivity {
                         mTimePicker.setCurrentMinute(Integer.parseInt(minuteFromDatabase));
 
 
-
-
                     }
 
 
@@ -171,8 +169,6 @@ public class AdminSettingChangeTime extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        //displaying the error in toast if occurrs
-                        Toast.makeText(AdminSettingChangeTime.this, error.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
 

@@ -32,7 +32,7 @@ public class SettingsChangeMyPassword extends AppCompatActivity {
         sessionManager = new SessionManager(getApplicationContext());
         idUser = sessionManager.getUserInfo().get("id");
 
-        Toolbar toolbar = (android.support.v7.widget.Toolbar)findViewById(R.id.toolbara);
+        Toolbar toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.toolbara);
         toolbar.setTitle("Zmiana hasła");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -68,7 +68,7 @@ public class SettingsChangeMyPassword extends AppCompatActivity {
 
 
             if (TextUtils.equals(firstNewPass, secondNewPass)) {
-                updatePassword( firstNewPass);
+                updatePassword(firstNewPass);
             } else {
                 Toast.makeText(this, "Wpisane hasła różnią się", Toast.LENGTH_SHORT).show();
             }
@@ -78,7 +78,7 @@ public class SettingsChangeMyPassword extends AppCompatActivity {
 
     }
 
-    private void updatePassword( final String firstNewPass) {
+    private void updatePassword(final String firstNewPass) {
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, Const.URL_UPDATE_PASSWORD, new Response.Listener<String>() {
             @Override
@@ -100,8 +100,6 @@ public class SettingsChangeMyPassword extends AppCompatActivity {
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
 
-                // Adding All values to Params.
-                // The firs argument should be same sa your MySQL database table columns.
                 params.put("id", idUser);
                 params.put("password", firstNewPass);
 
@@ -114,8 +112,9 @@ public class SettingsChangeMyPassword extends AppCompatActivity {
         requestQueue.add(stringRequest);
 
     }
+
     @Override
-    public boolean onSupportNavigateUp(){
+    public boolean onSupportNavigateUp() {
         finish();
         return true;
     }

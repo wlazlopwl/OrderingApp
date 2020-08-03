@@ -13,9 +13,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-import com.example.pawel.myapp.SettingsChangeMyData;
 import com.example.pawel.myapp.R;
 import com.example.pawel.myapp.SessionManager;
+import com.example.pawel.myapp.SettingsChangeMyData;
 import com.example.pawel.myapp.SettingsChangeMyEmail;
 import com.example.pawel.myapp.SettingsChangeMyPassword;
 
@@ -31,7 +31,6 @@ public class WorkerSettingsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
 
 
         Button mLogout = (Button) view.findViewById(R.id.worker_logout_btn);
@@ -72,11 +71,9 @@ public class WorkerSettingsFragment extends Fragment {
         });
 
 
-
-
     }
 
-    private void logoutAlert(){
+    private void logoutAlert() {
         AlertDialog.Builder logoutDialog = new AlertDialog.Builder(getContext());
         logoutDialog.setTitle("UWAGA!");
         logoutDialog.setIcon(R.drawable.ic_sad_face);
@@ -94,7 +91,7 @@ public class WorkerSettingsFragment extends Fragment {
             }
         });
 
-        AlertDialog alertDialog= logoutDialog.create();
+        AlertDialog alertDialog = logoutDialog.create();
         alertDialog.show();
     }
 }

@@ -1,14 +1,14 @@
 package com.example.pawel.myapp;
 
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
 
 public class WelcomeActivity extends AppCompatActivity {
     ProgressBar progressBar;
-    private int progressBarStatus=0;
+    private int progressBarStatus = 0;
     private Handler handler = new Handler();
     SessionManager sessionManager;
 
@@ -29,16 +29,12 @@ public class WelcomeActivity extends AppCompatActivity {
                             progressBar.setProgress(progressBarStatus);
 
 
-
-
-                            if (progressBarStatus>=50) {
+                            if (progressBarStatus >= 50) {
 
                                 progressBar.setVisibility(View.INVISIBLE);
-                                sessionManager= new SessionManager(WelcomeActivity.this);
+                                sessionManager = new SessionManager(WelcomeActivity.this);
                                 sessionManager.checkLoginAccount();
                                 WelcomeActivity.this.finish();
-
-
 
 
                             }
@@ -58,10 +54,7 @@ public class WelcomeActivity extends AppCompatActivity {
     }
 
 
-
-
-
-    }
+}
 
 
 

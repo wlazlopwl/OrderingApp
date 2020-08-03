@@ -4,12 +4,8 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.DashPathEffect;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -19,7 +15,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -43,11 +38,6 @@ import com.example.pawel.myapp.RecyclerViewClickListener;
 import com.example.pawel.myapp.SessionManager;
 import com.example.pawel.myapp.VolleySingleton;
 import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.LineData;
-import com.github.mikephil.charting.data.LineDataSet;
-import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
-import com.github.mikephil.charting.utils.Utils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -64,93 +54,47 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private CategoryAdapter CategoryAdapter;
     private RecyclerView recyclerView;
     SessionManager sessionManager;
-    public TextView textCartItemCount, mHour, mMinute, mActualOrder, mMyWorkerName, mMonthOrder;
+    public TextView textCartItemCount, mHour, mMinute, mActualOrder, mMyWorkerName, mMyWorkerSurname, mMonthOrder, mMonthOrderProduct;
     public int mCartItemCount = 0;
     int pHour, pMinute, pSecond;
     private Button mCategoryBtn;
     public String userId;
     LineChart mChart;
-
+    Button refreshBtn;
     public android.app.SearchManager searchManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.support_toolbar);
+        Toolbar toolbar = findViewById(R.id.support_toolbar);
 
         setSupportActionBar(toolbar);
         sessionManager = new SessionManager(getApplicationContext());
-        mCategoryBtn = (Button) findViewById(R.id.category_btn);
-        mActualOrder = (TextView) findViewById(R.id.user_home_actual_order);
-        mMyWorkerName = (TextView) findViewById(R.id.user_home_my_worker_name);
-        mMonthOrder = (TextView) findViewById(R.id.user_home_all_month_order);
-        mChart = (LineChart) findViewById(R.id.user_home_statistic);
-        mChart.setTouchEnabled(true);
-        mChart.setPinchZoom(true);
-
-        ArrayList<Entry> values = new ArrayList<>();
+        mCategoryBtn = findViewById(R.id.category_btn_user);
+        mActualOrder = findViewById(R.id.user_home_actual_order);
+        mMyWorkerName = findViewById(R.id.user_home_my_worker_name);
+        mMyWorkerSurname = findViewById(R.id.user_home_my_worker_surname);
+        mMonthOrder = findViewById(R.id.user_home_all_month_order);
+        mMonthOrderProduct = findViewById(R.id.all_order_product_count);
+        refreshBtn = findViewById(R.id.refreshButton);
 
 
-        for (int i = 0; i < 30; i++) {
-            int a;
-            if (i % 2 == 0) {
-                a = 5;
-            } else {
-                a = 2;
-            }
-            values.add(new Entry(i + 1, a));
-        }
-        LineDataSet set1;
-        if (mChart.getData() != null &&
-                mChart.getData().getDataSetCount() > 0) {
-            set1 = (LineDataSet) mChart.getData().getDataSetByIndex(0);
-            set1.setValues(values);
-            mChart.getData().notifyDataChanged();
-            mChart.notifyDataSetChanged();
-        } else {
-            set1 = new LineDataSet(values, "Sample Data");
-            set1.setDrawIcons(false);
-            set1.enableDashedLine(10f, 5f, 0f);
-            set1.enableDashedHighlightLine(10f, 5f, 0f);
-            set1.setColor(Color.DKGRAY);
-            set1.setCircleColor(Color.DKGRAY);
-            set1.setLineWidth(1f);
-            set1.setCircleRadius(3f);
-            set1.setDrawCircleHole(false);
-            set1.setValueTextSize(9f);
-            set1.setDrawFilled(true);
-            set1.setFormLineWidth(1f);
-            set1.setFormLineDashEffect(new DashPathEffect(new float[]{10f, 5f}, 0f));
-            set1.setFormSize(15.f);
-            if (Utils.getSDKInt() >= 18) {
-                Drawable drawable = ContextCompat.getDrawable(this, R.color.colorAccent);
-                set1.setFillDrawable(drawable);
-            } else {
-                set1.setFillColor(Color.DKGRAY);
-            }
-            ArrayList<ILineDataSet> dataSets = new ArrayList<>();
-            dataSets.add(set1);
-            LineData data = new LineData(dataSets);
-            mChart.setData(data);
-        }
-
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
 
         View headerView = navigationView.getHeaderView(0);
-        TextView menuName = (TextView) headerView.findViewById(R.id.menu_name);
-        TextView menuEmail = (TextView) headerView.findViewById(R.id.menu_email);
+        TextView menuName = headerView.findViewById(R.id.menu_name);
+        TextView menuEmail = headerView.findViewById(R.id.menu_email);
 
-        menuName.setText(sessionManager.getUserInfo().get("login") + " " + sessionManager.getUserInfo().get("surname"));
+        menuName.setText(sessionManager.getUserInfo().get("name") + " " + sessionManager.getUserInfo().get("surname"));
         menuEmail.setText(sessionManager.getUserInfo().get("password"));
         userId = sessionManager.getUserInfo().get("id");
 
@@ -160,8 +104,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         getUserData();
 
 
-        mHour = (TextView) findViewById(R.id.main_hour_textView);
-        mMinute = (TextView) findViewById(R.id.main_minute_textView);
+        mHour = findViewById(R.id.main_hour_textView);
+        mMinute = findViewById(R.id.main_minute_textView);
         getActualTime();
 
 
@@ -170,6 +114,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, CategoryListActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        refreshBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                getCategory();
+                getActualTime();
+                getUserData();
+                refreshBtn.setVisibility(View.INVISIBLE);
             }
         });
 
@@ -198,18 +153,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                         mActualOrder.setText(obj.getString("countActualOrder"));
                         mMyWorkerName.setText(obj.getString("name"));
+                        mMyWorkerSurname.setText(obj.getString("surname"));
                         mMonthOrder.setText(obj.getString("countLastMonthOrder"));
+                        mMonthOrderProduct.setText(obj.getString("countLastMonthOrderProduct"));
 
                         String count = obj.getString("countCart");
                         if (count == "null") {
                             textCartItemCount.setText("0");
-                        }
-                        else{
+                        } else {
                             textCartItemCount.setText(count);
 
                         }
                         sessionManager.updateCartCountForUser(textCartItemCount.getText().toString());
-                        Log.d("countCart", response);
 
 
                     }
@@ -225,7 +180,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         //displaying the error in toast if occurrs
-                        Toast.makeText(MainActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "Wystąpił problem z połączeniem internetowym." +
+                                " Sprawdź połączenie i spróbuj ponownie", Toast.LENGTH_LONG).show();
+
+                        refreshBtn.setVisibility(View.VISIBLE);
+
+
                     }
                 }) {
             protected Map<String, String> getParams() throws AuthFailureError {
@@ -244,6 +204,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         requestQueue.add(stringRequest);
 
 
+    }
+
+    public void refreshActivity() {
+        finish();
+        startActivity(getIntent());
     }
 
     public void getActualTime() {
@@ -279,8 +244,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        //displaying the error in toast if occurrs
-                        Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -326,10 +289,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     @Override
                     public void onErrorResponse(VolleyError error) {
 
-                        Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
-
 
 
         VolleySingleton.getInstance(getApplicationContext()).addToRequestQueue(stringRequest);
@@ -355,7 +316,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -371,7 +332,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
         View actionView = MenuItemCompat.getActionView(menuItem);
-        textCartItemCount = (TextView) actionView.findViewById(R.id.cart_badge);
+        textCartItemCount = actionView.findViewById(R.id.cart_badge);
 //        setupBadge();
         searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
 
@@ -449,7 +410,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

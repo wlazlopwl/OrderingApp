@@ -1,7 +1,5 @@
 package com.example.pawel.myapp.Model;
 
-import com.example.pawel.myapp.Model.DataProduct;
-
 import java.util.ArrayList;
 
 public class DataOrderParentList {

@@ -7,14 +7,12 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetDialogFragment;
-import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -51,7 +49,7 @@ public class SimpleUserBottomOption extends BottomSheetDialogFragment {
     Integer position;
     public ArrayList<UserModel> WorkerList;
     RecyclerView recyclerView;
-    public static  AlertDialog selectWorker;
+    public static AlertDialog selectWorker;
     public com.example.pawel.myapp.Adapter.WorkerDialogListAdapter workerDialogListAdapter;
     String idWorker;
 
@@ -157,7 +155,6 @@ public class SimpleUserBottomOption extends BottomSheetDialogFragment {
             }
         });
 
-        
 
         changeWorkerForUser.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -166,10 +163,10 @@ public class SimpleUserBottomOption extends BottomSheetDialogFragment {
 
                 AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
                 LayoutInflater inflater = getLayoutInflater();
-                final View dialogView =  inflater.inflate(R.layout.layout_select_worker_dialog, null);
+                final View dialogView = inflater.inflate(R.layout.layout_select_worker_dialog, null);
                 dialog.setView(dialogView);
                 getWorker();
-                recyclerView =  dialogView.findViewById(R.id.select_worker_dialog_RV);
+                recyclerView = dialogView.findViewById(R.id.select_worker_dialog_RV);
                 recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
                 dialog.setTitle(mSelectWorkerTV.getText().toString() + " dla " + fullName);
                 dialog.setIcon(R.drawable.user);
@@ -191,7 +188,7 @@ public class SimpleUserBottomOption extends BottomSheetDialogFragment {
                 selectWorker.show();
                 Button button;
                 button = selectWorker.getButton(AlertDialog.BUTTON_POSITIVE);
-                    button.setEnabled(false);
+                button.setEnabled(false);
 
 
             }
@@ -229,7 +226,6 @@ public class SimpleUserBottomOption extends BottomSheetDialogFragment {
     }
 
 
-
     private void changeWorker(final String userId, final String newEmail) {
 
 
@@ -245,7 +241,8 @@ public class SimpleUserBottomOption extends BottomSheetDialogFragment {
                     @Override
                     public void onErrorResponse(VolleyError error) {
 
-                        Toast.makeText(getContext(), error.toString(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(), "Wystąpił problem z połączeniem internetowym." +
+                                " Sprawdź połączenie i spróbuj ponownie", Toast.LENGTH_LONG).show();
                     }
                 }) {
             @Override
@@ -323,8 +320,7 @@ public class SimpleUserBottomOption extends BottomSheetDialogFragment {
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
 
-                // Adding All values to Params.
-                // The firs argument should be same sa your MySQL database table columns.
+
                 params.put("id", idUser);
                 params.put("password", firstNewPass);
 
@@ -345,14 +341,9 @@ public class SimpleUserBottomOption extends BottomSheetDialogFragment {
                     AdminUserList.AllUserList.remove(position);
                     allUserListAdapter.notifyItemRemoved(position);
 
-                }
-                else{
+                } else {
                     Toast.makeText(mContext, response, Toast.LENGTH_LONG).show();
                 }
-
-
-
-
 
 
             }
@@ -368,8 +359,7 @@ public class SimpleUserBottomOption extends BottomSheetDialogFragment {
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
 
-                // Adding All values to Params.
-                // The firs argument should be same sa your MySQL database table columns.
+           
                 params.put("id", idUser);
 
 
@@ -394,7 +384,7 @@ public class SimpleUserBottomOption extends BottomSheetDialogFragment {
 
                     JSONArray jsonArray = new JSONArray(response);
 
-                    Log.d("aa", response);
+
                     for (int i = 0; i < jsonArray.length(); i++) {
                         UserModel user = new UserModel();
                         JSONObject object = jsonArray.getJSONObject(i);

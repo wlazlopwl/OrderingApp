@@ -58,11 +58,11 @@ public class UserActualOrderFragment extends Fragment {
         ActualOrderArrayList = new ArrayList<>();
         ChildOrderList = new ArrayList<>();
         sessionManager = new SessionManager(getContext());
-        mSwipeRefreshLayout= (SwipeRefreshLayout) view.findViewById(R.id.order_refresh);
+        mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.order_refresh);
 
 
-        userStatus = String.valueOf(Integer.parseInt(String.valueOf(sessionManager.getUserInfo().get("value")))-1);
-         userId = sessionManager.getUserInfo().get("id");
+        userStatus = String.valueOf(Integer.parseInt(String.valueOf(sessionManager.getUserInfo().get("value"))) - 1);
+        userId = sessionManager.getUserInfo().get("id");
 
         getProduct("1", userStatus, userId, "0");
 
@@ -75,12 +75,6 @@ public class UserActualOrderFragment extends Fragment {
         recyclerView.setClickable(true);
         actualAdapter = new ActualOrderAdapter(ActualOrderArrayList);
         recyclerView.setAdapter(actualAdapter);
-
-
-
-
-
-
 
 
         return view;
@@ -99,105 +93,94 @@ public class UserActualOrderFragment extends Fragment {
                 getProduct("1", userStatus, userId, "0");
 
 
-
                 mSwipeRefreshLayout.setRefreshing(false);
             }
         });
 
 
-
-
     }
 
 
+    private void getProduct(final String position, final String userStatus, final String userId, final String type) {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Const.URL_GET_PRODUCT, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                try {
+
+                    JSONArray dataArray = new JSONArray(response);
+                    for (int i = 0; i < dataArray.length(); i++) {
+                        JSONObject idOrder = dataArray.getJSONObject(i);
+                        DataOrderParentList datamodel = new DataOrderParentList();
+                        datamodel.setName(idOrder.getString("id"));
+                        datamodel.setDate(idOrder.getString("date_order"));
+                        ArrayList<DataProduct> ChildOrderList = new ArrayList<>();
 
 
+                        JSONArray product = idOrder.getJSONArray("product");
 
+                        for (int j = 0; j < product.length(); j++) {
 
+                            DataProduct dataProduct = new DataProduct();
+                            JSONObject dataobj = product.getJSONObject(j);
 
-
-        private void getProduct (final String position, final String userStatus, final String userId, final String type) {
-            StringRequest stringRequest = new StringRequest(Request.Method.POST, Const.URL_GET_PRODUCT, new Response.Listener<String>() {
-                @Override
-                public void onResponse(String response) {
-
-                    try {
-
-                        JSONArray dataArray = new JSONArray(response);
-                        for (int i = 0; i <dataArray.length() ; i++) {
-                    JSONObject idOrder = dataArray.getJSONObject(i);
-                    DataOrderParentList datamodel = new DataOrderParentList();
-                    datamodel.setName(idOrder.getString("id"));
-                    datamodel.setDate(idOrder.getString("date_order"));
-                            ArrayList<DataProduct> ChildOrderList = new ArrayList<>();
-
-
-                            JSONArray product = idOrder.getJSONArray("product");
-
-                            for (int j = 0; j < product.length(); j++) {
-
-                                DataProduct dataProduct = new DataProduct();
-                                JSONObject dataobj = product.getJSONObject(j);
-
-                                dataProduct.setName(dataobj.getString("name"));
-                                dataProduct.setDescription(dataobj.getString("desc"));
-                                dataProduct.setQuantity(dataobj.getString("quantity"));
+                            dataProduct.setName(dataobj.getString("name"));
+                            dataProduct.setDescription(dataobj.getString("desc"));
+                            dataProduct.setQuantity(dataobj.getString("quantity"));
 //                                dataProduct.setId(dataobj.getString("id"));
-                                dataProduct.setImgUrl(dataobj.getString("img"));
+                            dataProduct.setImgUrl(dataobj.getString("img"));
 
 
-                                ChildOrderList.add(dataProduct);
-
-                            }
-                            datamodel.setDataProductList(ChildOrderList);
-//
-//
-                         ActualOrderArrayList.add(datamodel);
-//
-
+                            ChildOrderList.add(dataProduct);
 
                         }
-                        actualAdapter.notifyDataSetChanged();
+                        datamodel.setDataProductList(ChildOrderList);
+//
+//
+                        ActualOrderArrayList.add(datamodel);
+//
 
+
+                    }
+                    actualAdapter.notifyDataSetChanged();
 
 
 //                        setupProductRecycler();
 
 
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                } catch (JSONException e) {
+                    e.printStackTrace();
 
+                }
+            }
+        },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        //displaying the error in toast if occurrs
+                        Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
                     }
-                }
-            },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            //displaying the error in toast if occurrs
-                            Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    }) {
-                protected Map<String, String> getParams() throws AuthFailureError {
-                    Map<String, String> params = new HashMap<>();
-                    params.put("position", position);
-                    params.put("user_status", userStatus);
-                    params.put("user_id", userId);
-                    params.put("type", type);
+                }) {
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("position", position);
+                params.put("user_status", userStatus);
+                params.put("user_id", userId);
+                params.put("type", type);
 
-                    return params;
-                }
-            };
+                return params;
+            }
+        };
 
 
-            RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
 
-            requestQueue.add(stringRequest);
-
-        }
-
-
+        requestQueue.add(stringRequest);
 
     }
+
+
+}
 
 
 

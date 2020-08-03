@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,10 +30,11 @@ public class AdminHomeFragment extends Fragment {
     private Button mChangeTime;
 
     View view;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view= inflater.inflate(R.layout.fragment_admin_home, container, false);
+        view = inflater.inflate(R.layout.fragment_admin_home, container, false);
 
 
         return view;
@@ -46,18 +46,18 @@ public class AdminHomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         mUserCount = view.findViewById(R.id.count_user);
-        mCountWorker= view.findViewById(R.id.count_worker);
-        mOrderTime = (TextView) view.findViewById(R.id.actual_time_order_admin) ;
+        mCountWorker = view.findViewById(R.id.count_worker);
+        mOrderTime = (TextView) view.findViewById(R.id.actual_time_order_admin);
         mChangeTime = (Button) view.findViewById(R.id.change_time_admin_home_btn);
 
 
-mChangeTime.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View view) {
-        Intent intent = new Intent(getActivity(), AdminSettingChangeTime.class);
-        startActivity(intent);
-    }
-});
+        mChangeTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), AdminSettingChangeTime.class);
+                startActivity(intent);
+            }
+        });
 
 
         getAdminData();
@@ -65,7 +65,8 @@ mChangeTime.setOnClickListener(new View.OnClickListener() {
 
 
     }
-    public void getActualTime(){
+
+    public void getActualTime() {
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, Const.URL_GET_TIME, new Response.Listener<String>() {
             @Override
@@ -73,29 +74,20 @@ mChangeTime.setOnClickListener(new View.OnClickListener() {
 
                 try {
 
-                    JSONArray jsonArray  = new JSONArray(response);
-
-
+                    JSONArray jsonArray = new JSONArray(response);
 
 
                     for (int i = 0; i < jsonArray.length(); i++) {
 
-                        JSONObject object=jsonArray.getJSONObject(i);
+                        JSONObject object = jsonArray.getJSONObject(i);
                         String count = object.getString("hour").trim();
-                        String hourFromDatabase = count.substring(0,2);
-                        String minuteFromDatabase = count.substring(3,5);
+                        String hourFromDatabase = count.substring(0, 2);
+                        String minuteFromDatabase = count.substring(3, 5);
 
-                        mOrderTime.setText(hourFromDatabase+":"+minuteFromDatabase);
-
-
-
-
-
+                        mOrderTime.setText(hourFromDatabase + ":" + minuteFromDatabase);
 
 
                     }
-
-
 
 
                 } catch (JSONException e) {
@@ -107,7 +99,8 @@ mChangeTime.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         //displaying the error in toast if occurrs
-                        Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Wystąpił problem z połączeniem internetowym." +
+                                " Sprawdź połączenie i spróbuj ponownie", Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -119,32 +112,26 @@ mChangeTime.setOnClickListener(new View.OnClickListener() {
 
     }
 
-    private void getAdminData(){
+    private void getAdminData() {
         StringRequest stringRequest = new StringRequest(Request.Method.GET, Const.URL_GET_ADMIN, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
                 try {
 
-                    JSONArray jsonArray  = new JSONArray(response);
-
-
+                    JSONArray jsonArray = new JSONArray(response);
 
 
                     for (int i = 0; i < jsonArray.length(); i++) {
 
-                        JSONObject object=jsonArray.getJSONObject(i);
-                        String count = object.getString("COUNT(id)").trim();
-                        Log.d("ilosc", count);
-                        mUserCount.setText(count);
-                        mCountWorker.setText(count);
-
-
+                        JSONObject object = jsonArray.getJSONObject(i);
+                        String countUser = object.getString("countUser").trim();
+                        String countWorker = object.getString("countWorker").trim();
+                        mUserCount.setText(countUser);
+                        mCountWorker.setText(countWorker);
 
 
                     }
-
-
 
 
                 } catch (JSONException e) {
@@ -156,7 +143,8 @@ mChangeTime.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         //displaying the error in toast if occurrs
-                        Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Wystąpił problem z połączeniem internetowym." +
+                                " Sprawdź połączenie i spróbuj ponownie", Toast.LENGTH_SHORT).show();
                     }
                 });
 

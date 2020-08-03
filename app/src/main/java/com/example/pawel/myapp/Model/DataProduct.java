@@ -3,7 +3,7 @@ package com.example.pawel.myapp.Model;
 import java.util.ArrayList;
 
 public class DataProduct {
-    private String id, name, description, imgUrl, categoryId,quantityTypeId, quantity;
+    private String id, name, description, imgUrl, categoryId, quantityTypeId, quantity;
     private ArrayList<DataProduct> dataProductList;
 
     public String getId() {

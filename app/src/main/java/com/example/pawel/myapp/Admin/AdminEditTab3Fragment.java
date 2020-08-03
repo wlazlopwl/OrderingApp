@@ -59,7 +59,6 @@ public class AdminEditTab3Fragment extends Fragment {
     Spinner mCategorySpinner;
     RadioGroup mRadioGroup;
     RadioButton mRadioBtnSzt, mRadioBtnG;
-    int quantityTypeId;
 
 
     @Nullable
@@ -78,12 +77,9 @@ public class AdminEditTab3Fragment extends Fragment {
         progressDialog = new ProgressDialog(getContext());
         imageView = view.findViewById(R.id.photo_add_product);
         mCategorySpinner = view.findViewById(R.id.category_spinner);
-//        mRadioGroup = view.findViewById(R.id.radio_group);
-//        mRadioBtnSzt = view.findViewById(R.id.radio_btn_szt);
-//        mRadioBtnG = view.findViewById(R.id.radio_btn_g);
+
 
         isPhoto = false;
-        quantityTypeId=3;
 
         setCategorySpinner();
         imageView.setOnClickListener(new View.OnClickListener() {
@@ -97,15 +93,10 @@ public class AdminEditTab3Fragment extends Fragment {
             public void onClick(View v) {
                 checkEmptyData();
 
-                if (isData && isPhoto && (quantityTypeId==1 || quantityTypeId==2)) {
+                if (isData && isPhoto) {
                     addProduct();
 
-                }
-                else if (isData && isPhoto && quantityTypeId==3) {
-                    Toast.makeText(getContext(), "Wybierz sztuki lub gramy", Toast.LENGTH_SHORT).show();
-                }
-
-                else if (!isData && isPhoto) {
+                } else if (!isData && isPhoto) {
                     Toast.makeText(getContext(), "Wprowadź brakujące dane", Toast.LENGTH_SHORT).show();
                 } else if (isData && !isPhoto) {
                     Toast.makeText(getContext(), "Dodaj zdjęcie", Toast.LENGTH_SHORT).show();
@@ -248,7 +239,7 @@ public class AdminEditTab3Fragment extends Fragment {
 
     }
 
-    public void addProduct(){
+    public void addProduct() {
         progressDialog.setMessage("Proszę czekać");
         progressDialog.show();
 
@@ -256,8 +247,6 @@ public class AdminEditTab3Fragment extends Fragment {
         bitmap.compress(Bitmap.CompressFormat.JPEG, 50, baos);
         byte[] imageBytes = baos.toByteArray();
         final String imageString = Base64.encodeToString(imageBytes, Base64.DEFAULT);
-
-
 
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, Const.URL_ADD_PRODUCT, new Response.Listener<String>() {
@@ -275,7 +264,7 @@ public class AdminEditTab3Fragment extends Fragment {
                     }
                 }) {
             @Override
-            protected Map<String, String> getParams(){
+            protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
 
                 // Adding All values to Params.
@@ -285,9 +274,6 @@ public class AdminEditTab3Fragment extends Fragment {
                 params.put("description", desc);
                 String categoryId = (String) id.get(mCategorySpinner.getSelectedItemPosition());
                 params.put("category_id", categoryId);
-                params.put("quantity_type_id", "1");
-
-
 
 
                 return params;
@@ -298,9 +284,7 @@ public class AdminEditTab3Fragment extends Fragment {
         requestQueue.add(stringRequest);
 
 
-
     }
-
 
 
 }

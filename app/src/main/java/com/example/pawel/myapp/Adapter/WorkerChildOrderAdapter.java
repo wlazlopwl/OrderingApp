@@ -44,7 +44,7 @@ public class WorkerChildOrderAdapter extends RecyclerView.Adapter<WorkerChildOrd
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
         myViewHolder.name.setText((ChildOrderList.get(i).getName()));
         myViewHolder.orderProductDesc.setText(ChildOrderList.get(i).getDescription());
-        myViewHolder.orderProductQuantity.setText(ChildOrderList.get(i).getQuantity()+"x");
+        myViewHolder.orderProductQuantity.setText(ChildOrderList.get(i).getQuantity() + "x");
         Picasso.get().load(ChildOrderList.get(i).getImgUrl()).into(myViewHolder.mProductImage);
 
     }
@@ -63,7 +63,7 @@ public class WorkerChildOrderAdapter extends RecyclerView.Adapter<WorkerChildOrd
             super(itemView);
             name = (TextView) itemView.findViewById(R.id.worker_product_order_name);
             orderProductDesc = (TextView) itemView.findViewById(R.id.worker_order_product_desc);
-            orderProductQuantity=(TextView)itemView.findViewById(R.id.worker_order_product_quantity);
+            orderProductQuantity = (TextView) itemView.findViewById(R.id.worker_order_product_quantity);
             mProductImage = (ImageView) itemView.findViewById(R.id.worker_product_order_image);
         }
     }

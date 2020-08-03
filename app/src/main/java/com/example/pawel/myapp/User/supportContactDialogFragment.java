@@ -7,14 +7,13 @@ import android.support.design.widget.BottomSheetDialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.example.pawel.myapp.R;
 
 public class supportContactDialogFragment extends BottomSheetDialogFragment {
-private ImageView mEmail, mPhone;
+    private ImageView mEmail, mPhone;
+
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -42,9 +41,6 @@ private ImageView mEmail, mPhone;
 
         return view;
     }
-
-
-
 
 
 }

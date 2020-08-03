@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:card_view="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:background="@android:color/white">
 
@@ -18,50 +17,48 @@
         app:cardCornerRadius="15dp"
 
         >
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_marginLeft="10dp"
-            android:layout_gravity="center_vertical"
-            >
+            android:layout_gravity="center_vertical">
 
 
+            <TextView
+                android:id="@+id/layout_select_worker_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Adam "
+                android:textSize="15dp"
+                android:layout_gravity="center_vertical">
 
-        <TextView
-            android:id="@+id/layout_select_worker_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Adam "
-            android:textSize="15dp"
-            android:layout_gravity="center_vertical"
-            >
+            </TextView>
 
-        </TextView>
-        <TextView
-            android:id="@+id/layout_select_worker_surname"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Nowak"
-            android:textSize="15dp"
-            android:layout_gravity="center_vertical"
-            >
+            <TextView
+                android:id="@+id/layout_select_worker_surname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nowak"
+                android:textSize="15dp"
+                android:layout_gravity="center_vertical">
 
-        </TextView>
+            </TextView>
+
             <Space
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_weight="1"/>
+                android:layout_weight="1" />
 
 
-           <CheckBox
-               android:id="@+id/layout_select_worker_checkbox"
+            <CheckBox
+                android:id="@+id/layout_select_worker_checkbox"
 
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content">
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
-           </CheckBox>
-
+            </CheckBox>
 
 
         </LinearLayout>

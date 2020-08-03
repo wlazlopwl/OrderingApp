@@ -16,11 +16,10 @@ public class ShopListModel {
     }
 
 
-
     public ShopListModel() {
         this.name = name;
         this.quantity = quantity;
-        this.description=description;
+        this.description = description;
     }
 
     public String getName() {
@@ -42,6 +41,6 @@ public class ShopListModel {
 
     @Override
     public String toString() {
-        return quantity +" x  "+ name+" "+description;
+        return quantity + " x  " + name + " " + description;
     }
 }

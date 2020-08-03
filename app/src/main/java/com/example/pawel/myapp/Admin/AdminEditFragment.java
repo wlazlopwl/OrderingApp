@@ -19,8 +19,8 @@ public class AdminEditFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_admin_edit, container, false);
-        TabLayout tabLayout= (TabLayout) view.findViewById(R.id.admin_edit_tab);
-        ViewPager viewPager= (ViewPager) view.findViewById(R.id.admin_edit_viewPager);
+        TabLayout tabLayout = (TabLayout) view.findViewById(R.id.admin_edit_tab);
+        ViewPager viewPager = (ViewPager) view.findViewById(R.id.admin_edit_viewPager);
         AdminEditTabAdapter adapter = new AdminEditTabAdapter(getFragmentManager());
 
         //add fragment

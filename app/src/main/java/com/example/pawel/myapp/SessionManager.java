@@ -62,7 +62,7 @@ public class SessionManager {
             Intent intent = new Intent(context, LogInActivity.class);
             context.startActivity(intent);
         } else {
-            int userValue = Integer.parseInt(getUserInfo().get("value"))-1;
+            int userValue = Integer.parseInt(getUserInfo().get("value")) - 1;
 
             if (userValue == 0) {
                 Intent intent = new Intent(context, MainActivity.class);

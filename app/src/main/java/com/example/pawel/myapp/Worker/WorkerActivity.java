@@ -25,6 +25,7 @@ public class WorkerActivity extends AppCompatActivity {
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 Fragment selectedFragment = null;
+
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                     switch (menuItem.getItemId()) {
@@ -37,7 +38,7 @@ public class WorkerActivity extends AppCompatActivity {
 
                             break;
                         case R.id.worker_navigation_people:
-                            selectedFragment =  new WorkerPeopleFragment();
+                            selectedFragment = new WorkerPeopleFragment();
                             break;
                         case R.id.worker_navigation_setting:
                             selectedFragment = new WorkerSettingsFragment();
